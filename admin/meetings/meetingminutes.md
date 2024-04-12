@@ -1,47 +1,33 @@
-# Meeting 1
-
-```markdown
-# Meeting Minutes 
-
+# Meeting Minutes
 ## Meeting Information
-|   |   |
-|---|---|
-| **Meeting Title:**  | [Title]  |
-| **Date:**  | [Date]  |
-| **Time:**  | [Time]  |
-| **Location:** | [Location] |
+**Meeting Date/Time:** meeting_date, meeting_time  
+**Meeting Purpose:** meeting_purpose  
+**Meeting Location:** meeting_location  
+**Note Taker:** note_taker  
 
-## Attendees and Absentees
-| Attendees | Absentees |
-|---|---|
-| Name 1  | Name 1 |
-| Name 2  | Name 2 |
-| Name 3  | ... |
-| ...  |  |
+## Attendees
+People who attended:
+- Person A
+- Person B
+- Person C
 
-## Agenda
-|Sl.No.| Agenda item |
-|---|---|
-| 1 | Item 1 |
-| 2 | Item 2 |
-| 3 | ... |
+## Agenda Items
 
-## Decisions Made and Action Items
-|Sl.No.| Agenda Item | Decision | Rationale | Action Item |
-|---|---|---|---|---|
-| 1 | Item 1 | Decision 1 | Reasoning 1 | Action 1 |
-| 2 | Item 2 | Decision 2 | Reasoning 2 | Action 2 |
-| 3 | ... | ... | ... | ... |
+Item | Description
+---- | ----
+Agenda Item 1 | • <br>• <br>• <br>• <br>• 
+Agenda Item 2 | • <br>• <br>• <br>• <br>• 
 
-## Items for Future Investigation
-1. Item 1
-2. Item 2
-3. ...
+## Discussion Items
+Item | Who | Notes |
+---- | ---- | ---- |
+item | who | notes |
 
-## Next Meeting
-|   |   |
-|---|---|
-| **Date:**  | [Date]  |
-| **Time:**  | [Time]  |
-| **Location:** | [Location]  |
-```
+
+## Action Items
+| Done? | Item | Responsible | Due Date |
+| ---- | ---- | ---- | ---- |
+| | item | who | due_date |
+
+## Other Notes & Information
+N/A
