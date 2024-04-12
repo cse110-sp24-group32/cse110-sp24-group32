@@ -15,20 +15,22 @@ People who attended:
 
 Item | Description
 ---- | ----
-New Business to be discussed | • Any old unresolved business from the previous meeting <br>• type  here <br>• type  here <br>• type  here <br>• type here 
-Any old unresolved business from the previous meeting | • <br>• <br>• <br>• <br>• 
-Anything that was on the agenda but was not discussed (save for next meeting's old business) | • <br>• <br>• <br>• <br>• 
+New Business to be discussed | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
+Any old unresolved business from the previous meeting | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
+Anything that was on the agenda but was not discussed (save for next meeting's old business) | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
 
-## Discussion Items
-Item | Who | Notes |
+## Any decisions made & their reasoning
+Decision | Reasoning | By whom (developers, team leads, team) |
 ---- | ---- | ---- |
-item | who | notes |
+I decided to drive drunk | It is fun and not dangerous at all | By very responsible person |
+decision | reasoning | by whom |
+decision | reasoning | by whom |
 
 
 ## Action Items
-| Done? | Item | Responsible | Due Date |
+| Done? | Task | Responsible | Due Date |
 | ---- | ---- | ---- | ---- |
-| | item | who | due_date |
+| Nor or Yes | a task | who | due_date |
 
 ## Other Notes & Information
-N/A
+Just some random stuff goes here. Brainstorming, Thinks to consider, etc. Talk here about everything but keep it a little bit organized. 
