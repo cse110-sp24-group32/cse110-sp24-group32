@@ -16,7 +16,7 @@ People who attended:
 Item | Description
 ---- | ----
 New Business to be discussed | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
-Any old unresolved business from the previous meeting | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
+Any old unresolved business from the previous meeting/week | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
 Anything that was on the agenda but was not discussed (save for next meeting's old business) | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
 
 ## Any decisions made & their reasoning
