@@ -15,7 +15,7 @@ People who attended:
 
 Item | Description
 ---- | ----
-Agenda Item 1 | • type  here <br>• type  here <br>• type  here <br>• type  here <br>• 
+Agenda Item 1 | • type  here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
 Agenda Item 2 | • <br>• <br>• <br>• <br>• 
 
 ## Discussion Items
