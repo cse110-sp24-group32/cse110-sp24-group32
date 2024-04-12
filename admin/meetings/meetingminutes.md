@@ -15,8 +15,9 @@ People who attended:
 
 Item | Description
 ---- | ----
-Agenda Item 1 | • type  here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
-Agenda Item 2 | • <br>• <br>• <br>• <br>• 
+New Business to be discussed | • type  here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
+Any old unresolved business from the previous meeting | • <br>• <br>• <br>• <br>• 
+Anything that was on the agenda but was not discussed (save for next meeting's old business) | • <br>• <br>• <br>• <br>• 
 
 ## Discussion Items
 Item | Who | Notes |
