@@ -27,7 +27,7 @@ decision | reasoning | by whom |
 decision | reasoning | by whom |
 
 
-## Action Items
+## Action Items (We discuss it HERE, and then copy and paste all of this into the Project thingie so its more convenient to fill it up)
 | Done? | Task | Responsible | Due Date |
 | ---- | ---- | ---- | ---- |
 | Nor or Yes | a task | who | due_date |
