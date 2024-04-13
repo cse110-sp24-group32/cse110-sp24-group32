@@ -11,6 +11,7 @@
     and like to play FPS games like Counter-Strike and Overwatch.
 
     Most of my repositories for my projects are private, but my github profile can be found [here](https://github.com/chris-529)
+
     ---
 
 - Item 2:
