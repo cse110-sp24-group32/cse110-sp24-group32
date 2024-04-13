@@ -1,4 +1,4 @@
-# <Team Name> Rules
+# Team Name Rules
 
 # What is expected to be on the team 
 
