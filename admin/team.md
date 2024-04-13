@@ -6,7 +6,7 @@
 
 # Roster
 
-- ## Christopher Schrader:
+- ## **Christopher Schrader**:
     I'm a 3rd year Computer Science major interested in web development and am a co-leader for the team. Some things about me are that I'm 22 years old, have a dog Jenna that I really love,
     and like to play FPS games like Counter-Strike and Overwatch.
 
