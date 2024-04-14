@@ -1,4 +1,5 @@
 # Meeting Minutes
+# Team Information: Number 32 , Name : 
 ## Meeting Information
 **Meeting Date/Time:** 4/13/2024, 8 - 10 pm (2 hours)  
 **Meeting Purpose:** Kickoff Meeting, Team Brand, Discussion on Monday's Assingments   
@@ -42,6 +43,7 @@ Richard and Hailani going to edit the videos  | they both did it before | by Tea
 Came up with Team Contract  | n/a | by Team |
 Philip is going to fill up the team page | n/a | By Team 
 Hailiani is going to come up with team logo (in case there is a better one then the one we came up with right now) | She is good at desgining | By Team 
+Made everyone admin in the repository | people could not upload their signed pdf docs | By Team Leads 
 
 
 ## Action Items (We discuss it HERE, and then copy and paste all of this into the Project thingie so its more convenient to fill it up)
