@@ -4,6 +4,8 @@
 
 # Values
 
+As memory munchers, we value the efficient use of memory as well as the user's ability to save their working memory for tasks that matter the most. To work coherently as a team, we value each other's time and opinions. We are also committed to being helpful and communicative if issues were to arise during the development of our project. These values are clearly reflected in our team contract we unanimously signed.
+
 # Roster
 
 - ## **Christopher Schrader**:
