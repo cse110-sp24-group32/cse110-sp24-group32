@@ -40,7 +40,7 @@ decision | reasoning | by whom |
 ## Action Items (We discuss it HERE, and then copy and paste all of this into the Project thingie so its more convenient to fill it up)
 | Done? | Task | Responsible | Due Date |
 | ---- | ---- | ---- | ---- |
-| Nor or Yes | a task | who | due_date |
+| No | take a screenshot of your group zoom call during the game (Links to an external site.https://skribbl.io/Links to an external site.) | who | due_date |
 
 ## Other Notes & Information
 Just some random stuff goes here. Brainstorming, Thinks to consider, etc. Talk here about everything but keep it a little bit organized. 
