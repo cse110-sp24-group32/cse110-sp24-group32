@@ -1,4 +1,4 @@
-# Team Name Rules
+# Memory Munchers Rules
 
 # What is expected to be on the team 
 
