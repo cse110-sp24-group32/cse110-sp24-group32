@@ -12,7 +12,7 @@ People who attended:
 - Person C
 -   
 Did not attend (valid excuse):
-- Person A
+- Thomas Li
 - Person B
 - Person C
 - 
@@ -32,7 +32,7 @@ Anything that was on the agenda but was not discussed (save for next meeting's o
 ## Any decisions made & their reasoning
 Decision | Reasoning | By whom (developers, team leads, team) |
 ---- | ---- | ---- |
-I decided to drive drunk | It is fun and not dangerous at all | By very responsible person |
+Next meeting will be scheduled during CSE 110 lab hours | Because nobody attends it anyway and there is no excuse to not attend :) | Team? |
 decision | reasoning | by whom |
 decision | reasoning | by whom |
 
