@@ -1,5 +1,5 @@
 # Meeting Minutes
-# Team Information: Number 32 , Name : 
+# Team Information: Number 32 , Name : Memory Munchers
 ## Meeting Information
 **Meeting Date/Time:** 4/13/2024, 8 - 10 pm (2 hours)  
 **Meeting Purpose:** Kickoff Meeting, Team Brand, Discussion on Monday's Assingments   
