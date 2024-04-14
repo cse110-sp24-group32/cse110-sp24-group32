@@ -53,6 +53,8 @@ Made everyone admin in the repository | people could not upload their signed pdf
 | No | Everyone need to sign team contract and submit individually as a pdf| team | Wend |
 | No | Rename this meeting notes into correct thing | Team Leads | asap |
 | No | Everyone add url and contribute to the team page | Team | asap |
+| No | Ask TA about BackEnd/FrontEnd Division between Devs | Team | Meeting on Wedn with TA |
+
 
 
 
