@@ -51,6 +51,8 @@ Made everyone admin in the repository | people could not upload their signed pdf
 | ---- | ---- | ---- | ---- |
 | No | take a screenshot of your group zoom call during the game (Links to an external site.https://skribbl.io/Links to an external site.) | who | due_date |
 | No | Everyone need to sign team contract and submit individually as a pdf| team | Wend |
+| No | Rename this meeting notes into correct thing | Team Leads | asap |
+
 
 
 ## Other Notes & Information
