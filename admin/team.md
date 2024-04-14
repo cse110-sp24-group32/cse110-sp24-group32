@@ -1,4 +1,4 @@
-# Team Name
+# Memory Munchers
 
 # Brand
 
@@ -16,9 +16,8 @@
 - ## **Thomas Li**:
   I'm a second year CS major, and a developer for this team. I'm mostly interested in theoretical CS and low level stuff. In my free time, I practice competitive programming and piano. My github is https://github.com/ucsd-zhl135.
   
-- Item 2:
-    This is the first line of Item 2.
-    This is the second line of Item 2.
+- ## **Philip Chi**:
+  I'm a fourth year Cognitive Science major, and the planner for team 32. I enjoy playing all kinds of videogames in my spare time, like FFXIV, Monster Hunter, Mario, etc. I am also interest in learning more about general IT. [Here is a link for my Github](https://github.com/philchi)
 
 - Item 3:
     This is the first line of Item 3.
