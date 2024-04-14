@@ -55,3 +55,10 @@ Made everyone admin in the repository | people could not upload their signed pdf
 
 ## Other Notes & Information
 Just some random stuff goes here. Brainstorming, Thinks to consider, etc. Talk here about everything but keep it a little bit organized. 
+
+Developer (Arjun): writes software, planning, he must know where button goes where, what functionality is, the user experience
+Developer (Hailani): supporters to planers 
+Planner: Plans out tasks that developers can do, assign issues pages thingie can be done by planner during the meeting 
+Designer: design how the web (front end) would look like. 
+Developer (Hailani): Leads are well rounded and can fit in any role where can they meet, they direct things , like coordinating things , go where they needed, keeping the group whole, set the collaborative enrvironment 
+Developer (Philip): Leads submmit stuff 
