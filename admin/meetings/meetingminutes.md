@@ -1,16 +1,23 @@
 # Meeting Minutes
 ## Meeting Information
-**Meeting Date/Time:** meeting_date, meeting_time  
-**Meeting Purpose:** meeting_purpose  
-**Meeting Location:** meeting_location  
-**Note Taker:** note_taker  
+**Meeting Date/Time:** 4/13/2024, 8 - 10 pm (2 hours)  
+**Meeting Purpose:** Kickoff Meeting, Team Brand, Discussion on Monday's Assingments   
+**Meeting Location:** Discord  
+**Note Taker:** Anthony Chapov 
 
 ## Attendees
 People who attended:
 - Person A
 - Person B
 - Person C
-
+Did not attend (valid excuse):
+- Person A
+- Person B
+- Person C
+Missed (no valid excuse) 
+- Person A
+- Person B
+- Person C
 ## Agenda Items
 
 Item | Description
