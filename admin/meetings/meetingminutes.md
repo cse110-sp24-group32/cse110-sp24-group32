@@ -25,7 +25,7 @@ Missed (no valid excuse)
 
 Item | Description
 ---- | ----
-New Business to be discussed | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here 
+New Business to be discussed | • Team Brand <br>• Team Videos <br>• Definition of Roles (initial thoughts) <br>• Team Contract <br>• Phone numbers  
 Any old unresolved business from the previous meeting/week | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
 Anything that was on the agenda but was not discussed (save for next meeting's old business) | • type here <br>• type  here <br>• type  here <br>• type  here <br>• type here
 
