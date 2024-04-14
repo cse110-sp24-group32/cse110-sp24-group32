@@ -16,7 +16,8 @@ People who attended:
 - Arjun 
 - David
 - Thanh
-- Anthony 
+- Anthony
+  
 Did not attend (valid excuse):
 - Thomas Li
 - 
