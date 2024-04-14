@@ -9,15 +9,15 @@
 People who attended:
 - Person A
 - Person B
-- Person C
+- Person C  
 Did not attend (valid excuse):
 - Person A
 - Person B
-- Person C
+- Person C  
 Missed (no valid excuse) 
 - Person A
 - Person B
-- Person C
+- Person C  
 ## Agenda Items
 
 Item | Description
