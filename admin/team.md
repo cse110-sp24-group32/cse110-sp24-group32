@@ -23,6 +23,5 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 - ## **Philip Chi**:
   I'm a fourth year Cognitive Science major, and the planner for team 32. I enjoy playing all kinds of videogames in my spare time, like FFXIV, Monster Hunter, Mario, etc. I am also interested in learning more about IT. [Here is the link for my Github](https://github.com/philchi)
 
-- Item 3:
-    This is the first line of Item 3.
-    This is the second line of Item 3.
+- ## **Richard Masser-Frye**:
+  I'm a fourth year Math-CS major, and my role is developer. Besides math and CS, I am also studying Chinese and cognitive science. My GitHub is https://github.com/richmass1/
