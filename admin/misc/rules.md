@@ -15,7 +15,7 @@
 - If there is a small dispute between two people, either try to talk it out with the person. If you don't see any progress on the problem, definitely bring it up to a lead or TA
 - For more serious matters, contact the TA or professor
 # Sign here:
-<br> Anthony Chapov <br> <br> <br>
+<br>  <br> <br> <br>
 
 
 
