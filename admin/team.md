@@ -25,3 +25,8 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 
 - ## **Richard Masser-Frye**:
   I'm a fourth year Math-CS major, and my role is developer. Besides math and CS, I am also studying Chinese and cognitive science. My GitHub is https://github.com/richmass1/
+
+- ## **Hailani Lam**:
+  Hi! I am a current third-year, majoring in computer science. I am one of the team developers. Some hobbies of mine are reading, rock climbing, and playing video games.
+  
+  My github profile can be found [here](https://github.com/hlani) . 
