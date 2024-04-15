@@ -11,8 +11,7 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 # Roster
 
 - ## **Christopher Schrader**:
-    I'm a 3rd year Computer Science major interested in web development and am a co-leader for the team. Some things about me are that I'm 22 years old, have a dog Jenna that I really love,
-    and like to play FPS games like Counter-Strike and Overwatch.
+    I'm a 3rd year Computer Science major interested in web development and am a co-leader for the team. Some things about me are that I have a dog Jenna that I really love, like to play FPS games like Counter-Strike and Overwatch, and am into music production.
 
     Most of my repositories for my projects are private, but my github profile can be found [here](https://github.com/chris-529)
 
