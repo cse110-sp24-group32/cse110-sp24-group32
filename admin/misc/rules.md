@@ -16,7 +16,7 @@
 - For more serious matters, contact the TA or professor
 
 # Sign here:
-<br> Anthony Chapov <br> <br> <br>
+<br>  <br> <br> <br>
 
 
 
