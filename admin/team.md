@@ -32,3 +32,7 @@ As memory munchers, we value the efficient use of memory as well as the user's a
   
 - ## **Justin Tran**:
   I'm a third year Math-CS major, and I am the designer for this team. I love snowboarding, playing the saxophone, and playing with my dog, Tofu. [My GitHub profile](https://github.com/jtran-9)
+
+
+- ## **Thanh Trinh**:
+  Hi, my name is Thanh and I'm a senior CE major. I'm one of the dev in team 32. In my free time, I usually learn new technologies, hanging with friends or doing some exercise. Here is my Github page: [Thanh's profile](https://github.com/jayden789)
