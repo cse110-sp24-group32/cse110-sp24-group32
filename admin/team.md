@@ -15,7 +15,7 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 
     Most of my repositories for my projects are private, but my github profile can be found [here](https://github.com/chris-529)
 - ## **Anthony Chapov**:
-    I'm a third year Computer Science major interested in AI & Business and am one of the team leaders. In my free time, I enjoy working out, hiking, swimming, night driving and exploring random places. I will need to update my github but you can find small samples of my work here: [github.com/Babuka6](https://github.com/Babuka6)  
+    I'm a third-year Computer Science major interested in AI and Business, and I am one of the team leaders. In my free time, I enjoy working out, hiking, swimming, night driving, and exploring random places. I will need to update my GitHub, but you can find small samples of my work here: [github.com/Babuka6].
 
     ---
 - ## **Thomas Li**:
