@@ -14,6 +14,8 @@ As memory munchers, we value the efficient use of memory as well as the user's a
     I'm a 3rd year Computer Science major interested in web development and am a co-leader for the team. Some things about me are that I have a dog Jenna that I really love, like to play FPS games like Counter-Strike and Overwatch, and am into music production.
 
     Most of my repositories for my projects are private, but my github profile can be found [here](https://github.com/chris-529)
+- ## **Anthony Chapov**:
+    I'm a 3rd year Computer Science major interested in AI & Business and am a co-leader for the team. In my free time, I enjoy working out, hiking, swimming, night driving and exploring random places. I will need to update my github but you can find small samples of my work here: [here](https://github.com/Babuka6)  
 
     ---
 - ## **Thomas Li**:
