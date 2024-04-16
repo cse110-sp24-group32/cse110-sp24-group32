@@ -2,7 +2,7 @@
 
 # Brand
 
-![memory munchers logo](misc/memory-munchers_480.png)
+![memory munchers logo](admin/branding/memory-munchers-logo.png)
 
 # Values
 
