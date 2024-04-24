@@ -26,3 +26,29 @@ Design:
 [desktop design](https://prnt.sc/kji5EVH39XEz)
 
 [mobile design](https://prnt.sc/MQjU32ms4NsG)
+
+JSON format:
+
+```
+{
+  "tasks": [
+    {
+      "title": "Task 1",
+      "content": "Content of Task 1",
+      "checkbox": true
+    },
+    {
+      "title": "Task 2",
+      "content": "Content of Task 2",
+      "checkbox": false
+    },
+    {
+      "title": "Task 3",
+      "content": "Content of Task 3",
+      "checkbox": true
+    }
+  ]
+}
+```
+
+[progress on html/css](https://prnt.sc/YCH4T63G2Uq5)
