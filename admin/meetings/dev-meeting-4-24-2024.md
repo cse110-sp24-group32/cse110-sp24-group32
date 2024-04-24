@@ -21,6 +21,8 @@
 - Maybe shouldn't have done separate mobile and web design, should've focused on one singular design we can make responsive
 - More conclusive designing could've been done during the meeting, maybe we can do the rough marker sketch prof. mentioned for general page layout in future meetings for the project
 
+# wip
+
 Design:
 
 [desktop design](https://prnt.sc/kji5EVH39XEz)
