@@ -2,17 +2,17 @@
 
 # Team members:
 
--Chris
--Justin
--Philip
--Hailani
--Richard
--Arjun V
--Arjun
--David
--Thanh
--Anthony
--Thomas Li
+- Chris
+- Justin
+- Philip
+- Hailani
+- Richard
+- Arjun V
+- Arjun
+- David
+- Thanh
+- Anthony
+- Thomas Li
 
 # Attendance:
 
