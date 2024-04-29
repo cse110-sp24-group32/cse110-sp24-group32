@@ -39,4 +39,4 @@
 - We agreed on having a "master document" for our main project where we pretty much list all of the features we've agreed on and what the app is supposed to be
 - We agreed to restructure the teams into something more practical rather than HTML/CSS and JS and design. Most likely going to go with design, front end, back end, and have design work with front end very closely. Back end will be a smaller sized team most likely.
 - Add another meeting to the week rather than just 1
-- Have a meeting at 2:15-2:45 PM on coming up with brainstorm ideas for the work journal app
+- Have a meeting at 2:15-2:45 PM on coming up with brainstorm ideas for the work journal app, potentially a weekly Friday meeting at this time
