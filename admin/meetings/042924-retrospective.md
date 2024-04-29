@@ -20,7 +20,7 @@
 - Person 2
 - Person 3
 
-# For our retrospective meeting we used Retrium and utilized the "mad, sad, glad" retrospective they offer.
+## For our retrospective meeting we used Retrium and utilized the "mad, sad, glad" retrospective they offer.
 
 # High points:
 
