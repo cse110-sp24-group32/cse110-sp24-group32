@@ -1,6 +1,6 @@
 # Retrospective Meeting 4/29/2024
 
-# Team members:
+# Attendance
 
 - Chris
 - Justin
@@ -14,30 +14,22 @@
 - Anthony
 - Thomas Li
 
-# Attendance
-
-- Person 1
-- Person 2
-- Person 3
-
 ## For our retrospective meeting we used Retrium and utilized the "mad, sad, glad" retrospective they offer.
 
-# High points:
+# High points (most voted on items):
 
 ## Mad: 
 
--
--
--
+- Nobody was mad about anything, just listed "mads" in sad pretty much.
 
 ## Sad:
 
--
--
--
+- Something I was sad about was the slight communication gap between the design and dev teams as a result of which we couldn't discuss the feasibility of the design. It was good to talk about it with others during sprint review
+- There could have been more collaboration between teams.
+- we didnt have a concrete list of features/behavioral items for the app, for main project need to decide on this earlier
 
 ## Glad:
 
--
--
--
+- It was exciting to use figma for the first time and learn how design plays a role in the entire webdev process. Also understood the value of communication. The sprint review helped bring all this to light
+- Team leads are responsive and try to connect the team :)
+- We got all the features to work on time
