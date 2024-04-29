@@ -33,3 +33,8 @@
 - It was exciting to use figma for the first time and learn how design plays a role in the entire webdev process. Also understood the value of communication. The sprint review helped bring all this to light
 - Team leads are responsive and try to connect the team :)
 - We got all the features to work on time
+
+## Decisions:
+
+- We agreed on having a "master document" for our main project where we pretty much list all of the features we've agreed on and what the app is supposed to be
+- We agreed to restructure the teams into something more practical rather than HTML/CSS and JS and design. Most likely going to go with design, front end, back end, and have design work with front end very closely. Back end will be a smaller sized team most likely.
