@@ -3,15 +3,25 @@
 # Team members:
 
 -Chris
+
 -Justin
+
 -Philip
+
 -Hailani
+
 -Richard
+
 -Arjun V
+
 -Arjun K
+
 -David
+
 -Thanh
+
 -Anthony
+
 -Thomas Li
 
 # Attendance
