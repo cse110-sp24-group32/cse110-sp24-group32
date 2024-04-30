@@ -15,7 +15,7 @@
 - Anthony
 - Thomas Li
     
-
+---
 - **Figma Team:**
     - Members Notes:
       - Took inspirations from other apps.
