@@ -51,3 +51,22 @@
     
       - Produced a video.
 
+
+   Pictures (Screen sharing from meeting)  
+  Figma:  
+  https://cdn.discordapp.com/attachments/1166151870658642071/1234692794954551306/image.png?ex=6631a8c5&is=66305745&hm=6b6339306a9ea94140f6d7b71c6030424abec9dd937872a1e6fea1e38c7cd0a3&
+
+  Css/Html:
+  https://cdn.discordapp.com/attachments/1232863623236419665/1234693368697847879/image.png?ex=6631a94e&is=663057ce&hm=4ef3db140f7fd8da1f8bbf90172a81cb22fe9df4c6f9d7d36263174f6b7b3144&
+
+  JavaScript:
+  https://cdn.discordapp.com/attachments/1232863623236419665/1234693493473939586/image.png?ex=6631a96c&is=663057ec&hm=86f772bd8ef7b7553626a1efd605bf5f919d4a5e4388ffc90181d9acbfbc2f43&
+
+  https://cdn.discordapp.com/attachments/1232863623236419665/1234693624562978864/image.png?ex=6631a98b&is=6630580b&hm=ebe18d8d2e809d2515df3e3b5b1f051e81d2ddc3b627544d953d2d0863e1a7c9&  
+  
+
+  
+
+  
+  
+
