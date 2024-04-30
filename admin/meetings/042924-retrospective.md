@@ -40,6 +40,10 @@
 - We agreed to restructure the teams into something more practical rather than HTML/CSS and JS and design. Most likely going to go with design, front end, back end, and have design work with front end very closely. Back end will be a smaller sized team most likely.
 - Add another meeting to the week rather than just 1
 - Have a meeting at 2:15-2:45 PM on coming up with brainstorm ideas for the work journal app, potentially a weekly Friday meeting at this time
+- For every github issue, it will have a branch and they should merge from the main before starting their work and send a pull request
+- For each issue -> Make own branch for specific issue -> Make sure that branch is up to date with main branch -> those branches make sure is up to date with main
+- Have 1 person on the team that is always communicating with 1 person from another team
+  
 
 # Artifacts:
 
