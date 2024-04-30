@@ -40,3 +40,11 @@
 - We agreed to restructure the teams into something more practical rather than HTML/CSS and JS and design. Most likely going to go with design, front end, back end, and have design work with front end very closely. Back end will be a smaller sized team most likely.
 - Add another meeting to the week rather than just 1
 - Have a meeting at 2:15-2:45 PM on coming up with brainstorm ideas for the work journal app, potentially a weekly Friday meeting at this time
+
+# Artifacts:
+
+https://cdn.discordapp.com/attachments/1227812102593581140/1234620228403724500/image.png?ex=66316530&is=663013b0&hm=4e2d06f5a7983a5621f7467c561f94f09b642f074be09ee08473f15137e94a6e&
+
+https://cdn.discordapp.com/attachments/1227812102593581140/1234620247647064105/image.png?ex=66316535&is=663013b5&hm=41276f98ebe0d6e8eec4e51fa8e76745bf7f8d2e861a7b3285357f40cacd1b6c&
+
+https://media.discordapp.net/attachments/1227812102593581140/1234620304509108324/image.png?ex=66316542&is=663013c2&hm=4d074a75bd895a7bc975367446a63fbf577f093f06b0737fb4bac718d0ee83ab&=&format=webp&quality=lossless
