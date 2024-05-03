@@ -1,6 +1,9 @@
 # Attendance
 
+Everyone attended the meeting except Christopher was out of town and could not attend
+
 # Time
+Fri, May 2 2024, 6:30 PM - 8:00 PM
 
 # “Developer Journal”
 
@@ -90,9 +93,10 @@ Ability to manage notes (create, delete, rename, etc.)
 
 Core differences between Discord & Obsidian and Our Tool
 
-Design-wise 
+# Design-wise 
 Simplified, excluding design elements for features we don’t have
 Including options for both light and dark mode
+Discord and obsidian esque UI because developers use tools like this and are already used to the UI
 
 
 Functionality wise 
@@ -102,7 +106,7 @@ Search or filter notes/tasks based on tags
 
 Channel can represent notes, tasks, etc.
 
-
-		Instead of organizing by channels and members , can organize by projects and related things for each project:  Project-> List of things for A Project like Code Snippets, Design Archive, Decisions Made (Log), Bugs and how fixed them, etc.  Channels have categories (tags) 
+Instead of organizing by channels and members , can organize by projects and related things for each project:
+Project-> List of things for A Project like Code Snippets, Design Archive, Decisions Made (Log), Bugs and how fixed them, etc.  Channels have categories (tags) 
 
 
