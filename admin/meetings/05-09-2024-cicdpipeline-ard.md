@@ -11,7 +11,7 @@
 
 # CI/CD PIPELINE (DUE SUNDAY):
 
--Come up with what pipeline should have as team
+-Come up with what pipeline should have as team (see cipipeline/phase1.md)
 
 - Assign 1-2 people to make phase 1 build pipeline diagram using drawio: Hailani made this
 - Assign people to make the pipeline work on our repo using Github actions: Thomas 
