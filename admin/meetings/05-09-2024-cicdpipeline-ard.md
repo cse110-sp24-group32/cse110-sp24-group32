@@ -13,13 +13,13 @@
 
 -Come up with what pipeline should have as team
 
--Assign 1-2 people to make phase 1 build pipeline diagram using drawio: Hailani made this
--Assign people to make the pipeline work on our repo using Github actions: Thomas 
--Assign 2 people to make phase1.md, a short 2 page (roughly) 
+- Assign 1-2 people to make phase 1 build pipeline diagram using drawio: Hailani made this
+- Assign people to make the pipeline work on our repo using Github actions: Thomas 
+- Assign 2 people to make phase1.md, a short 2 page (roughly) 
 status on the pipeline in terms of what is currently functional
 (and what is planned or in progress). Embed your diagram in the 
 markdown file.: Christopher
--Assign 1 person to make phase1.mp4, "a no more than 2 min video demonstration of the pipeline" – Richard >:)
+- Assign 1 person to make phase1.mp4, "a no more than 2 min video demonstration of the pipeline" – Richard >:)
 
 Put files in: /admin/cipipeline
 
