@@ -13,7 +13,7 @@
 
 The purpose of this meeting is to come up with a CI/CD phase 1 pipeline for our project, and assign people to work on it and the ADR for our pipeline
 
-Pipeline document: https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/meetings/05-09-2024-cicdpipeline-ard.md
+Pipeline document: [https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/meetings/05-09-2024-cicdpipeline-ard.md](https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/cipipeline/phase1.md)
 
 # CI/CD PIPELINE (DUE SUNDAY):
 
