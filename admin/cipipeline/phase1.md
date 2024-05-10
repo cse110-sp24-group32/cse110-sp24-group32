@@ -8,7 +8,15 @@ We have a rough pipeline in place that will eventually be expanded when our proj
 
 We decided as a team on 5/9/2024 that our pipeline for phase 1 should be as follows:
 
-## Developer -> lint with VSCode extensions -> push to own GitHub branch -> do linter checks -> jest tests -> JSDocs generating javascript documentation -> pull request -> have set of eyes review -> merge
+1. Developer ->
+2. Lint with VSCode extensions ->
+3. Push to own GitHub branch ->
+4. Do linter checks ->
+5. Jest tests ->
+6. JSDocs generating javascript documentation ->
+7. Pull request ->
+8. Have another set of eyes review if green checkmark ->
+9. Merge
 
 ## We will use the following for accomplishing this pipeline:
 
