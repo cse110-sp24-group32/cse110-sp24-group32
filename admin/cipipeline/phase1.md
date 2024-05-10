@@ -29,7 +29,7 @@ Use google styling
 
 Pull requests: Push code to github and request a pull request, just have at least one set of eyes to review the code before you merge IF it has a green “able to merge”
 
-Jest for testing 
+Jest for testing functions
 
 JSDocs for generating javascript documentation
 
