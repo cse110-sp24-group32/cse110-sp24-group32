@@ -10,15 +10,15 @@ We have a rough pipeline in place that will eventually be expanded when our proj
 
 We decided as a team on 5/9/2024 that our pipeline for phase 1 should be as follows:
 
-1. Developer ->
-2. Lint with VSCode extensions ->
-3. Push to own GitHub branch ->
-4. Do linter checks ->
-5. Jest tests ->
-6. JSDocs generating javascript documentation ->
-7. Pull request ->
-8. Have another set of eyes review if green checkmark ->
-9. Merge
+1. **Developer:** Initiates code changes and improvements ->
+2. **Lint with VSCode extensions:** Developers utilize VSCode extensions for linting for consistent coding styles across HTML, CSS, and JavaScript files ->
+3. **Push to own GitHub branch:** Developers push their changes to individual branches within the GitHub repository ->
+4. **Do linter checks:** Automated linting processes are triggered upon push, enforcing coding standards defined by stylelint for CSS, eslint for JavaScript, and HTML5 validation for HTML files ->
+5. **Jest tests:**  Automated Jest tests are executed to validate the functionality of the codebase ->
+6. **JSDocs generating javascript documentation:** Automatically generate comprehensive JavaScript documentation, aiding in code comprehension and maintenance ->
+7. **Pull request:** Initiate pull requests to merge their changes into the main branch, triggering a series of automated checks and reviews ->
+8. **Code review:** If all automated checks pass and the reviewer approves, the pull request proceeds to the next stage ->
+9. **Merge:** Changes are merged into the main branch, integrating the new codebase with the existing project
 
 ## We will use the following for accomplishing this pipeline:
 
@@ -41,3 +41,5 @@ We were able to get some good things in progress for our phase 1 pipeline, but w
 - End2End unit testing with Jest AND Pupeteer
 - Accessibility validation checks
 - Implement more Jest unit tests for functions in our code
+
+By implementing these planned enhancements, we aim to obtain the quality and reliability of our Phase 1 CI/CD pipeline
