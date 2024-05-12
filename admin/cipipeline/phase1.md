@@ -25,7 +25,6 @@ We decided as a team on 5/9/2024 that our pipeline for phase 1 should be as foll
 Pipeline: GitHub actions in our project repository
 
 Linter: (stylelint for css, eslint for js, https://github.com/marketplace/actions/html5-validator for html)
-Use google styling
 
 Pull requests: Push code to github and request a pull request, just have at least one set of eyes to review the code before you merge IF it has a green “able to merge”
 
