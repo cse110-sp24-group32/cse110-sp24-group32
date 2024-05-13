@@ -21,11 +21,12 @@
 - Need to decide how our journal entries behave. Will we make 4 different views for each type of journal entry or create 1 view that is customizable?
 - Finalize search functionality (per project or entire journal?)
 
-### Decisions for this:
+
+
+
 
 2. Plan out how we go about developing this app as a team so our *Planner* can make *GitHub Issues*
 
-### Decisions for this:
 
 - Front end team:
 1. Skeleton?
