@@ -3,15 +3,14 @@
 # Attendance:
 
 - Christopher
--
--
--
--
--
--
--
--
--
+- Arjun V
+- Philip
+- David
+- Hailani
+- Justin
+- Richard
+- Thomas
+- Anthony
 
 # Agenda
 
