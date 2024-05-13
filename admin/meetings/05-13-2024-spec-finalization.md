@@ -22,7 +22,7 @@
 - Finalize search functionality (per project or entire journal?)
 
 
-
+<br><br>
 
 
 2. Plan out how we go about developing this app as a team so our *Planner* can make *GitHub Issues*
