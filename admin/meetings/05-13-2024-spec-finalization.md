@@ -41,3 +41,5 @@ Thinking of havign a popup page when user clicks + to get new node with chosen t
 
 Front Eand TEam: Basic skeleton of HTML, sizing, making different sections 
 
+
+Loading a gernal that is being made before instead of login system. So basically can load user's info. 
