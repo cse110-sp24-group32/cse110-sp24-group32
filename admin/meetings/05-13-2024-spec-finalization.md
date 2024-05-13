@@ -33,3 +33,11 @@
 - Back end team:
 
 3. Meeting after Thursday class?
+
+Decisions: 
+Decided to change the entries and nodes organization: keep just 1 general template for any kind of entry instead of splitting them on 4 and dealing with each individually. 
+
+Thinking of havign a popup page when user clicks + to get new node with chosen template and fill it out. 
+
+Front Eand TEam: Basic skeleton of HTML, sizing, making different sections 
+
