@@ -41,5 +41,9 @@ Thinking of havign a popup page when user clicks + to get new node with chosen t
 
 Front Eand TEam: Basic skeleton of HTML, sizing, making different sections 
 
+Search bar: per project, search keywords in notes or tag
 
-Loading a gernal that is being made before instead of login system. So basically can load user's info. 
+Use https://md-block.verou.me/ for markdown
+
+edit markdown via button to grab the raw md of the markdown html element and then get user input in a giant textbox, and put changed text to markdown element's innertext, also update storage
+
