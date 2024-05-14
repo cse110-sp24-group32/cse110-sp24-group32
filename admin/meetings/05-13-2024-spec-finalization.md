@@ -4,7 +4,8 @@
 
 - Christopher
 - Arjun V
-- Philip
+- Arjun K
+- Philip (Yu)
 - David
 - Hailani
 - Justin
