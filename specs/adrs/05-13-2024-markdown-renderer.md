@@ -10,7 +10,7 @@ We saw many different markdown renderers that could have worked, but ultimately 
 
 - https://dillinger.io/ , which we did not pick because it had too many features that we did not need, meaning it would bloat our app and potentially slow it down. Dillinger.io boasts "Dillinger is a cloud-enabled, mobile-ready, offline-storage compatible, AngularJS-powered HTML5 Markdown editor," which is nice, but we do not need our markdown renderer to be "cloud-enabled", meaning there would be unncessary code in our program if we used this.
 
-- https://md-block.verou.me/ , which is a lightweight markdown renderer. It simply introduces an HTML elemenmt <md-block> that allows you to put in raw MD and have it be rendered.
+- https://md-block.verou.me/ , which is a lightweight markdown renderer. It simply introduces an HTML elemenmt `<md-block>` that allows you to put in raw MD and have it be rendered.
 
 ## Decision Outcome
 
