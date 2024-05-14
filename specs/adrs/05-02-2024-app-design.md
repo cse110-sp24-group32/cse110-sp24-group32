@@ -21,7 +21,7 @@ What core features did we want? how should we go about designing our "developer'
 ## Decision Outcome
 
 **Core Functionalities:**
-- Search bar to search for keywords in notes or for specific tags
+- Search bar to search for keywords in notes or for specific tags, per project
 - Markdown notes (change to normal text notes if implementation comes out to be too time consuming)
 - Notes can display images or code snippets for better visualization of context
 - Assignable tags in the metadata of notes for better organization: title, date, difficulty, feature, bug, etc.
