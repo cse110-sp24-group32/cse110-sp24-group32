@@ -2,7 +2,7 @@
 
 ## Context and Problem Statement
 
-Our app has functionality to allow a user to create a markdown note, either templated or not from a pre-defined "developer friendly" MD template (meeting notes, design artifact, GitHub task, code snippet). Thus, we needed to include a markdown renderer as a co-dependency for our application to work. We considered different options and chose the one that fit our project the best.
+Our app has functionality to allow a user to create a markdown note, either templated or not from a pre-defined "developer friendly" MD template (meeting notes, design artifact, GitHub task, code snippet). Thus, we needed to include a markdown renderer as a co-dependency for our application to work. We considered different options and chose the one that fit our project the best without making the project too bloated with unused code.
 
 ## Considered Options
 
