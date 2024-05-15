@@ -1,0 +1,82 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%; /* Add this line if you want the body to have 100% width */
+    overflow: hidden;
+  }
+
+
+  #top-bar{
+    display: flex;
+    position: absolute;
+    
+    width: 100%;
+    height: 7%;
+    overflow: hidden;
+    
+    background-color: #3b0764;
+  }
+
+.outer-container {
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+    bottom:0;
+
+    width: 100%;
+    height: 93%;
+    overflow-y:hidden;
+}
+
+
+#project-nav {
+    position: relative;
+    flex-shrink: 0;
+
+    width: 90px;
+
+    background-color:#181a26
+}
+
+.right-inner {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+    position: relative;
+
+    background-color: #d9d9d9;
+}
+
+#content {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+
+    min-width: 0;
+    min-height: 0;
+}
+
+#entries-list {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    overflow: hidden;
+
+    min-height: 0;
+    width: 280px;
+
+    border-right: 1px solid black;
+}
+
+#right-content {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    overflow: hidden;
+
+    background-color: #c3c3c3;
+}
