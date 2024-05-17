@@ -9,13 +9,26 @@ body, html {
 
   #top-bar{
     display: flex;
-    position: absolute;
+    position: relative;
     
     width: 100%;
     height: 7%;
     overflow: hidden;
-    
+
     background-color: #3b0764;
+  }
+
+  #search-bar{
+    display:block;
+    
+    margin: auto auto;
+    width: 25%;
+    height:75%;
+    overflow-x: hidden scroll;
+    overflow-y: hidden;
+    font-size:2em;
+
+    resize:none;
   }
 
 .outer-container {
@@ -79,4 +92,55 @@ body, html {
     overflow: hidden;
 
     background-color: #c3c3c3;
+}
+
+#note-view {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+
+    width:80%;
+    height:90%;
+    border: 1px solid black;
+}
+
+.note-bar {
+    height: 8%;
+    width: 100%;
+    border-bottom: 1px solid black; 
+    display:flex;
+}
+
+
+.top-item {
+    display:inline-block;
+    width:10%;
+    height:80%;
+    border: 1px solid;
+    margin: auto 0;
+    padding:0;
+    margin-left:1vh;
+    text-align:center;
+}
+
+#tags {
+    margin-right: auto;
+}
+
+.top-buttons {
+    display: flex;
+    margin-left: auto;
+    width:40%;
+    justify-content:end;
+    margin-right:1vh;
+}
+
+.top-buttons button {
+    width:40%;
+}
+
+
+.md-view {
+    flex-grow: 1; 
+    width: 100%;
 }

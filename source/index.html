@@ -10,11 +10,16 @@
 </head>
 <body>
     
+    <!-- TOP BAR WITH SEARCH BAR -->
     <nav id="top-bar">
-        
+        <textarea id="search-bar">
+
+        </textarea>
     </nav>
 
     <div class="outer-container">
+
+        <!-- PROJECT SIDEBAR -->
         <nav id="project-nav">
 
 
@@ -22,17 +27,40 @@
 
         <div class="right-inner">
             <div id="content">
-                <div id="entries-list">
 
+                <!-- JOURNAL ENTRIES LIST WITHIN A PROJECT -->
+                <div id="entries-list">
+                    <button type="button">Add New Note Placeholder</button>
                 </div>
 
+                <!-- MAIN CONTENT FOR NOTES INTERACTION -->
                 <div id="right-content">
+                    <div id="note-view">
+                        <div class="note-bar">
+                            <span id="tags" class="top-item">
+                                Tag(s)
+                            </span>
 
+                            <div class="top-buttons">
+                                <button class="top-item" id="delete-button">
+                                    Delete
+                                </button>
+        
+                                <button class="top-item" id="edit-button">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- NOTE CONTENT IN HERE -->
+                        <div class="md-view">
+                          
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 </body>
 </html>
