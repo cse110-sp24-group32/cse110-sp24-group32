@@ -54,6 +54,13 @@ function init () {
         refreshSide()
       }
     }
+    const popup = document.querySelector('.note-popup-container')
+    popup.style.display = 'flex'
+  })
+
+  document.querySelector('#choose-note').addEventListener('click', () => {
+    const popup = document.querySelector('.note-popup-container')
+    popup.style.display = 'none'
   })
 
   // basic editing functionality for testing

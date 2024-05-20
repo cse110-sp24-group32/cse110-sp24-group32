@@ -144,3 +144,51 @@ body, html {
     flex-grow: 1; 
     width: 100%;
 }
+
+.note-popup-container {
+    position: fixed; /* Use fixed positioning to relate to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Use flexbox to center the content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Add a semi-transparent background for the overlay */
+    z-index: 1000; /* Ensure it appears on top */
+}
+
+.note-popup-box {
+    background: white; /* Ensure the popup box has a visible background */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add a shadow for better visibility */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-type {
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #3b0764;
+    color: white;
+    font-size: medium;
+}
+
+.note-type:hover {
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
+
+#choose-note {
+    background-color: #3b0764;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
+}
