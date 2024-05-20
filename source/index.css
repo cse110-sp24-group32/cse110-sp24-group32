@@ -177,6 +177,7 @@ body, html {
     background-color: #3b0764;
     color: white;
     font-size: medium;
+    border: 5px solid black
 }
 
 .note-type:hover {

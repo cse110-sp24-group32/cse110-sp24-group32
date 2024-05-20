@@ -15,6 +15,10 @@ function init () {
   // example way to add templates
   addTemplate('Default Note', new Note(null, '', 'New Note', []))
   addTemplate('Meeting Note', new Note(null, '# Meeting', 'New Meeting Note', ['meeting']))
+  addTemplate('Freeform Note', new Note(null, '# Freeform MD', 'New Freeform MD Note', ['freeform']))
+  addTemplate('Design Note', new Note(null, '# Design', 'New Design Note', ['design']))
+  addTemplate('Github Note', new Note(null, '# Github', 'New Github Note', ['github']))
+  addTemplate('Code Note', new Note(null, '# Code', 'New Code Note', ['code']))
 
   const mdv = document.querySelector('.md-view')
   man = new Manager(mdv)
@@ -46,22 +50,56 @@ function init () {
   }
   refreshSide()
 
+  const buttonList = document.getElementsByClassName('note-type')
+
+  // enables popup
   document.querySelector('#add-note').addEventListener('click', () => {
+    const popup = document.querySelector('.note-popup-container')
+    popup.style.display = 'flex'
+  })
+
+  // disables popup
+  document.querySelector('#choose-note').addEventListener('click', () => {
     // in practice the template would be selected from some drop down or something, so we'll have the id already
+    let selectedButtonID = ''
+    for(let i = 0; i < buttonList.length; i++) {
+      const button = buttonList[i]
+      const buttonID = '#' + button.id
+      const noteSelectButton = document.querySelector(buttonID)
+      if (noteSelectButton.style.borderColor == 'aqua') {
+        selectedButtonID = button.id
+      }
+    } 
     for (const x in templates) {
-      if (templates[x].name === 'Meeting Note') {
+      if (templates[x].name === selectedButtonID + ' Note') {
         man.addNote(templates[x].note)
         refreshSide()
       }
     }
     const popup = document.querySelector('.note-popup-container')
-    popup.style.display = 'flex'
-  })
-
-  document.querySelector('#choose-note').addEventListener('click', () => {
-    const popup = document.querySelector('.note-popup-container')
     popup.style.display = 'none'
   })
+
+  // changes button border color to indicate selected note
+  for (let i = 0; i < buttonList.length; i++) {
+    const button = buttonList[i]
+    const buttonID = '#' + button.id
+    document.querySelector(buttonID).addEventListener('click', () => {
+      const noteSelectButton = document.querySelector(buttonID)
+      if(noteSelectButton.style.borderColor == 'aqua') {
+        noteSelectButton.style.borderColor = 'black'
+      } else {
+        noteSelectButton.style.borderColor = 'aqua'
+        for (let i = 0; i < buttonList.length; i++) {
+          const otherButton = buttonList[i]
+          const otherButtonID = '#' + otherButton.id
+          if(otherButtonID != buttonID) {
+            document.querySelector(otherButtonID).style.borderColor = 'black'
+          }
+        }
+      }
+    })
+  }
 
   // basic editing functionality for testing
   let editing = false
