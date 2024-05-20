@@ -61,7 +61,7 @@ function init () {
   // disables popup
   document.querySelector('#choose-note').addEventListener('click', () => {
     // in practice the template would be selected from some drop down or something, so we'll have the id already
-    let selectedButtonID = ''
+    let selectedButtonID = 'Default'
     for(let i = 0; i < buttonList.length; i++) {
       const button = buttonList[i]
       const buttonID = '#' + button.id
