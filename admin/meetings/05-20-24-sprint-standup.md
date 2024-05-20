@@ -52,25 +52,25 @@ To do this, in the description of the merge request, type `close #<num>` where `
 # What to do this week
 
 1. Thomas and Justin can work to make the buttons dynamic from the given list of templates that our JS have, also add way to close popup
-
+<br><br>
 2. Github Issues:
 - Philip will edit the "sub issues" for our main "team issues" so that the sub issues have corresponding tasks to the main issue. Also go through each team issue and create any sub issues that don't exist yet.
 
 - For **each team**, go through all the subissues for your team and figure out amongst yourself who will be assigned to each sub issue.
-  
+  <br><br>
 3. Finish the ADR for the backend this week
 
 - Write down specs for each class and general methods/properties they hold
 - Diagram for how classes interact with each other:
 - ![image](https://github.com/cse110-sp24-group32/cse110-sp24-group32/assets/32114256/ec968394-115f-4e8b-9655-3f9e30cb13b3)
 - https://docs.google.com/document/d/1h34JzSBb7GVkonsbbuZmN0x2qHmUsI_PyzeQZ-V6nps/edit?usp=sharing
-
+<br><br>
 4. Sprint video due Sunday
 
 - Get more info on this from Dev during wed meeting
-
+<br><br>
 5. Any other deadlines in Github project https://github.com/orgs/cse110-sp24-group32/projects/3
-
+<br><br>
 6. Leads dev meeting on Wednesday
 - ask about prof 1-1 and also sprint video due sunday
 
