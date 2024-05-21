@@ -52,6 +52,13 @@ function init () {
 
   const buttonList = document.getElementsByClassName('note-type')
 
+  document.querySelector('.note-popup-container').addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.note-popup-container')) {
+      const popup = document.querySelector('.note-popup-container')
+      popup.style.display = 'none'
+    }
+  })
+
   // enables popup
   document.querySelector('#add-note').addEventListener('click', () => {
     const popup = document.querySelector('.note-popup-container')
