@@ -1,4 +1,4 @@
-name: GitHub pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -15,18 +15,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build
+      - name: Build Documentation
         uses: andstor/jsdoc-action@v1
         with:
           source_dir: ./
-          output_dir: ./out
-          # config_file: conf.json
-          # template: minami
+          output_dir: ../docs
           recurse: true
           front_page: README.md
 
-      - name: Deploy
+      - name: Copy App Files
+        run: |
+          mkdir -p ../deploy
+          cp -r . ../deploy/
+          cp -r ../docs ../deploy/docs
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./out
+          publish_dir: ../deploy
