@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: GitHub pages
 
 on:
   push:
@@ -8,34 +8,25 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        working-directory: ./source
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Build
+        uses: andstor/jsdoc-action@v1
         with:
-          node-version: '14'
+          source_dir: ./
+          output_dir: ./out
+          # config_file: conf.json
+          # template: minami
+          recurse: true
+          front_page: README.md
 
-      - name: Install dependencies
-        run: |
-          cd source
-          npm install
-
-      - name: Build Documentation
-        run: |
-          npx jsdoc -c jsdoc.json -d ../docs
-
-      - name: Prepare deployment directory
-        run: |
-          mkdir -p deploy
-          cp source/index.html deploy/index.html
-          cp -r source/* deploy/
-          mv docs deploy/docs
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: deploy
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./out
