@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevJournal</title>
     <link rel="stylesheet" href="index.css">
-
+    <script src="index.js" type='module'></script>
 </head>
 <body>
     
@@ -16,6 +16,20 @@
 
         </textarea>
     </nav>
+
+    <div class="note-popup-container">
+        <div class="note-popup-box">
+            <h3>Select Journal Entry Type</h3>
+            <div class="select-note">
+                <button type="button", class="note-type", id="Meeting">Meeting</button>
+                <button type="button", class="note-type", id="Freeform">Freeform MD Note</button>
+                <button type="button", class="note-type", id="Design">Design</button>
+                <button type="button", class="note-type", id="Github">Github</button>
+                <button type="button", class="note-type", id="Code">Code and Bug Snippets</button>
+            </div>
+            <button type="button", id="choose-note">Create Note</button>
+        </div>
+    </div>
 
     <div class="outer-container">
 
@@ -30,7 +44,7 @@
 
                 <!-- JOURNAL ENTRIES LIST WITHIN A PROJECT -->
                 <div id="entries-list">
-                    <button type="button">Add New Note Placeholder</button>
+                    <button type="button", id="add-note">Add New Note Placeholder</button>
                 </div>
 
                 <!-- MAIN CONTENT FOR NOTES INTERACTION -->
