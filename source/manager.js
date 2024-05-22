@@ -46,16 +46,16 @@ class Manager {
     this.curNoteId = data.curNoteId
     this.curProjId = data.curProjId
 
-    this.renderNote();
-    this.renderProject();
+    this.renderNote()
+    this.renderProject()
     this.save()
   }
 
   /** Add new project */
   addProj (name) {
-    const proj = new Project(name);
+    const proj = new Project(name)
     console.log(this)
-    this.projs[proj.id] = proj;
+    this.projs[proj.id] = proj
     this.save()
     return new Proxy(proj, this.saveHandler)
   }
@@ -84,8 +84,8 @@ class Manager {
   /** Deletes note from an id */
   delNote (id) {
     delete this.notes[id]
-    
-    if(this.curNoteId === id){
+
+    if (this.curNoteId === id) {
       this.curNoteId = null
       this.renderNote()
     }
@@ -95,11 +95,11 @@ class Manager {
   /** Deletes project from an id */
   delProj (id) {
     delete this.projs[id]
-    
-    if(this.curProjId === id){
+
+    if (this.curProjId === id) {
       this.curProjId = null
       this.renderNote()
-      this.renderProject();
+      this.renderProject()
     }
     this.save()
   }
@@ -127,8 +127,8 @@ class Manager {
   changeProj (id) {
     this.curProjId = id
     this.curNoteId = null
-    this.renderNote();
-    this.renderProject();
+    this.renderNote()
+    this.renderProject()
     this.save()
   }
 
@@ -144,18 +144,17 @@ class Manager {
   }
 
   /**
-   *  Write project sidebar rendering code here 
+   *  Write project sidebar rendering code here
    */
   renderProject () {
-    let projTitleEle = document.querySelector("#curr-proj");
+    const projTitleEle = document.querySelector('#curr-proj')
     if (this.curProjId == null) {
-      projTitleEle.textContent = "No project selected";
+      projTitleEle.textContent = 'No project selected'
+      return
     }
 
-    const selectedProj = this.projs[this.curProjId];
-    projTitleEle.textContent = selectedProj.name;
-
-
+    const selectedProj = this.projs[this.curProjId]
+    projTitleEle.textContent = selectedProj.name
   }
 
   /**

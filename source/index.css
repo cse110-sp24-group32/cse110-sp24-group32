@@ -51,7 +51,8 @@ body, html {
 
     width: 90px;
 
-    background-color:#181a26
+    background-color:#181a26;
+    overflow-y:scroll;
 }
 
 .right-inner {
