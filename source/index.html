@@ -13,7 +13,6 @@
     <!-- TOP BAR WITH SEARCH BAR -->
     <nav id="top-bar">
         <textarea id="search-bar">
-
         </textarea>
     </nav>
 
@@ -31,20 +30,30 @@
         </div>
     </div>
 
+    <div class="project-popup-container">
+        <div class="project-popup-box">
+            <h3>Enter name of project</h3>
+            <input type="text" id="project-input">
+            <button type="button", id="confirm-new-project">Create Project</button>
+        </div>
+    </div>
+
     <div class="outer-container">
 
         <!-- PROJECT SIDEBAR -->
         <nav id="project-nav">
 
-
+            <button class="project-icon" id="new-project-button">+</button>
         </nav>
 
         <div class="right-inner">
             <div id="content">
 
                 <!-- JOURNAL ENTRIES LIST WITHIN A PROJECT -->
+                
                 <div id="entries-list">
-                    <button type="button", id="add-note">Add New Note Placeholder</button>
+                    <p id="curr-proj">Project</p>
+                     <button type="button" id="add-note">Add New Note Placeholder</button>
                 </div>
 
                 <!-- MAIN CONTENT FOR NOTES INTERACTION -->

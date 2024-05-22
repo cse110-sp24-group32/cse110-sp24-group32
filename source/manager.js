@@ -46,13 +46,16 @@ class Manager {
     this.curNoteId = data.curNoteId
     this.curProjId = data.curProjId
 
+    this.renderNote();
+    this.renderProject();
     this.save()
   }
 
   /** Add new project */
   addProj (name) {
-    const proj = new Project(name)
-    this.projs[proj.id] = proj
+    const proj = new Project(name);
+    console.log(this)
+    this.projs[proj.id] = proj;
     this.save()
     return new Proxy(proj, this.saveHandler)
   }
@@ -89,6 +92,18 @@ class Manager {
     this.save()
   }
 
+  /** Deletes project from an id */
+  delProj (id) {
+    delete this.projs[id]
+    
+    if(this.curProjId === id){
+      this.curProjId = null
+      this.renderNote()
+      this.renderProject();
+    }
+    this.save()
+  }
+
   /** Returns all notes, proxied */
   getAllNotes () {
     const sh = this.saveHandler
@@ -112,6 +127,8 @@ class Manager {
   changeProj (id) {
     this.curProjId = id
     this.curNoteId = null
+    this.renderNote();
+    this.renderProject();
     this.save()
   }
 
@@ -127,12 +144,27 @@ class Manager {
   }
 
   /**
+   *  Write project sidebar rendering code here 
+   */
+  renderProject () {
+    let projTitleEle = document.querySelector("#curr-proj");
+    if (this.curProjId == null) {
+      projTitleEle.textContent = "No project selected";
+    }
+
+    const selectedProj = this.projs[this.curProjId];
+    projTitleEle.textContent = selectedProj.name;
+
+
+  }
+
+  /**
    * Saves all our data into local storage
    */
   save () {
     const data = {}
     data.notes = this.notes
-    data.proj = this.projs
+    data.projs = this.projs
     data.curNoteId = this.curNoteId
     data.curProjId = this.curProjId
     console.log(data)

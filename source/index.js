@@ -26,6 +26,7 @@ function init () {
 
   // basic notes selection for testing
   const entries = document.querySelector('#entries-list')
+  const projs = document.querySelector('#project-nav')
   const buttonHandler = function () {
     man.changeNote(this.id)
   }
@@ -40,12 +41,35 @@ function init () {
     entries.appendChild(but)
   }
 
+  const createProjTile = function (proj) {
+    const div = document.createElement('div');
+    div.className = 'project-icon';
+    div.id = proj.id;
+    div.textContent = getFirstLetters(proj.name); // Set the text content to 'CS' or any other name
+    div.addEventListener('click', function() {
+      man.changeProj(div.id);
+      refreshSide();
+    });
+    projs.prepend(div);
+  }
+
   const refreshSide = function() {
-    while(entries.children.length > 1){
+    while(entries.children.length > 2){
       entries.removeChild(entries.lastChild)
     }
+
+    while (projs.children.length > 1){
+      projs.removeChild(projs.firstChild);
+    }
+    
     for (const note of man.getAllNotes()) {
-      createButton(note)
+      if (man.curProjId == note.proj) {
+        createButton(note)
+      }
+    }
+
+    for (const proj of man.getAllProjs()) {
+      createProjTile(proj)
     }
   }
   refreshSide()
@@ -59,10 +83,23 @@ function init () {
     }
   })
 
+  document.querySelector('.project-popup-container').addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.project-popup-container')) {
+      const popup = document.querySelector('.project-popup-container')
+      popup.style.display = 'none'
+    }
+  })
+
   // enables popup
   document.querySelector('#add-note').addEventListener('click', () => {
     const popup = document.querySelector('.note-popup-container')
     popup.style.display = 'flex'
+  })
+
+  //enable popup for making new project
+  document.querySelector('#new-project-button').addEventListener('click', () => {
+    const popup2 = document.querySelector('.project-popup-container')
+    popup2.style.display = 'flex'
   })
 
   // disables popup
@@ -108,9 +145,29 @@ function init () {
     })
   }
 
+  //create new project confirm button clicked
+  document.querySelector('#confirm-new-project').addEventListener('click', () => {
+    const projName = document.querySelector('#project-input').value;
+
+    const popup = document.querySelector('.project-popup-container');
+    popup.style.display = 'none';
+
+    let createdProj = man.addProj(projName);
+    man.changeProj(createdProj.id);
+
+    createProjTile(createdProj);
+
+
+    man.save();
+    refreshSide();
+  });
+
+
   // basic editing functionality for testing
   let editing = false
   const editor = document.createElement('textarea')
+  editor.style.width = '99%';
+  editor.style.height = '99%';
   editor.addEventListener('input', () => {
     console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
@@ -129,4 +186,27 @@ function init () {
     man.delNote(man.curNoteId)
     refreshSide()
   })
+
+  console.log(man.getAllNotes());
+
 }
+
+
+/*
+STRING SPLITTING FOR PROJECT TILES
+*/
+
+function getFirstLetters(str) {
+  // Split the string into an array of words
+  const words = str.split(" ");
+  
+  // Map over the array and extract the first letter of each word
+  const firstLetters = words.map(word => word.charAt(0));
+  
+  // Join the extracted letters into a single string
+  const result = firstLetters.join("");
+  
+  return result;
+}
+
+

@@ -4,6 +4,8 @@ body, html {
     height: 100%;
     width: 100%; /* Add this line if you want the body to have 100% width */
     overflow: hidden;
+
+    font-family:Arial, Helvetica, sans-serif;
   }
 
 
@@ -94,6 +96,14 @@ body, html {
     background-color: #c3c3c3;
 }
 
+#curr-proj {
+    text-align: center;
+    font-size:1.75em;
+    margin:0.5vh auto;
+    text-decoration: underline;
+    
+}
+
 #note-view {
     display: flex;
     flex-direction: column;
@@ -145,6 +155,39 @@ body, html {
     width: 100%;
 }
 
+.project-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.project-popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirm-new-project {
+    background-color: #3b0764;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
+}
+
 .note-popup-container {
     position: fixed;
     top: 0;
@@ -192,4 +235,41 @@ body, html {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
+}
+
+.project-icon {
+    width: 80%;
+    height: 8%;
+    font-size: 2em;
+    text-align: center;
+    padding: 0;
+    border: 0;
+
+    margin:auto;
+    margin-top:0.5vh;
+
+    background-color: #d9d9d9;
+    color: #3b0764;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    user-select: none;
+
+    font-weight:bolder;
+
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
+}
+
+button.project-icon{
+    font-size: 4em;
+    font-weight:normal;
+}
+
+.project-icon:hover {
+    background-color:#c3c3c3;
 }
