@@ -11,6 +11,56 @@ function addTemplate (name, note) {
   templates[cur.id] = cur
 }
 
+function setupTagManagement() {
+  const MAX_TAGS = 10;  // Set the maximum number of tags allowed
+  const addButton = document.getElementById('add-tag-button');
+  const tagInput = document.getElementById('tag-input');
+  const tagsContainer = document.getElementById('tags-container');
+
+  addButton.addEventListener('click', function() {
+      const tag = tagInput.value.trim();
+      if (tag && man.curNoteId) { // Ensure there is a current note selected
+        const currentNote = man.getNote(man.curNoteId);
+        if (currentNote.tags.length < MAX_TAGS) {
+          man.addTagToNote(man.curNoteId, tag); // Add tag to the current note
+          tagInput.value = ''; // Clear the input field after adding the tag
+          displayTags(currentNote.tags);
+        } else {
+          alert(`Maximum of ${MAX_TAGS} tags allowed.`); //alert if maximum tag has been exceeded
+        }
+      } else {
+        alert("No note is selected. Please select a note before adding tags.");
+      }
+  });
+}
+
+//displas the tags 
+function displayTags(tags) {
+  const tagsContainer = document.getElementById('tags-container');
+  tagsContainer.innerHTML = ''; // Clear previous tags
+  tags.forEach(tag => {
+    const tagSpan = document.createElement('span');
+    tagSpan.className = 'tag';
+    tagSpan.textContent = tag;
+    
+    // Create a delete button for each tag
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'x';
+    deleteButton.className = 'delete-tag-button';
+    deleteButton.addEventListener('click', function() {
+      if (man.curNoteId) {
+        man.removeTagFromNote(man.curNoteId, tag); // Remove tag from the current note
+        displayTags(man.getNote(man.curNoteId).tags); // Refresh the displayed tags
+      }
+    });
+    
+    tagSpan.appendChild(deleteButton);
+    tagsContainer.appendChild(tagSpan);
+  });
+}
+
+
+
 function init () {
   // example way to add templates
   addTemplate('Default Note', new Note(null, '', 'New Note', []))
@@ -27,7 +77,10 @@ function init () {
   // basic notes selection for testing
   const entries = document.querySelector('#entries-list')
   const buttonHandler = function () {
-    man.changeNote(this.id)
+    man.changeNote(this.id);
+    displayTags(man.getNote(this.id).tags);  // Update tags display when a note is selected
+    localStorage.setItem('currentNoteId', this.id); // Save current note ID to localStorage
+
   }
 
   const createButton = function (note) {
@@ -49,6 +102,7 @@ function init () {
     }
   }
   refreshSide()
+  setupTagManagement();
 
   const buttonList = document.getElementsByClassName('note-type')
 
@@ -79,8 +133,10 @@ function init () {
     } 
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        man.addNote(templates[x].note)
-        refreshSide()
+        //adds a new note with empty tags
+        const newNote = new Note(null, templates[x].note.content, templates[x].note.title, []); // Create a new note with empty tags
+        man.addNote(newNote);
+        refreshSide();
       }
     }
     const popup = document.querySelector('.note-popup-container')
@@ -129,4 +185,8 @@ function init () {
     man.delNote(man.curNoteId)
     refreshSide()
   })
+
 }
+
+
+

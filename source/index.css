@@ -123,10 +123,6 @@ body, html {
     text-align:center;
 }
 
-#tags {
-    margin-right: auto;
-}
-
 .top-buttons {
     display: flex;
     margin-left: auto;
@@ -192,4 +188,35 @@ body, html {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
+}
+
+
+
+
+/* css for tags */
+
+
+.tag-input-container {
+    display: flex;
+    height: 40%;
+    align-items: center;
+    padding: 2px 5px;
+}
+
+
+#tags-container .tag{
+    padding: 2px 5px; /* Reduced padding for smaller tag appearance */
+    margin: 2px; /* Space between tags */
+    background-color: #ccc; /* Background color for tags */
+    border-radius: 5px; /* Rounded corners for tags */
+    font-size: 0.8em; /* Swmaller font size */
+    display: inline-block; /* Ensure tags are in-line */
+}
+
+.delete-tag-button {
+    background: none;
+    border: 3px;
+    color: red;
+    font-size: 0.8em;
+    cursor: pointer;
 }

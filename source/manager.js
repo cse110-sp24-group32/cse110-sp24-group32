@@ -86,6 +86,10 @@ class Manager {
       this.curNoteId = null
       this.renderNote()
     }
+
+    //this
+    const tagsContainer = document.getElementById('tags-container');
+    tagsContainer.innerHTML = '';
     this.save()
   }
 
@@ -126,6 +130,27 @@ class Manager {
     this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content)
   }
 
+
+  addTagToNote(noteId, tag) {
+    const note = this.notes[noteId];
+    if (note) {
+        note.addTag(tag);
+        this.save();  
+    }
+  }
+
+  removeTagFromNote(noteId, tag) {
+    const note = this.notes[noteId];
+    if (note) {
+      const tagIndex = note.tags.indexOf(tag);
+      if (tagIndex !== -1) {
+        note.tags.splice(tagIndex, 1);
+        this.save();
+      }
+    }
+  }
+
+
   /**
    * Saves all our data into local storage
    */
@@ -138,6 +163,8 @@ class Manager {
     console.log(data)
     localStorage.setItem('notes-data', JSON.stringify(data))
   }
+
+
 }
 
 export { Manager }
