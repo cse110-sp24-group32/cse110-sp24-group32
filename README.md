@@ -22,7 +22,7 @@ npx stylelint "**/*.css" --fix
 
 2. Push code to your branch
 
-3. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing.
+3. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing. Put this in the PR description.
 
 4. Repo required review from one person before merge
 
