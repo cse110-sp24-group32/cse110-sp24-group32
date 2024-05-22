@@ -33,6 +33,10 @@ jobs:
           cp -r source/* deploy/
           mv jsdoc-output deploy/docs
 
+      - name: Copy App Files
+        run: |
+          cp -r source/* deploy/
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
