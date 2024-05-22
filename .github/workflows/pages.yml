@@ -27,18 +27,18 @@ jobs:
         uses: andstor/jsdoc-action@v1
         with:
           source_dir: ./source
-          output_dir: ./docs
+          output_dir: ../docs
           recurse: true
-          front_page: README.md
+          front_page: ../README.md
 
       - name: Prepare deployment directory
         run: |
-          mkdir -p ./deploy
-          cp -r ./source/* ./deploy/
-          cp -r ./docs ./deploy/docs
+          mkdir -p deploy
+          cp -r source/* deploy/
+          cp -r docs deploy/docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./deploy
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: deploy
