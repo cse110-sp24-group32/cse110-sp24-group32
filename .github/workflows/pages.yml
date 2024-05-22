@@ -8,29 +8,37 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./source
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: |
+          cd source
+          npm install
+
       - name: Build Documentation
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./
-          output_dir: ../docs
+          source_dir: ./source
+          output_dir: ./docs
           recurse: true
           front_page: README.md
 
-      - name: Copy App Files
+      - name: Prepare deployment directory
         run: |
-          mkdir -p ../deploy
-          cp -r . ../deploy/
-          cp -r ../docs ../deploy/docs
+          mkdir -p ./deploy
+          cp -r ./source/* ./deploy/
+          cp -r ./docs ./deploy/docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ../deploy
+          publish_dir: ./deploy
