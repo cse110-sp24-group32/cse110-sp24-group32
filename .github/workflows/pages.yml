@@ -24,18 +24,14 @@ jobs:
           npm install
 
       - name: Build Documentation
-        uses: andstor/jsdoc-action@v1
-        with:
-          source_dir: ./source
-          output_dir: ../docs
-          recurse: true
-          front_page: ../README.md
+        run: |
+          npx jsdoc -c jsdoc.json -d ../jsdoc-output
 
       - name: Prepare deployment directory
         run: |
           mkdir -p deploy
           cp -r source/* deploy/
-          cp -r docs deploy/docs
+          mv jsdoc-output deploy/docs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
