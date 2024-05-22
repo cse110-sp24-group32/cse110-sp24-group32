@@ -1,4 +1,4 @@
-name: GitHub pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -8,25 +8,33 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./source
+
     steps:
-      - name: Checkout code
+      - name: Checkout app code from main branch
         uses: actions/checkout@v2
-
-      - name: Build
-        uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./
-          output_dir: ./out
-          # config_file: conf.json
-          # template: minami
-          recurse: true
-          front_page: README.md
+          ref: main
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Copy app files to temporary directory
+        run: |
+          mkdir -p temp
+          cp -r source/* temp/
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./out
+          ref: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Copy app files from temporary directory to gh-pages branch
+        run: |
+          rm -rf *
+          cp -r ../temp/* ./
+
+      - name: Commit and push changes to gh-pages branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update app code"
+          git push origin gh-pages
