@@ -4,8 +4,17 @@ import { Template } from './template.js'
 
 document.addEventListener('DOMContentLoaded', init)
 
+/*
+  man -- Manager object for entire ap
+  see manager.js and proj.js and notes.js
+  also specs/ADR/backend.md for documentation
+*/
 let man = null
+
+// entries -- HTML ele ref of note list
 let entries = null
+
+// projs -- proj list ref
 let projs = null
 
 const templates = {}
