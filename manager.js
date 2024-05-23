@@ -139,16 +139,22 @@ class Manager {
     const tagsContainer = document.getElementById('tags-container')
     tagsContainer.innerHTML = '' // Clear previous tags
 
+
     const currNote = this.notes[this.curNoteId]
     if (this.curNoteId == null) {
       this.mdTarget.innerHTML = marked.parse('# No note selected')
       return
     }
+
+    //Render MD
     this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content)
+
+    //Set title
+    document.querySelector('#note-title').textContent = currNote.title;
 
     const tags = currNote.tags
 
-    // For each tag render
+    // For each tag render tag
     tags.forEach(tag => {
       const tagSpan = document.createElement('span')
       tagSpan.className = 'tag'
@@ -173,12 +179,14 @@ class Manager {
    *  Write project sidebar rendering code here
    */
   renderProject () {
+    // Set the project title
     const projTitleEle = document.querySelector('#curr-proj')
     if (this.curProjId == null) {
       projTitleEle.textContent = 'No project selected'
       return
     }
 
+    // selectedProj is the current selected project
     const selectedProj = this.projs[this.curProjId]
     projTitleEle.textContent = selectedProj.name
   }
