@@ -172,7 +172,9 @@ function init () {
     }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        man.addNote(templates[x].note)
+        let noteToAdd = templates[x].note
+        noteToAdd.title = document.querySelector('#note-input').value; 
+        man.addNote(noteToAdd)
         renderSideBar()
       }
     }

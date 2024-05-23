@@ -25,6 +25,12 @@
                 <button type="button", class="note-type", id="Design">Design</button>
                 <button type="button", class="note-type", id="Github">Github</button>
                 <button type="button", class="note-type", id="Code">Code and Bug Snippets</button>
+
+                <div style="margin:auto; text-align:center;">
+                    <h3>Enter name of note</h3>
+                    <input type="text" id="note-input">
+                </div>
+                
             </div>
             <button type="button", id="choose-note">Create Note</button>
         </div>
@@ -61,6 +67,7 @@
                     <div id="note-view">
                         <div class="note-bar">
                             <!-- container for adding new tags  -->
+                            <p id="note-title" style="margin-top:0.5vh;">Title</p>
                             <div class="tag-input-container">
                                 <input type="text" id="tag-input" placeholder="add new tag">
                                 <button id="add-tag-button"> + </button>
