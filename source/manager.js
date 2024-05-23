@@ -136,11 +136,37 @@ class Manager {
    * Write markdown html into target
    */
   renderNote () {
+    const tagsContainer = document.getElementById('tags-container')
+    tagsContainer.innerHTML = '' // Clear previous tags
+
+    const currNote = this.notes[this.curNoteId]
     if (this.curNoteId == null) {
       this.mdTarget.innerHTML = marked.parse('# No note selected')
       return
     }
     this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content)
+
+    const tags = currNote.tags
+
+    // For each tag render
+    tags.forEach(tag => {
+      const tagSpan = document.createElement('span')
+      tagSpan.className = 'tag'
+      tagSpan.textContent = tag
+      // Create a delete button for each tag
+      const deleteButton = document.createElement('button')
+      deleteButton.textContent = 'x'
+      deleteButton.className = 'delete-tag-button'
+      deleteButton.addEventListener('click', () => {
+        console.log(currNote)
+        currNote.tags = currNote.tags.filter(q => q !== tag)
+        this.renderNote()
+        this.save()
+      })
+
+      tagSpan.appendChild(deleteButton)
+      tagsContainer.appendChild(tagSpan)
+    })
   }
 
   /**

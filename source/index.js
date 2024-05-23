@@ -28,6 +28,37 @@ const buttonHandler = function () {
   man.changeNote(this.id)
 }
 
+function setupTagManagement () {
+  const MAX_TAGS = 10 // Set the maximum number of tags allowed
+  const addButton = document.getElementById('add-tag-button')
+  const tagInput = document.getElementById('tag-input')
+
+  addButton.addEventListener('click', function () {
+    const tag = tagInput.value.trim()
+    if (tag && man.curNoteId) { // Ensure there is a current note selected
+      const currentNote = man.getNote(man.curNoteId)
+      if (currentNote.tags.length < MAX_TAGS) {
+        const currNote = man.notes[man.curNoteId]
+        console.log(currNote.tags)
+        currNote.tags.push(tagInput.value)
+        man.save()
+        man.renderNote()
+        tagInput.value = '' // Clear the input field after adding the tag
+      } else {
+        alert(`Maximum of ${MAX_TAGS} tags allowed.`) // alert if maximum tag has been exceeded
+      }
+    } else {
+      alert('No note is selected. Please select a note before adding tags.')
+    }
+  })
+}
+
+// displayss the tags
+function displayTags (tags) {
+  const tagsContainer = document.getElementById('tags-container')
+  tagsContainer.innerHTML = '' // Clear previous tags
+}
+
 // INIT -- RUNS UPON PAGE LOAD
 // Try to keep only eventListeners and code dependent on page load in here
 function init () {
@@ -72,6 +103,10 @@ function init () {
     projs.prepend(div)
   }
 
+  const createTagTile = function (note) {
+
+  }
+
   // Render sidebar
   const renderSideBar = function () {
     while (entries.children.length > 2) {
@@ -94,7 +129,8 @@ function init () {
   }
 
   // Actually call it
-  renderSideBar();
+  renderSideBar()
+  setupTagManagement()
 
   document.querySelector('.note-popup-container').addEventListener('click', (e) => {
     if (e.target === document.querySelector('.note-popup-container')) {

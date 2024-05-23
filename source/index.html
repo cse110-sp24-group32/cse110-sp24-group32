@@ -60,9 +60,15 @@
                 <div id="right-content">
                     <div id="note-view">
                         <div class="note-bar">
-                            <span id="tags" class="top-item">
-                                Tag(s)
-                            </span>
+                            <!-- container for adding new tags  -->
+                            <div class="tag-input-container">
+                                <input type="text" id="tag-input" placeholder="add new tag">
+                                <button id="add-tag-button"> + </button>
+                            </div>
+                            
+                            <div id="tags-container">
+                                <!-- tags created are populated here -->                        
+                            </div>
 
                             <div class="top-buttons">
                                 <button class="top-item" id="delete-button">

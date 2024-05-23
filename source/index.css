@@ -4,7 +4,6 @@ body, html {
     height: 100%;
     width: 100%; /* Add this line if you want the body to have 100% width */
     overflow: hidden;
-
     font-family:Arial, Helvetica, sans-serif;
   }
 
@@ -12,24 +11,19 @@ body, html {
   #top-bar{
     display: flex;
     position: relative;
-    
     width: 100%;
     height: 7%;
     overflow: hidden;
-
     background-color: #3b0764;
   }
 
   #search-bar{
     display:block;
-    
-    margin: auto auto;
+    margin: auto;
     width: 25%;
     height:75%;
-    overflow-x: hidden scroll;
-    overflow-y: hidden;
+    overflow: hidden scroll hidden;
     font-size:2em;
-
     resize:none;
   }
 
@@ -38,7 +32,6 @@ body, html {
     position: absolute;
     overflow: hidden;
     bottom:0;
-
     width: 100%;
     height: 93%;
     overflow-y:hidden;
@@ -48,12 +41,14 @@ body, html {
 #project-nav {
     position: relative;
     flex-shrink: 0;
-
     width: 90px;
-
     background-color:#181a26;
     overflow-y:scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
 }
+
+#project-nav::-webkit-scrollbar, #project-nav::-webkit-scrollbar-button { display: none; } /* Chrome */
 
 .right-inner {
     display: flex;
@@ -61,7 +56,6 @@ body, html {
     overflow: hidden;
     flex-grow: 1;
     position: relative;
-
     background-color: #d9d9d9;
 }
 
@@ -70,7 +64,6 @@ body, html {
     align-items: stretch;
     justify-content: flex-start;
     flex: 1 1 auto;
-
     min-width: 0;
     min-height: 0;
 }
@@ -80,20 +73,16 @@ body, html {
     flex-direction: column;
     flex: 0 0 auto;
     overflow: hidden;
-
     min-height: 0;
     width: 280px;
-
     border-right: 1px solid black;
 }
 
 #right-content {
     display: flex;
     flex-direction: column;
-
     width: 100%;
     overflow: hidden;
-
     background-color: #c3c3c3;
 }
 
@@ -109,7 +98,6 @@ body, html {
     display: flex;
     flex-direction: column;
     margin: auto;
-
     width:80%;
     height:90%;
     border: 1px solid black;
@@ -165,7 +153,7 @@ body, html {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 50%);
     z-index: 1000;
 }
 
@@ -173,7 +161,7 @@ body, html {
     background: white;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -198,7 +186,7 @@ body, html {
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgb(0 0 0 / 50%);
     z-index: 1000;
 }
 
@@ -206,7 +194,7 @@ body, html {
     background: white;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -245,10 +233,8 @@ body, html {
     text-align: center;
     padding: 0;
     border: 0;
-
     margin:auto;
     margin-top:0.5vh;
-
     background-color: #d9d9d9;
     color: #3b0764;
     display: flex;
@@ -258,9 +244,7 @@ body, html {
     cursor: pointer;
     transition: background-color 0.1s ease;
     user-select: none;
-
     font-weight:bolder;
-
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
@@ -273,4 +257,33 @@ button.project-icon{
 
 .project-icon:hover {
     background-color:#c3c3c3;
+}
+
+
+/* css for tags */
+
+
+.tag-input-container {
+    display: flex;
+    height: 40%;
+    align-items: center;
+    padding: 2px 5px;
+}
+
+
+#tags-container .tag{
+    padding: 2px 5px; /* Reduced padding for smaller tag appearance */
+    margin: 2px; /* Space between tags */
+    background-color: #ccc; /* Background color for tags */
+    border-radius: 5px; /* Rounded corners for tags */
+    font-size: 0.8em; /* Swmaller font size */
+    display: inline-block; /* Ensure tags are in-line */
+}
+
+.delete-tag-button {
+    background: none;
+    border: 3px;
+    color: red;
+    font-size: 0.8em;
+    cursor: pointer;
 }
