@@ -3,7 +3,19 @@ import { Note } from './notes.js'
 import { Template } from './template.js'
 
 document.addEventListener('DOMContentLoaded', init)
+
+/*
+  man -- Manager object for entire ap
+  see manager.js and proj.js and notes.js
+  also specs/ADR/backend.md for documentation
+*/
 let man = null
+
+// entries -- HTML ele ref of note list
+let entries = null
+
+// projs -- proj list ref
+let projs = null
 
 const templates = {}
 function addTemplate (name, note) {
@@ -11,56 +23,44 @@ function addTemplate (name, note) {
   templates[cur.id] = cur
 }
 
-function setupTagManagement() {
-  const MAX_TAGS = 10;  // Set the maximum number of tags allowed
-  const addButton = document.getElementById('add-tag-button');
-  const tagInput = document.getElementById('tag-input');
-  const tagsContainer = document.getElementById('tags-container');
+// basic notes selection for testing
+const buttonHandler = function () {
+  man.changeNote(this.id)
+}
 
-  addButton.addEventListener('click', function() {
-      const tag = tagInput.value.trim();
-      if (tag && man.curNoteId) { // Ensure there is a current note selected
-        const currentNote = man.getNote(man.curNoteId);
-        if (currentNote.tags.length < MAX_TAGS) {
-          man.addTagToNote(man.curNoteId, tag); // Add tag to the current note
-          tagInput.value = ''; // Clear the input field after adding the tag
-          displayTags(currentNote.tags);
-        } else {
-          alert(`Maximum of ${MAX_TAGS} tags allowed.`); //alert if maximum tag has been exceeded
-        }
+function setupTagManagement () {
+  const MAX_TAGS = 10 // Set the maximum number of tags allowed
+  const addButton = document.getElementById('add-tag-button')
+  const tagInput = document.getElementById('tag-input')
+
+  addButton.addEventListener('click', function () {
+    const tag = tagInput.value.trim()
+    if (tag && man.curNoteId) { // Ensure there is a current note selected
+      const currentNote = man.getNote(man.curNoteId)
+      if (currentNote.tags.length < MAX_TAGS) {
+        const currNote = man.notes[man.curNoteId]
+        console.log(currNote.tags)
+        currNote.tags.push(tagInput.value)
+        man.save()
+        man.renderNote()
+        tagInput.value = '' // Clear the input field after adding the tag
       } else {
-        alert("No note is selected. Please select a note before adding tags.");
+        alert(`Maximum of ${MAX_TAGS} tags allowed.`) // alert if maximum tag has been exceeded
       }
-  });
+    } else {
+      alert('No note is selected. Please select a note before adding tags.')
+    }
+  })
 }
 
-//displas the tags 
-function displayTags(tags) {
-  const tagsContainer = document.getElementById('tags-container');
-  tagsContainer.innerHTML = ''; // Clear previous tags
-  tags.forEach(tag => {
-    const tagSpan = document.createElement('span');
-    tagSpan.className = 'tag';
-    tagSpan.textContent = tag;
-    
-    // Create a delete button for each tag
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'x';
-    deleteButton.className = 'delete-tag-button';
-    deleteButton.addEventListener('click', function() {
-      if (man.curNoteId) {
-        man.removeTagFromNote(man.curNoteId, tag); // Remove tag from the current note
-        displayTags(man.getNote(man.curNoteId).tags); // Refresh the displayed tags
-      }
-    });
-    
-    tagSpan.appendChild(deleteButton);
-    tagsContainer.appendChild(tagSpan);
-  });
+// displayss the tags
+function displayTags (tags) {
+  const tagsContainer = document.getElementById('tags-container')
+  tagsContainer.innerHTML = '' // Clear previous tags
 }
 
-
-
+// INIT -- RUNS UPON PAGE LOAD
+// Try to keep only eventListeners and code dependent on page load in here
 function init () {
   // example way to add templates
   addTemplate('Default Note', new Note(null, '', 'New Note', []))
@@ -74,15 +74,12 @@ function init () {
   man = new Manager(mdv)
   man.renderNote()
 
-  // basic notes selection for testing
-  const entries = document.querySelector('#entries-list')
-  const buttonHandler = function () {
-    man.changeNote(this.id);
-    displayTags(man.getNote(this.id).tags);  // Update tags display when a note is selected
-    localStorage.setItem('currentNoteId', this.id); // Save current note ID to localStorage
+  // Populate vars
+  entries = document.querySelector('#entries-list')
+  projs = document.querySelector('#project-nav')
+  const buttonList = document.getElementsByClassName('note-type')
 
-  }
-
+  // Helper func to create HTML objects of note buttons on sidebar
   const createButton = function (note) {
     console.log('ret', note)
     const but = document.createElement('button')
@@ -93,22 +90,58 @@ function init () {
     entries.appendChild(but)
   }
 
-  const refreshSide = function() {
-    while(entries.children.length > 1){
+  // Creating HTML objects of project sidebar tiles
+  const createProjTile = function (proj) {
+    const div = document.createElement('div')
+    div.className = 'project-icon'
+    div.id = proj.id
+    div.textContent = getFirstLetters(proj.name) // Set the text content to 'CS' or any other name
+    div.addEventListener('click', function () {
+      man.changeProj(div.id)
+      renderSideBar()
+    })
+    projs.prepend(div)
+  }
+
+  const createTagTile = function (note) {
+
+  }
+
+  // Render sidebar
+  const renderSideBar = function () {
+    while (entries.children.length > 2) {
       entries.removeChild(entries.lastChild)
     }
+
+    while (projs.children.length > 1) {
+      projs.removeChild(projs.firstChild)
+    }
+
     for (const note of man.getAllNotes()) {
-      createButton(note)
+      if (man.curProjId === note.proj) {
+        createButton(note)
+      }
+    }
+
+    for (const proj of man.getAllProjs()) {
+      createProjTile(proj)
     }
   }
-  refreshSide()
-  setupTagManagement();
 
-  const buttonList = document.getElementsByClassName('note-type')
+  // Actually call it
+  renderSideBar()
+  setupTagManagement()
 
   document.querySelector('.note-popup-container').addEventListener('click', (e) => {
     if (e.target === document.querySelector('.note-popup-container')) {
       const popup = document.querySelector('.note-popup-container')
+      popup.style.display = 'none'
+    }
+  })
+
+  document.querySelector('.project-popup-container').addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.project-popup-container')) {
+      const popup = document.querySelector('.project-popup-container')
       popup.style.display = 'none'
     }
   })
@@ -119,24 +152,28 @@ function init () {
     popup.style.display = 'flex'
   })
 
+  // enable popup for making new project
+  document.querySelector('#new-project-button').addEventListener('click', () => {
+    const popup2 = document.querySelector('.project-popup-container')
+    popup2.style.display = 'flex'
+  })
+
   // disables popup
   document.querySelector('#choose-note').addEventListener('click', () => {
     // in practice the template would be selected from some drop down or something, so we'll have the id already
     let selectedButtonID = 'Default'
-    for(let i = 0; i < buttonList.length; i++) {
+    for (let i = 0; i < buttonList.length; i++) {
       const button = buttonList[i]
       const buttonID = '#' + button.id
       const noteSelectButton = document.querySelector(buttonID)
       if (noteSelectButton.style.borderColor == 'aqua') {
         selectedButtonID = button.id
       }
-    } 
+    }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        //adds a new note with empty tags
-        const newNote = new Note(null, templates[x].note.content, templates[x].note.title, []); // Create a new note with empty tags
-        man.addNote(newNote);
-        refreshSide();
+        man.addNote(templates[x].note)
+        renderSideBar()
       }
     }
     const popup = document.querySelector('.note-popup-container')
@@ -149,14 +186,14 @@ function init () {
     const buttonID = '#' + button.id
     document.querySelector(buttonID).addEventListener('click', () => {
       const noteSelectButton = document.querySelector(buttonID)
-      if(noteSelectButton.style.borderColor == 'aqua') {
+      if (noteSelectButton.style.borderColor == 'aqua') {
         noteSelectButton.style.borderColor = 'black'
       } else {
         noteSelectButton.style.borderColor = 'aqua'
         for (let i = 0; i < buttonList.length; i++) {
           const otherButton = buttonList[i]
           const otherButtonID = '#' + otherButton.id
-          if(otherButtonID != buttonID) {
+          if (otherButtonID != buttonID) {
             document.querySelector(otherButtonID).style.borderColor = 'black'
           }
         }
@@ -164,13 +201,22 @@ function init () {
     })
   }
 
-  // basic editing functionality for testing
-  let editing = false
-  const editor = document.createElement('textarea')
-  editor.addEventListener('input', () => {
-    console.log(editor.value, man.curNoteId)
-    man.getNote(man.curNoteId).content = editor.value
+  // create new project confirm button clicked
+  document.querySelector('#confirm-new-project').addEventListener('click', () => {
+    const projName = document.querySelector('#project-input').value
+
+    const popup = document.querySelector('.project-popup-container')
+    popup.style.display = 'none'
+
+    const createdProj = man.addProj(projName)
+    man.changeProj(createdProj.id)
+    createProjTile(createdProj)
+
+    man.save()
+    renderSideBar()
   })
+
+  // edit button
   document.querySelector('#edit-button').addEventListener('click', () => {
     editing = !editing
     if (!editing) {
@@ -183,10 +229,33 @@ function init () {
   })
   document.querySelector('#delete-button').addEventListener('click', () => {
     man.delNote(man.curNoteId)
-    refreshSide()
+    renderSideBar()
   })
 
+  // basic editing functionality for testing
+  let editing = false
+  const editor = document.createElement('textarea')
+  editor.style.width = '99%'
+  editor.style.height = '99%'
+  editor.addEventListener('input', () => {
+    console.log(editor.value, man.curNoteId)
+    man.getNote(man.curNoteId).content = editor.value
+  })
 }
 
+/*
+STRING SPLITTING FOR PROJECT TILES
+*/
 
+function getFirstLetters (str) {
+  // Split the string into an array of words
+  const words = str.split(' ')
 
+  // Map over the array and extract the first letter of each word
+  const firstLetters = words.map(word => word.charAt(0))
+
+  // Join the extracted letters into a single string
+  const result = firstLetters.join('')
+
+  return result
+}
