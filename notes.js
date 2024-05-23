@@ -11,12 +11,5 @@ class Note {
     this.id = self.crypto.randomUUID()
     console.log(this.id)
   }
-
-  addTag(tag) {
-    if (!this.tags.includes(tag)) {
-      this.tags.push(tag);
-    }
-  }
-
 }
 export { Note }
