@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: notes.js</title>
+    <title>JSDoc: Source: template.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: notes.js</h1>
+    <h1 class="page-title">Source: template.js</h1>
 
     
 
@@ -27,20 +27,17 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Data for note
- * Contains project id, content, title, tags list, and a UUID for the note
+ * Data for a template
+ * Contains a display name, and the actual note object we want
  */
-class Note {
-  constructor (p, c, t, l) {
-    this.proj = p
-    this.content = c
-    this.title = t
-    this.tags = l
+class Template {
+  constructor (name, note) {
+    this.name = name
+    this.note = note
     this.id = self.crypto.randomUUID()
-    console.log(this.id)
   }
 }
-export { Note }
+export { Template }
 </code></pre>
         </article>
     </section>
