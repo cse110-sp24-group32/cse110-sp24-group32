@@ -46,12 +46,15 @@ class Manager {
     this.curNoteId = data.curNoteId
     this.curProjId = data.curProjId
 
+    this.renderNote()
+    this.renderProject()
     this.save()
   }
 
   /** Add new project */
   addProj (name) {
     const proj = new Project(name)
+    console.log(this)
     this.projs[proj.id] = proj
     this.save()
     return new Proxy(proj, this.saveHandler)
@@ -81,8 +84,8 @@ class Manager {
   /** Deletes note from an id */
   delNote (id) {
     delete this.notes[id]
-    
-    if(this.curNoteId === id){
+
+    if (this.curNoteId === id) {
       this.curNoteId = null
       this.renderNote()
     }
@@ -90,6 +93,18 @@ class Manager {
     //this
     const tagsContainer = document.getElementById('tags-container');
     tagsContainer.innerHTML = '';
+    this.save()
+  }
+
+  /** Deletes project from an id */
+  delProj (id) {
+    delete this.projs[id]
+
+    if (this.curProjId === id) {
+      this.curProjId = null
+      this.renderNote()
+      this.renderProject()
+    }
     this.save()
   }
 
@@ -116,6 +131,8 @@ class Manager {
   changeProj (id) {
     this.curProjId = id
     this.curNoteId = null
+    this.renderNote()
+    this.renderProject()
     this.save()
   }
 
@@ -123,11 +140,51 @@ class Manager {
    * Write markdown html into target
    */
   renderNote () {
+    const tagsContainer = document.getElementById('tags-container')
+    tagsContainer.innerHTML = '' // Clear previous tags
+
+    const currNote = this.notes[this.curNoteId]
     if (this.curNoteId == null) {
       this.mdTarget.innerHTML = marked.parse('# No note selected')
       return
     }
     this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content)
+
+    const tags = currNote.tags
+
+    // For each tag render
+    tags.forEach(tag => {
+      const tagSpan = document.createElement('span')
+      tagSpan.className = 'tag'
+      tagSpan.textContent = tag
+      // Create a delete button for each tag
+      const deleteButton = document.createElement('button')
+      deleteButton.textContent = 'x'
+      deleteButton.className = 'delete-tag-button'
+      deleteButton.addEventListener('click', () => {
+        console.log(currNote)
+        currNote.tags = currNote.tags.filter(q => q !== tag)
+        this.renderNote()
+        this.save()
+      })
+
+      tagSpan.appendChild(deleteButton)
+      tagsContainer.appendChild(tagSpan)
+    })
+  }
+
+  /**
+   *  Write project sidebar rendering code here
+   */
+  renderProject () {
+    const projTitleEle = document.querySelector('#curr-proj')
+    if (this.curProjId == null) {
+      projTitleEle.textContent = 'No project selected'
+      return
+    }
+
+    const selectedProj = this.projs[this.curProjId]
+    projTitleEle.textContent = selectedProj.name
   }
 
 
@@ -157,7 +214,7 @@ class Manager {
   save () {
     const data = {}
     data.notes = this.notes
-    data.proj = this.projs
+    data.projs = this.projs
     data.curNoteId = this.curNoteId
     data.curProjId = this.curProjId
     console.log(data)
