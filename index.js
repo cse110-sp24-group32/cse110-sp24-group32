@@ -177,7 +177,7 @@ function init () {
     }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        let noteToAdd = Object.assign({}, templates[x].note)
+        let noteToAdd = JSON.parse(JSON.stringify(templates[x].note));
         noteToAdd.title = document.querySelector('#note-input').value; 
         man.addNote(noteToAdd)
         renderSideBar()
