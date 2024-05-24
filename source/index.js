@@ -93,6 +93,7 @@ function init () {
   
       if (filteredNotes.length > 0) { // Check if there are notes under this tag
         const tagHeader = document.createElement('h3');
+        tagHeader.style.textAlign = 'center';
         tagHeader.textContent = firstTag;
         entries.appendChild(tagHeader);
   
@@ -176,7 +177,7 @@ function init () {
     }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        let noteToAdd = templates[x].note
+        let noteToAdd = Object.assign({}, templates[x].note)
         noteToAdd.title = document.querySelector('#note-input').value; 
         man.addNote(noteToAdd)
         renderSideBar()
