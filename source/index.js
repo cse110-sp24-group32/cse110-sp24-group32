@@ -53,11 +53,6 @@ function setupTagManagement () {
   })
 }
 
-// displayss the tags
-function displayTags (tags) {
-  const tagsContainer = document.getElementById('tags-container')
-  tagsContainer.innerHTML = '' // Clear previous tags
-}
 
 // INIT -- RUNS UPON PAGE LOAD
 // Try to keep only eventListeners and code dependent on page load in here
@@ -103,10 +98,6 @@ function init () {
     projs.prepend(div)
   }
 
-  const createTagTile = function (note) {
-
-  }
-
   // Render sidebar
   const renderSideBar = function () {
     while (entries.children.length > 2) {
@@ -116,7 +107,7 @@ function init () {
     while (projs.children.length > 1) {
       projs.removeChild(projs.firstChild)
     }
-
+    console.log(man.getAllNotes())
     for (const note of man.getAllNotes()) {
       if (man.curProjId === note.proj) {
         createButton(note)
