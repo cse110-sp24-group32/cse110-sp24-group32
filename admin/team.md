@@ -38,3 +38,7 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 
 - ## **Thanh Trinh**:
   Hi, my name is Thanh and I'm a senior CE major. I'm one of the dev in team 32. In my free time, I usually learn new technologies, hanging with friends or doing some exercise. Here is my Github page: [Thanh's profile](https://github.com/jayden789)
+
+
+- ## **Arjun Varshney**:
+  Hi, my name is Arjun Varshney and I'm a junior pursuing a Math-CS major with a data science minor. I'm one of the dev in team 32. In my free time, I usually cook, watch netflix or play football. Here is my Github page: [Arjun's profile](https://github.com/avarshney15)
