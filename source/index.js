@@ -280,7 +280,7 @@ function init () {
   
   // Hide search results if you click somewhere else on the page
   document.querySelector('body').addEventListener('click', (event) => {
-    if ((!searchResultsContainer.classList.contains('hidden')) && (event.target.className !== 'search-result')) {
+    if (!searchResultsContainer.classList.contains('hidden') && !searchResultsContainer.contains(event.target)) {
       searchResultsContainer.classList.add('hidden')
     }
   })
