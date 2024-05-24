@@ -79,6 +79,7 @@ function init () {
   projs = document.querySelector('#project-nav')
   const buttonList = document.getElementsByClassName('note-type')
   const searchBar = document.getElementById('search-bar')
+  const searchResultsContainer = document.getElementById('search-results-container')
 
   // Helper func to create HTML objects of note buttons on sidebar
   const createButton = function (note) {
@@ -251,10 +252,17 @@ function init () {
     if (event.key === 'Enter') {
       searchBar.blur()
 
+      // if search term is empty, don't display results
+      if (searchBar.value.length === 0) { return }
+
       const resultsContainer = document.getElementById('search-results-container')
       //document.getElementById('note-view').classList.add('hidden')
+
+      // clear results
+      resultsContainer.textContent = '';
       resultsContainer.classList.remove('hidden');
 
+      // populate search results with placeholders
       for (let i = 1; i < 5; i++) {
         const sr = document.createElement('div')
         sr.className = 'search-result'
@@ -267,6 +275,13 @@ function init () {
         sr.append(srTitle, document.createElement('br'), srPreview)
         resultsContainer.append(sr)
       }
+    }
+  })
+  
+  // Hide search results if you click somewhere else on the page
+  document.querySelector('body').addEventListener('click', (event) => {
+    if ((!searchResultsContainer.classList.contains('hidden')) && (event.target.className !== 'search-result')) {
+      searchResultsContainer.classList.add('hidden')
     }
   })
 }
