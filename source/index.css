@@ -23,7 +23,7 @@ body, html {
     width: 25%;
     height:75%;
     overflow: hidden scroll hidden;
-    font-size:2em;
+    font-size:1.8em;
     resize:none;
   }
 
@@ -101,6 +101,11 @@ body, html {
     width:80%;
     height:90%;
     border: 1px solid black;
+    z-index: 0;
+}
+
+#note-view.hidden {
+    display: none;
 }
 
 .note-bar {
@@ -286,4 +291,37 @@ button.project-icon{
     color: red;
     font-size: 0.8em;
     cursor: pointer;
+}
+
+.hidden * {
+    display: none;
+}
+
+#search-results-container {
+    display: grid;
+    background-color: #fff;
+    z-index: 1;
+    position: absolute;
+    width: 60%;
+    border-top: black 1px solid;
+}
+
+#search-results-container.hidden {
+    display: none;
+}
+
+.search-result {
+    padding: 3px;
+    padding-left: 9px;
+    border-bottom: black 1px solid;
+    border-right: black 1px solid;
+}
+
+.search-result:hover {
+    background-color: #ccc;
+}
+
+.result-title {
+    font-size: 120%;
+    font-weight: bold;
 }

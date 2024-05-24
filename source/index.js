@@ -78,6 +78,7 @@ function init () {
   entries = document.querySelector('#entries-list')
   projs = document.querySelector('#project-nav')
   const buttonList = document.getElementsByClassName('note-type')
+  const searchBar = document.getElementById('search-bar')
 
   // Helper func to create HTML objects of note buttons on sidebar
   const createButton = function (note) {
@@ -242,6 +243,31 @@ function init () {
   editor.addEventListener('input', () => {
     console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
+  })
+
+  // search bar functionality
+  // listens for keyup, runs search if it's the Enter key
+  searchBar.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      searchBar.blur()
+
+      const resultsContainer = document.getElementById('search-results-container')
+      //document.getElementById('note-view').classList.add('hidden')
+      resultsContainer.classList.remove('hidden');
+
+      for (let i = 1; i < 5; i++) {
+        const sr = document.createElement('div')
+        sr.className = 'search-result'
+        const srTitle = document.createElement('span')
+        srTitle.className = 'result-title'
+        srTitle.innerText = 'Note Title ' + String(i)
+        const srPreview = document.createElement('span')
+        srPreview.className = 'result-preview'
+        srPreview.innerText = 'This is a preview of the note\'s contents'
+        sr.append(srTitle, document.createElement('br'), srPreview)
+        resultsContainer.append(sr)
+      }
+    }
   })
 }
 
