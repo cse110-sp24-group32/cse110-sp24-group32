@@ -28,36 +28,8 @@ const buttonHandler = function () {
   man.changeNote(this.id)
 }
 
-function setupTagManagement () {
-  const MAX_TAGS = 10 // Set the maximum number of tags allowed
-  const addButton = document.getElementById('add-tag-button')
-  const tagInput = document.getElementById('tag-input')
 
-  addButton.addEventListener('click', function () {
-    const tag = tagInput.value.trim()
-    if (tag && man.curNoteId) { // Ensure there is a current note selected
-      const currentNote = man.getNote(man.curNoteId)
-      if (currentNote.tags.length < MAX_TAGS) {
-        const currNote = man.notes[man.curNoteId]
-        console.log(currNote.tags)
-        currNote.tags.push(tagInput.value)
-        man.save()
-        man.renderNote()
-        tagInput.value = '' // Clear the input field after adding the tag
-      } else {
-        alert(`Maximum of ${MAX_TAGS} tags allowed.`) // alert if maximum tag has been exceeded
-      }
-    } else {
-      alert('No note is selected. Please select a note before adding tags.')
-    }
-  })
-}
 
-// displayss the tags
-function displayTags (tags) {
-  const tagsContainer = document.getElementById('tags-container')
-  tagsContainer.innerHTML = '' // Clear previous tags
-}
 
 // INIT -- RUNS UPON PAGE LOAD
 // Try to keep only eventListeners and code dependent on page load in here
@@ -71,7 +43,7 @@ function init () {
   addTemplate('Code Note', new Note(null, '# Code', 'New Code Note', ['code']))
 
   const mdv = document.querySelector('.md-view')
-  man = new Manager(mdv)
+  man = new Manager(mdv, renderSideBar)
   man.renderNote()
 
   // Populate vars
@@ -105,29 +77,62 @@ function init () {
     projs.prepend(div)
   }
 
-  const createTagTile = function (note) {
-
-  }
-
   // Render sidebar
-  const renderSideBar = function () {
+  function renderSideBar() {
     while (entries.children.length > 2) {
-      entries.removeChild(entries.lastChild)
+      entries.removeChild(entries.lastChild);
     }
-
+  
     while (projs.children.length > 1) {
-      projs.removeChild(projs.firstChild)
+      projs.removeChild(projs.firstChild);
     }
-
-    for (const note of man.getAllNotes()) {
-      if (man.curProjId === note.proj) {
-        createButton(note)
+  
+    const notesByFirstTag = man.getNotesGroupedByFirstTag();
+  
+    for (const [firstTag, notes] of Object.entries(notesByFirstTag)) {
+      // Filter notes by current project ID
+      const filteredNotes = notes.filter(note => man.curProjId === note.proj);
+  
+      if (filteredNotes.length > 0) { // Check if there are notes under this tag
+        const tagHeader = document.createElement('h3');
+        tagHeader.style.textAlign = 'center';
+        tagHeader.textContent = firstTag;
+        entries.appendChild(tagHeader);
+  
+        for (const note of filteredNotes) {
+          createButton(note);
+        }
       }
     }
-
+  
     for (const proj of man.getAllProjs()) {
-      createProjTile(proj)
+      createProjTile(proj);
     }
+  }
+
+  function setupTagManagement() {
+    const MAX_TAGS = 10; // Set the maximum number of tags allowed
+    const addButton = document.getElementById('add-tag-button');
+    const tagInput = document.getElementById('tag-input');
+  
+    addButton.addEventListener('click', function () {
+      const tag = tagInput.value.trim();
+      if (tag && man.curNoteId) { // Ensure there is a current note selected
+        const currentNote = man.getNote(man.curNoteId);
+        if (currentNote.tags.length < MAX_TAGS) {
+          const currNote = man.notes[man.curNoteId];
+          currNote.tags.push(tagInput.value);
+          man.save();
+          man.renderNote();
+          renderSideBar(); // Call renderSideBar to update sidebar dynamically
+          tagInput.value = ''; // Clear the input field after adding the tag
+        } else {
+          alert(`Maximum of ${MAX_TAGS} tags allowed.`); // Alert if maximum tag has been exceeded
+        }
+      } else {
+        alert('No note is selected. Please select a note before adding tags.');
+      }
+    });
   }
 
   // Actually call it
@@ -174,7 +179,7 @@ function init () {
     }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        let noteToAdd = templates[x].note
+        let noteToAdd = JSON.parse(JSON.stringify(templates[x].note));
         noteToAdd.title = document.querySelector('#note-input').value; 
         man.addNote(noteToAdd)
         renderSideBar()
