@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', init)
   see manager.js and proj.js and notes.js
   also specs/ADR/backend.md for documentation
 */
-let man = null
+export let man = null
 
 // entries -- HTML ele ref of note list
 let entries = null
