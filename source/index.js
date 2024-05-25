@@ -24,7 +24,7 @@ function addTemplate (name, note) {
 }
 
 // basic notes selection for testing
-const buttonHandler = function () {
+export const buttonHandler = function () {
   man.changeNote(this.id)
 }
 
@@ -50,7 +50,6 @@ function init () {
   entries = document.querySelector('#entries-list')
   projs = document.querySelector('#project-nav')
   const buttonList = document.getElementsByClassName('note-type')
-  const searchBar = document.getElementById('search-bar')
   const searchResultsContainer = document.getElementById('search-results-container')
 
   // Helper func to create HTML objects of note buttons on sidebar
