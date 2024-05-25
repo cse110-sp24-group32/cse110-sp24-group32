@@ -7,6 +7,7 @@ import { man } from './index.js'
    */
 function search(query) {
   let match_notes = [];
+  query = query.toLowerCase();
 
   for (const [i, note] of Object.entries(man.notes)) {
     if (note.content.toLowerCase().includes(query)) {
