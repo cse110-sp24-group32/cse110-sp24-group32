@@ -2,9 +2,7 @@
 
 # Attendance
 
-- Chris
-- Anthony
-- Philip
+- Same as sprint review attendance
 
 ## For our retrospective meeting we used Retrium and utilized the "mad, sad, glad" retrospective they offer.
 
