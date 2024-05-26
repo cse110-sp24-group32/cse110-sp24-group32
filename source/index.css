@@ -8,24 +8,74 @@ body, html {
   }
 
 
-  #top-bar{
+  #top-bar {
     display: flex;
+    align-items: center; /* Center items vertically */
     position: relative;
     width: 100%;
-    height: 7%;
+    height: 10%; /* Adjust the height of the top bar if needed */
     overflow: hidden;
     background-color: #3b0764;
-  }
+    padding: 0 2%; /* Use percentage padding to ensure responsiveness */
+}
 
-  #search-bar{
-    display:block;
-    margin: auto;
-    width: 25%;
-    height:75%;
-    overflow: hidden scroll hidden;
-    font-size:2em;
-    resize:none;
-  }
+.chatbot-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 6%; /* Adjust the left margin as needed */
+}
+
+#chatbot-img {
+    height: 60px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Center items vertically within the container */
+    margin-bottom: 30px; 
+    margin-left: -20px;
+    height: 100%; /* Ensure the container takes the full height of the top bar */
+}
+
+.team-logo {
+    height: 60%; /* Adjust the height as needed to make the logo smaller */
+    object-fit: contain; /* Ensure the logo fits within its container without distortion */
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px; /* Center the search bar horizontally */
+    margin-left: 16%;
+    width: 55%; /* Allow the container to adjust its width based on content */
+    height: 40%;
+    padding: 5px 10px; /* Add padding to the search container */
+    border-radius: 20px; /* Reduce border radius */
+    background: #f6f6f6;
+}
+
+    
+.material-symbols-outlined {
+    /* Add your icon styles here */
+    margin-right: 10px; /* Adjust margin for spacing between icon and search bar */
+}
+  
+#search-bar {
+    width: auto; /* Allow the search bar to adjust its width based on content */
+    font-size: 14px; /* Reduce font size */
+    margin-left: 10px; /* Adjust margin */
+    margin-top: 14px;
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+    resize: none;
+    position: relative; /* added */
+}
 
 .outer-container {
     display: flex;
@@ -101,6 +151,11 @@ body, html {
     width:80%;
     height:90%;
     border: 1px solid black;
+    z-index: 0;
+}
+
+#note-view.hidden {
+    display: none;
 }
 
 .note-bar {
@@ -286,4 +341,37 @@ button.project-icon{
     color: red;
     font-size: 0.8em;
     cursor: pointer;
+}
+
+.hidden * {
+    display: none;
+}
+
+#search-results-container {
+    display: grid;
+    background-color: #fff;
+    z-index: 1;
+    position: absolute;
+    width: 60%;
+    border-top: black 1px solid;
+}
+
+#search-results-container.hidden {
+    display: none;
+}
+
+.search-result {
+    padding: 3px;
+    padding-left: 9px;
+    border-bottom: black 1px solid;
+    border-right: black 1px solid;
+}
+
+.search-result:hover {
+    background-color: #ccc;
+}
+
+.result-title {
+    font-size: 120%;
+    font-weight: bold;
 }
