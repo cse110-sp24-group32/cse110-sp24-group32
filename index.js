@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', init)
   see manager.js and proj.js and notes.js
   also specs/ADR/backend.md for documentation
 */
-let man = null
+export let man = null
 
 // entries -- HTML ele ref of note list
 let entries = null
@@ -24,7 +24,7 @@ function addTemplate (name, note) {
 }
 
 // basic notes selection for testing
-const buttonHandler = function () {
+export const buttonHandler = function () {
   man.changeNote(this.id)
 }
 
@@ -50,6 +50,7 @@ function init () {
   entries = document.querySelector('#entries-list')
   projs = document.querySelector('#project-nav')
   const buttonList = document.getElementsByClassName('note-type')
+  const searchResultsContainer = document.getElementById('search-results-container')
 
   // Helper func to create HTML objects of note buttons on sidebar
   const createButton = function (note) {
@@ -239,6 +240,22 @@ function init () {
     renderSideBar()
   })
 
+  //functionality to download the note as a json file
+  document.querySelector('#export-button').addEventListener('click', () => {
+    const note = man.getNote(man.curNoteId)
+    if (note) {
+      const noteJson = JSON.stringify(note, null, 2)
+      const blob = new Blob([noteJson], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${note.title}.json`
+      a.click()
+      URL.revokeObjectURL(url)
+    }
+  })
+  
+
   // basic editing functionality for testing
   let editing = false
   const editor = document.createElement('textarea')
@@ -247,6 +264,13 @@ function init () {
   editor.addEventListener('input', () => {
     console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
+  })
+  
+  // Hide search results if you click somewhere else on the page
+  document.querySelector('body').addEventListener('click', (event) => {
+    if (!searchResultsContainer.classList.contains('hidden') && !searchResultsContainer.contains(event.target)) {
+      searchResultsContainer.classList.add('hidden')
+    }
   })
 }
 
