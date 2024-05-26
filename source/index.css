@@ -19,6 +19,20 @@ body, html {
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
+.chatbot-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 6%; /* Adjust the left margin as needed */
+}
+
+#chatbot-img {
+    height: 60px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
 .logo-container {
     display: flex;
     align-items: center; /* Center items vertically within the container */

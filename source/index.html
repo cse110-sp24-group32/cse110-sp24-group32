@@ -14,9 +14,17 @@
     
     <!-- TOP BAR WITH SEARCH BAR -->
     <nav id="top-bar">
+        <div class="chatbot-container">
+            <a href="chatbot.html">
+                <img src="chatbot-button.png" alt="Go to Chatbot Page" id="chatbot-img">
+            </a>
+        </div>
+        
+
         <div class="logo-container">
             <img src="memory-munchers-logo.png" alt="Team Logo" class="team-logo">
         </div>
+
         <div class="search-bar-container">
             <span class="material-symbols-outlined">feature_search</span>
             <textarea id="search-bar" placeholder="Type and press enter..."></textarea>
@@ -85,6 +93,9 @@
                             </div>
 
                             <div class="top-buttons">
+                                <button class="top-item" id="export-button">
+                                    Export
+                                </button>
                                 <button class="top-item" id="delete-button">
                                     Delete
                                 </button>

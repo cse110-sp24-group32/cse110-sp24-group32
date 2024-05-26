@@ -240,6 +240,22 @@ function init () {
     renderSideBar()
   })
 
+  //functionality to download the note as a json file
+  document.querySelector('#export-button').addEventListener('click', () => {
+    const note = man.getNote(man.curNoteId)
+    if (note) {
+      const noteJson = JSON.stringify(note, null, 2)
+      const blob = new Blob([noteJson], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${note.title}.json`
+      a.click()
+      URL.revokeObjectURL(url)
+    }
+  })
+  
+
   // basic editing functionality for testing
   let editing = false
   const editor = document.createElement('textarea')
