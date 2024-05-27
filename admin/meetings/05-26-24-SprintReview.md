@@ -5,9 +5,9 @@
 
 **Meeting Date/Time:** 5/26/2024, 2:30 - 3:30 pm (1 hours) 
 
-**Meeting Purpose:** 
-**Meeting Location:** 
-**Note Taker:** 
+**Meeting Purpose:** Sprint 1 Review
+**Meeting Location:** Discord
+**Note Taker:** Arjun V
 
 # Attendance
 
