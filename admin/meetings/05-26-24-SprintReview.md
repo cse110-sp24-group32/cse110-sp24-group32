@@ -42,14 +42,15 @@ Chris, David - for the sidebar, we can now create new projects, and when we make
 Philip,Anthony, Richard  - Friday, we made the search function using the manager instance and an eventlistener, and find the content and tags matching the query. All of the matching notes would be populated in the pop up bar and when you would click on a note then the main page would open up that note. 
 Arjun - Added some header css and html by adding the logo and a button to the chat assistant page. Added the export functionality which allows user to save a particular note as a json file. 
 
-#Plan for Sprint 2
-- bug fixes(dangling notes-can create notes without creating a project, )
-- design touches
+# Plans for Sprint 2
+- bug fixes(dangling notes-can create notes without creating a project, if note has no tag its not displayed)
+- design touches (sidebar for project notes and top note bar)
 - UI design
-- CI/CD pipeline
-- Commenting and cleaning code
+- CI/CD pipeline changes with linter and additional testing (jest and possibly E2E with Pupeteer)
+- Commenting and cleaning code and factoring code into multiple js files
 - Create detailed templates
-- export all notes in all projects
+- Export all notes in all projects/save localStorage as file
+- Import exported project json file to localStorage
 
 
 
