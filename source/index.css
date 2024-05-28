@@ -1,0 +1,381 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%; /* Add this line if you want the body to have 100% width */
+    overflow: hidden;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+
+  #top-bar {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: relative;
+    width: 100%;
+    height: 10%; /* Adjust the height of the top bar if needed */
+    overflow: hidden;
+    background-color: #3b0764;
+    padding: 0 2%; /* Use percentage padding to ensure responsiveness */
+}
+
+.chatbot-container {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 6%; /* Adjust the left margin as needed */
+}
+
+#chatbot-img {
+    height: 60px; /* Adjust the height as needed */
+    width: auto; /* Maintain aspect ratio */
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center; /* Center items vertically within the container */
+    margin-bottom: 30px; 
+    margin-left: -20px;
+    height: 100%; /* Ensure the container takes the full height of the top bar */
+}
+
+.team-logo {
+    height: 60%; /* Adjust the height as needed to make the logo smaller */
+    object-fit: contain; /* Ensure the logo fits within its container without distortion */
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    margin-bottom: 20px; /* Center the search bar horizontally */
+    margin-left: 16%;
+    width: 55%; /* Allow the container to adjust its width based on content */
+    height: 40%;
+    padding: 5px 10px; /* Add padding to the search container */
+    border-radius: 20px; /* Reduce border radius */
+    background: #f6f6f6;
+}
+
+    
+.material-symbols-outlined {
+    /* Add your icon styles here */
+    margin-right: 10px; /* Adjust margin for spacing between icon and search bar */
+}
+  
+#search-bar {
+    width: auto; /* Allow the search bar to adjust its width based on content */
+    font-size: 14px; /* Reduce font size */
+    margin-left: 10px; /* Adjust margin */
+    margin-top: 14px;
+    outline: none;
+    border: none;
+    background: transparent;
+    flex: 1;
+    resize: none;
+    position: relative; /* added */
+}
+
+.outer-container {
+    display: flex;
+    position: absolute;
+    overflow: hidden;
+    bottom:0;
+    width: 100%;
+    height: 93%;
+    overflow-y:hidden;
+}
+
+
+#project-nav {
+    position: relative;
+    flex-shrink: 0;
+    width: 90px;
+    background-color:#181a26;
+    overflow-y:scroll;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+
+#project-nav::-webkit-scrollbar, #project-nav::-webkit-scrollbar-button { display: none; } /* Chrome */
+
+.right-inner {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+    position: relative;
+    background-color: #d9d9d9;
+}
+
+#content {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+}
+
+#entries-list {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    overflow: hidden;
+    min-height: 0;
+    width: 280px;
+    border-right: 1px solid black;
+}
+
+#right-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    background-color: #c3c3c3;
+}
+
+#curr-proj {
+    text-align: center;
+    font-size:1.75em;
+    margin:0.5vh auto;
+    text-decoration: underline;
+    
+}
+
+#note-view {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width:80%;
+    height:90%;
+    border: 1px solid black;
+    z-index: 0;
+}
+
+#note-view.hidden {
+    display: none;
+}
+
+.note-bar {
+    height: 8%;
+    width: 100%;
+    border-bottom: 1px solid black; 
+    display:flex;
+}
+
+
+.top-item {
+    display:inline-block;
+    width:10%;
+    height:80%;
+    border: 1px solid;
+    margin: auto 0;
+    padding:0;
+    margin-left:1vh;
+    text-align:center;
+}
+
+#tags {
+    margin-right: auto;
+}
+
+.top-buttons {
+    display: flex;
+    margin-left: auto;
+    width:40%;
+    justify-content:end;
+    margin-right:1vh;
+}
+
+.top-buttons button {
+    width:40%;
+}
+
+.top-buttons button:hover {
+    background-color: #aaa;
+}
+
+
+.md-view {
+    flex-grow: 1; 
+    width: 100%;
+}
+
+.project-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 1000;
+}
+
+.project-popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirm-new-project {
+    background-color: #3b0764;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
+}
+
+.note-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 1000;
+}
+
+.note-popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-type {
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #3b0764;
+    color: white;
+    font-size: medium;
+    border: 5px solid black
+}
+
+.note-type:hover {
+    transform: scale(1.05);
+    transition: all 0.5s ease;
+}
+
+#choose-note {
+    background-color: #3b0764;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
+}
+
+.project-icon {
+    width: 73px;
+    height: 65px;
+    font-size: 2em;
+    text-align: center;
+    padding: 0;
+    border: 0;
+    margin:auto;
+    margin-top:0.5vh;
+    background-color: #d9d9d9;
+    color: #3b0764;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+    user-select: none;
+    font-weight:bolder;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
+}
+
+button.project-icon{
+    font-size: 4em;
+    font-weight:normal;
+}
+
+.project-icon:hover {
+    background-color:#c3c3c3;
+}
+
+
+/* css for tags */
+
+
+.tag-input-container {
+    display: flex;
+    height: 40%;
+    align-items: center;
+    padding: 2px 5px;
+}
+
+
+#tags-container .tag{
+    padding: 2px 5px; /* Reduced padding for smaller tag appearance */
+    margin: 2px; /* Space between tags */
+    background-color: #ccc; /* Background color for tags */
+    border-radius: 5px; /* Rounded corners for tags */
+    font-size: 0.8em; /* Swmaller font size */
+    display: inline-block; /* Ensure tags are in-line */
+}
+
+.delete-tag-button {
+    background: none;
+    border: 3px;
+    color: red;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+
+.hidden * {
+    display: none;
+}
+
+#search-results-container {
+    display: grid;
+    background-color: #fff;
+    z-index: 1;
+    position: absolute;
+    width: 60%;
+    border-top: black 1px solid;
+}
+
+#search-results-container.hidden {
+    display: none;
+}
+
+.search-result {
+    padding: 3px;
+    padding-left: 9px;
+    border-bottom: black 1px solid;
+    border-right: black 1px solid;
+}
+
+.search-result:hover {
+    background-color: #ccc;
+}
+
+.result-title {
+    font-size: 120%;
+    font-weight: bold;
+}

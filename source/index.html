@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevJournal</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="search.js" type="module"></script>
+    <script src="notesFunctionality.js" type="module"></script>
+    <script src="sidebarFunctionality.js" type="module"></script>
+</head>
+<body>
+    
+    <!-- TOP BAR WITH SEARCH BAR -->
+    <nav id="top-bar">
+        <div class="chatbot-container">
+            <a href="chatbot.html">
+                <img src="chatbot-button.png" alt="Go to Chatbot Page" id="chatbot-img">
+            </a>
+        </div>
+        <div class="logo-container">
+            <img src="memory-munchers-logo.png" alt="Team Logo" class="team-logo">
+        </div>
+
+        <div class="search-bar-container">
+            <span class="material-symbols-outlined">feature_search</span>
+            <textarea id="search-bar" placeholder="Type and press enter..."></textarea>
+        </div>
+    </nav>
+
+    <div class="note-popup-container">
+        <div class="note-popup-box">
+            <h3>Select Journal Entry Type</h3>
+            <div class="select-note">
+                <button type="button", class="note-type", id="Meeting">Meeting</button>
+                <button type="button", class="note-type", id="Freeform">Freeform MD Note</button>
+                <button type="button", class="note-type", id="Design">Design</button>
+                <button type="button", class="note-type", id="Github">Github</button>
+                <button type="button", class="note-type", id="Code">Code and Bug Snippets</button>
+
+                <div style="margin:auto; text-align:center;">
+                    <h3>Enter name of note</h3>
+                    <input type="text" id="note-input">
+                </div>
+                
+            </div>
+            <button type="button", id="choose-note">Create Note</button>
+        </div>
+    </div>
+
+    <div class="project-popup-container">
+        <div class="project-popup-box">
+            <h3>Enter name of project</h3>
+            <input type="text" id="project-input">
+            <button type="button", id="confirm-new-project">Create Project</button>
+        </div>
+    </div>
+
+    <div class="outer-container">
+
+        <!-- PROJECT SIDEBAR -->
+        <nav id="project-nav">
+
+            <button class="project-icon" id="new-project-button">+</button>
+        </nav>
+
+        <div class="right-inner">
+            <div id="content">
+
+                <!-- JOURNAL ENTRIES LIST WITHIN A PROJECT -->
+                
+                <div id="entries-list">
+                    <p id="curr-proj">Project</p>
+                     <button type="button" id="add-note">Add New Note</button>
+                </div>
+
+                <!-- MAIN CONTENT FOR NOTES INTERACTION -->
+                <div id="right-content">
+                    <div id="note-view">
+                        <div class="note-bar">
+                            <!-- container for adding new tags  -->
+                            <p id="note-title" style="margin-top:0.5vh; font-size:2em;">Title</p>
+                            <div class="tag-input-container">
+                                <input type="text" id="tag-input" placeholder="add new tag">
+                                <button id="add-tag-button"> + </button>
+                            </div>
+                            
+                            <div id="tags-container">
+                                <!-- tags created are populated here -->                        
+                            </div>
+
+                            <div class="top-buttons">
+                                <button class="top-item" id="export-button">
+                                    Export
+                                </button>
+                                <button class="top-item" id="delete-button">
+                                    Delete
+                                </button>
+        
+                                <button class="top-item" id="edit-button">
+                                    Edit
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- NOTE CONTENT IN HERE -->
+                        <div class="md-view">
+                          
+                        </div>
+
+                    </div>
+                    <div id="search-results-container" class="hidden"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
