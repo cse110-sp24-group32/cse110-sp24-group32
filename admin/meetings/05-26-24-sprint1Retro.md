@@ -32,5 +32,14 @@ There were, however, suggestions for improvement here:
 - We agreed to have subteams communicate more before work begins to ensure everyone understands their assigned task
 - Agreed on things for sprint 2: Improved CI/CD pipeline (linter changes and more unit tests, possibly E2E testing with Pupeteer), bug fixes, design changes
 - Agreed to clean up code before sprint 2 by separating JS code into multiple files
+
+## Next Items for Tuesday: 
+  - Clean Up index.js (spread it out into multiple files) 
+  - CSS styling for the project 
+  - Adding ServiceWorkers functioanlity to the Journal/ HAVE Donwload Journal option 
+  - Fix CI/CD pipeline
+  - Add simple ChatBot functionality (decide on the model, API choice, structure: is it within a special project or completely separage page that opens via Nagivation Bar?)
+  
+  
   
 
