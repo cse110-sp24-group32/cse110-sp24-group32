@@ -193,6 +193,10 @@ body, html {
     width:40%;
 }
 
+.top-buttons button:hover {
+    background-color: #aaa;
+}
+
 
 .md-view {
     flex-grow: 1; 
@@ -282,8 +286,8 @@ body, html {
 }
 
 .project-icon {
-    width: 80%;
-    height: 8%;
+    width: 73px;
+    height: 65px;
     font-size: 2em;
     text-align: center;
     padding: 0;

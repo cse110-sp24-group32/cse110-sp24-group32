@@ -5,6 +5,7 @@ import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs'
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js'
 import { Note } from './notes.js'
 import { Project } from './proj.js'
+import { renderSideBar } from './sidebarFunctionality.js'
 
 /**
  * This class manages our app data.
@@ -17,7 +18,7 @@ import { Project } from './proj.js'
  * Similarly for projects
  */
 class Manager {
-  constructor (mdTarget, renderSideBar) {
+  constructor (mdTarget) {
     this.mdTarget = mdTarget
     this.renderSideBar = renderSideBar;
     // set up our handler to save when a note is modified
@@ -180,13 +181,14 @@ class Manager {
         currNote.tags = currNote.tags.filter(q => q !== tag);
         this.save();
         this.renderNote();
-        this.renderSideBar(); // Call renderSideBar to update sidebar dynamically
+        renderSideBar(); // Call renderSideBar to update sidebar dynamically
       });
 
       tagSpan.appendChild(deleteButton);
       tagsContainer.appendChild(tagSpan);
     });
   }
+
 
   /**
    *  Write project sidebar rendering code here

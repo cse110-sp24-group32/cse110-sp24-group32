@@ -1,4 +1,12 @@
-import { man } from './index.js'
+import { getManagerObject } from './index.js'
+
+let man = null;
+
+document.addEventListener('DOMContentLoaded', init)
+
+async function init() {
+  man = await getManagerObject();  // Wait for the Manager instance to be initialized
+}
 
 /**
    * Search for notes that match the query
