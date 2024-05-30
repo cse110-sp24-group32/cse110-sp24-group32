@@ -24,10 +24,12 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     });
 
     // Click the button with id 'add-note'
-    await page.click('#add-note');
+	const btn = await page.$('#add-note');
+	await btn.click();
     
-    // Wait some time to ensure the alert is triggered
-    await page.waitForTimeout(1000);
+	await new Promise(function(resolve) { 
+           setTimeout(resolve, 1000)
+    });
   });
   
   
