@@ -9,14 +9,32 @@ jobs:
       run:
         working-directory: ./source
     steps:
-    - uses: actions/checkout@v4
-    - name: Install dependencies
-      run: npm install
-    - name: Setup Xvfb
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y xvfb
-        sudo Xvfb :99 -ac &
-        export DISPLAY=:99
-    - name: Run tests
-      run: npm test
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Setup Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          sudo Xvfb :99 -ac &
+          export DISPLAY=:99
+
+      - name: Start local server
+        id: start-server
+        run: npm start &
+        env:
+          CI: true
+          SERVER_PID: $!
+
+      - name: Wait for server to be ready
+        run: sleep 10 # Adjust the sleep duration as necessary
+
+      - name: Run tests
+        run: npm test
+
+      - name: End action
+        if: always()
+        run: exit 0
