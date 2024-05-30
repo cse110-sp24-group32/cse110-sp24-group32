@@ -1,20 +1,26 @@
 import puppeteer from 'puppeteer';
 
-
 // Jest unit test
-test('empty', () => {
-})
+test('empty', () => {});
 
-
-// Pupeteer tests all go in here 
+// Puppeteer tests all go in here
 describe('Puppeteer Tests For App Functionality Testing', () => {
-  // First, go to our app
+  let browser;
+  let page;
+
   beforeAll(async () => {
-    await page.goto('https://cse110-sp24-group32.github.io/cse110-sp24-group32/');
+    browser = await puppeteer.launch({
+      headless: true, // Set to false if you want to see the browser during the tests
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+    page = await browser.newPage();
+    await page.goto('http://localhost:3000/index.html'); // Use local server URL
   });
-  
-  
-  //First test to ensure adding a new note without a project is not possible
+
+  afterAll(async () => {
+    await browser.close();
+  });
+
   it('shouldnt be possible to add a note without a project selected', async () => {
     // Listen for the alert dialog
     page.on('dialog', async dialog => {
@@ -24,13 +30,10 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     });
 
     // Click the button with id 'add-note'
-	const btn = await page.$('#add-note');
-	await btn.click();
-    
-	await new Promise(function(resolve) { 
-           setTimeout(resolve, 1000)
-    });
+    const btn = await page.$('#add-note');
+    await btn.click();
+
+    // Wait some time to ensure the alert is triggered
+    await new Promise(resolve => setTimeout(resolve, 1000));
   });
-  
-  
 });
