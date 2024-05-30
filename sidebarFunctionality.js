@@ -72,6 +72,17 @@ async function init() {
       man.changeProj(div.id);
       renderSideBar();
     });
+
+    const close = document.createElement('button');
+    close.textContent = 'x';
+    close.className = 'proj-delete-button';
+    close.addEventListener('click', function(event) { 
+      event.stopPropagation();
+      man.delProj(div.id);
+      div.remove();
+    });
+    div.appendChild(close);
+
     projs.prepend(div);
   };
 

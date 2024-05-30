@@ -327,6 +327,7 @@ body, html {
     background-color: #d9d9d9;
     color: #3b0764;
     display: flex;
+    flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -337,6 +338,7 @@ body, html {
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
+    position: relative; /* Ensure children are positioned relative to this */
 }
 
 button.project-icon{
@@ -348,6 +350,23 @@ button.project-icon{
     background-color:#c3c3c3;
 }
 
+.proj-delete-button {
+    display: none;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 10px 10px 0px 0px;
+    width: 73px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    margin-bottom: auto;
+  }
+
+.project-icon:hover .proj-delete-button {
+    display: block;
+}
 
 /* css for tags */
 
