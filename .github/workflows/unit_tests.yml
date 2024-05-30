@@ -35,8 +35,6 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Stop server
+      - name: End action
         if: always()
-        run: |
-          # Use the saved PID to stop the server
-          kill ${{ env.SERVER_PID }}
+        run: exit 0
