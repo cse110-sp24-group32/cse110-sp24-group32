@@ -33,6 +33,34 @@ body, html {
     cursor: pointer;
 }
 
+#export-all-button {
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-bottom: 1%; 
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #3b0764;
+    color: white;
+    cursor: pointer;
+    align-self: left;
+}
+
+#import-all-button {
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%; 
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: #3b0764;
+    color: white;
+    cursor: pointer;
+    align-self: left;
+}
+
 .logo-container {
     display: flex;
     align-items: center; /* Center items vertically within the container */

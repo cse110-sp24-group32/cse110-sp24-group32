@@ -79,6 +79,71 @@ async function init() {
       URL.revokeObjectURL(url)
     }
   })
+  //functionality to download all notes as a json file 
+  document.querySelector('#export-all-button').addEventListener('click', () => {
+    const notes = man.getAllNotes();
+    if (notes && notes.length > 0) {
+      const notesJson = JSON.stringify(notes, null, 2);
+      const blob = new Blob([notesJson], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'all_notes.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  });
+
+  //functionality to import all notes from a json file
+  const fileInput = document.querySelector('#file-input');
+  document.querySelector('#import-all-button').addEventListener('click', () =>{
+    fileInput.click();
+  });
+  
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    // console.log('File selected:', file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        
+        let notes = JSON.parse(e.target.result);
+        //console.log('Parsed notes:', notes);
+
+        // Clear existing notes and local storage
+        man.notes = {};
+        man.curNoteId = null;
+        localStorage.removeItem('notes-data');
+
+        // Add new notes
+        notes.forEach(note => {
+          //console.log('Processing note:', note.title);
+
+          // Ensure the note is properly constructed before adding
+          const validNote = {
+            id: note.id,
+            proj: note.proj,
+            content: note.content || '',
+            title: note.title || 'Untitled',
+            tags: Array.isArray(note.tags) ? note.tags : ['Freeform MD Note']
+          };
+
+          //console.log('Adding note:', validNote);
+          man.notes[note.id] = new Proxy(validNote, man.saveHandler);
+        });
+
+        // Save and render the new state
+        man.save();
+        renderSideBar();
+        man.renderNote();
+        
+      };
+      reader.readAsText(file);
+    }
+  });
+
+
+
   
 
   // basic editing functionality for testing
