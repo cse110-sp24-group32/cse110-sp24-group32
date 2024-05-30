@@ -116,7 +116,25 @@ class Manager {
       this.renderNote()
       this.renderProject()
     }
+
+    const allNotes = this.getAllNotes();
+
+    for (let i = 0; i < allNotes.length; i++) {
+      if (allNotes[i].proj === id) {
+        console.log(allNotes[i]);
+        this.delNote(allNotes[i].id);
+
+        if (this.curNoteId == allNotes[i].id) {
+          this.curNoteId = null
+        }
+      }
+    }
+
+    // Delete all notes associated with this project
     this.save()
+    this.renderNote()
+    this.renderProject()
+    renderSideBar()
   }
 
   /** Returns all notes, proxied */
@@ -157,6 +175,7 @@ class Manager {
     const currNote = this.notes[this.curNoteId];
     if (this.curNoteId == null) {
       this.mdTarget.innerHTML = marked.parse('# No note selected');
+      document.querySelector('#note-title').textContent = "Select a note";
       return;
     }
 
