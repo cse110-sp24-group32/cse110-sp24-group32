@@ -23,9 +23,11 @@ jobs:
           export DISPLAY=:99
 
       - name: Start local server
+        id: start-server
         run: npm start &
         env:
           CI: true
+          SERVER_PID: $!
 
       - name: Wait for server to be ready
         run: sleep 10 # Adjust the sleep duration as necessary
@@ -34,5 +36,7 @@ jobs:
         run: npm test
 
       - name: Stop server
-        if: success() || failure()
-        run: kill $(jobs -p)
+        if: always()
+        run: |
+          # Use the saved PID to stop the server
+          kill ${{ env.SERVER_PID }}
