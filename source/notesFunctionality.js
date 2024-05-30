@@ -81,70 +81,88 @@ async function init() {
   })
   //functionality to download all notes as a json file 
   document.querySelector('#export-all-button').addEventListener('click', () => {
-    const notes = man.getAllNotes();
-    if (notes && notes.length > 0) {
-      const notesJson = JSON.stringify(notes, null, 2);
-      const blob = new Blob([notesJson], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'all_notes.json';
-      a.click();
-      URL.revokeObjectURL(url);
+    const notesData = JSON.parse(localStorage.getItem('notes-data'));
+    if (notesData != null) {
+      const notesBlob = new Blob([JSON.stringify(notesData, null, 2)], { type: 'application/json' });
+      const downloadLink = document.createElement('a');
+      downloadLink.href = URL.createObjectURL(notesBlob);
+      downloadLink.download = 'notes-data.json';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    } else {
+      alert("Nothing to export")
     }
   });
 
   //functionality to import all notes from a json file
   const fileInput = document.querySelector('#file-input');
-  document.querySelector('#import-all-button').addEventListener('click', () =>{
+  document.querySelector('#import-all-button').addEventListener('click', () => {
     fileInput.click();
   });
-  
+
   fileInput.addEventListener('change', (event) => {
     const file = event.target.files[0];
-    // console.log('File selected:', file);
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        
-        let notes = JSON.parse(e.target.result);
-        //console.log('Parsed notes:', notes);
+        let importedData = JSON.parse(e.target.result);
 
-        // Clear existing notes and local storage
+        // Ensure importedData has the expected structure
+        if (!importedData.notes || typeof importedData.notes !== 'object') {
+          console.error('Imported data does not contain a valid notes object.');
+          return;
+        }
+        if (!importedData.projs || typeof importedData.projs !== 'object') {
+          console.error('Imported data does not contain a valid projs object.');
+          return;
+        }
+
+        // Clear existing notes, projects, and local storage
         man.notes = {};
+        man.projs = {};
         man.curNoteId = null;
+        man.curProjId = null;
         localStorage.removeItem('notes-data');
 
         // Add new notes
-        notes.forEach(note => {
-          //console.log('Processing note:', note.title);
+        for (let noteId in importedData.notes) {
+          if (importedData.notes.hasOwnProperty(noteId)) {
+            let note = importedData.notes[noteId];
+            const validNote = {
+              id: note.id,
+              proj: note.proj,
+              content: note.content || '',
+              title: note.title || 'Untitled',
+              tags: Array.isArray(note.tags) ? note.tags : ['Freeform MD Note']
+            };
 
-          // Ensure the note is properly constructed before adding
-          const validNote = {
-            id: note.id,
-            proj: note.proj,
-            content: note.content || '',
-            title: note.title || 'Untitled',
-            tags: Array.isArray(note.tags) ? note.tags : ['Freeform MD Note']
-          };
+            man.notes[note.id] = new Proxy(validNote, man.saveHandler);
+          }
+        }
 
-          //console.log('Adding note:', validNote);
-          man.notes[note.id] = new Proxy(validNote, man.saveHandler);
-        });
+        // Add new projects
+        for (let projId in importedData.projs) {
+          if (importedData.projs.hasOwnProperty(projId)) {
+            man.projs[projId] = importedData.projs[projId];
+          }
+        }
 
-        // Save and render the new state
+        // Update current note and project IDs
+        man.curNoteId = importedData.curNoteId || null;
+        man.curProjId = importedData.curProjId || null;
+
+        // Save the new state to localStorage
         man.save();
-        renderSideBar();
+
+        // Re-render the UI
         man.renderNote();
-        
+        man.renderProject();
+        renderSideBar();
       };
       reader.readAsText(file);
     }
   });
-
-
-
-  
 
   // basic editing functionality for testing
   let editing = false
