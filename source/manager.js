@@ -229,10 +229,7 @@ class Manager {
       deleteButton.className = 'delete-tag-button';
       deleteButton.addEventListener('click', () => {
         if (currNote.tags.length === 1) {
-          if (confirm('Deleting this tag will delete the note. Are you sure?')) {
-            this.delNote(currNote.id);
-            renderSideBar();
-          }
+          alert('This tag cannot be deleted because it is the only tag for this note.');
         } else {
           currNote.tags = currNote.tags.filter(q => q !== tag);
           this.save();
