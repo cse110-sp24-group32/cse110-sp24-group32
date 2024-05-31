@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: notes.js</title>
+    <title>JSDoc: Source: proj.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: notes.js</h1>
+    <h1 class="page-title">Source: proj.js</h1>
 
     
 
@@ -27,26 +27,20 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * Represents a note with project ID, content, title, tags, and a unique ID.
+ * Represents a project with a name and a unique ID.
  */
-class Note {
+class Project {
   /**
-   * Create a note.
-   * @param {string} p - The project ID.
-   * @param {string} c - The content of the note.
-   * @param {string} t - The title of the note.
-   * @param {Array} l - The list of tags.
+   * Create a project.
+   * @param {string} name - The name of the project.
    */
-  constructor(p, c, t, l) {
-    this.proj = p;
-    this.content = c;
-    this.title = t;
-    this.tags = l;
+  constructor(name) {
+    this.name = name;
     this.id = self.crypto.randomUUID();
-    console.log(this.id);
   }
 }
-export { Note };
+
+export { Project };
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: notes.js</title>
+    <title>JSDoc: Source: index.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: notes.js</h1>
+    <h1 class="page-title">Source: index.js</h1>
 
     
 
@@ -26,27 +26,53 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Represents a note with project ID, content, title, tags, and a unique ID.
+            <pre class="prettyprint source linenums"><code>import { Manager } from './manager.js';
+import { Note } from './notes.js';
+import { Template } from './template.js';
+
+/**
+ * Handles passing the singleton manager object to other classes.
+ * If you need to retrieve the manager object, use " import { getManagerObject } from './index.js' "
+ * and call upon DOMContentLoad, ex: let man = await getManagerObject();
  */
-class Note {
-  /**
-   * Create a note.
-   * @param {string} p - The project ID.
-   * @param {string} c - The content of the note.
-   * @param {string} t - The title of the note.
-   * @param {Array} l - The list of tags.
-   */
-  constructor(p, c, t, l) {
-    this.proj = p;
-    this.content = c;
-    this.title = t;
-    this.tags = l;
-    this.id = self.crypto.randomUUID();
-    console.log(this.id);
-  }
+
+document.addEventListener('DOMContentLoaded', init);
+
+let manResolve;
+let manPromise = new Promise((resolve) => {
+  manResolve = resolve;
+});
+
+let man = null;
+
+/**
+ * Retrieves the manager object.
+ * @returns {Promise} The manager object.
+ */
+function getManagerObject() {
+  return manPromise;
 }
-export { Note };
+
+// Export getter func
+export { getManagerObject };
+
+/**
+ * Called upon page load to initialize the application.
+ */
+function init() {
+  const mdv = document.querySelector('.md-view');
+  man = new Manager(mdv);
+  manResolve(man); // Resolve the promise with the Manager instance
+  man.renderNote();
+
+  const searchResultsContainer = document.getElementById('search-results-container');
+  
+  document.querySelector('body').addEventListener('click', (event) => {
+    if (!searchResultsContainer.classList.contains('hidden') &amp;&amp; !searchResultsContainer.contains(event.target)) {
+      searchResultsContainer.classList.add('hidden');
+    }
+  });
+}
 </code></pre>
         </article>
     </section>
