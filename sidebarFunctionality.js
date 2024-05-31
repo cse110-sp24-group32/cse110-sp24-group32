@@ -130,7 +130,7 @@ async function init() {
     }
   }
 
-
+  renderSideBar();
   /*
   EVENT LISTENERS FOR CLICKS
   */
