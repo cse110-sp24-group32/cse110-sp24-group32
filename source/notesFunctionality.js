@@ -1,23 +1,23 @@
-import { getManagerObject } from './index.js'
+import { getManagerObject } from './index.js';
+import { Manager } from './manager.js';
+import { Note } from './notes.js';
+import { Template } from './template.js';
+import { renderSideBar } from './sidebarFunctionality.js';
 
-import { Manager } from './manager.js'
-import { Note } from './notes.js'
-import { Template } from './template.js'
-import { renderSideBar } from './sidebarFunctionality.js'
-
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', init);
 
 let man = null;
 
 async function init() {
-
-  //Init html refs
+  // Init HTML references
   const mdv = document.querySelector('.md-view');
 
-  //Get singleton manager
+  // Get singleton manager
   man = await getManagerObject();
 
-  //Sets up tags for notes
+  /**
+   * Sets up tag management for notes.
+   */
   function setupTagManagement() {
     const MAX_TAGS = 10; // Set the maximum number of tags allowed
     const addButton = document.getElementById('add-tag-button');
@@ -43,43 +43,44 @@ async function init() {
     });
   }
 
-  //Actually call it
-  setupTagManagement()
+  // Actually call it
+  setupTagManagement();
 
-  // edit button
+  // Edit button
   document.querySelector('#edit-button').addEventListener('click', () => {
-    editing = !editing
+    editing = !editing;
     if (!editing) {
-      document.getElementById('edit-button').innerText = 'Edit'
-      man.renderNote()
-      return
+      document.getElementById('edit-button').innerText = 'Edit';
+      man.renderNote();
+      return;
     } else {
-      document.getElementById('edit-button').innerText = 'Done'
+      document.getElementById('edit-button').innerText = 'Done';
     }
-    mdv.innerHTML = ''
-    editor.value = man.getNote(man.curNoteId).content
-    mdv.appendChild(editor)
-  })
+    mdv.innerHTML = '';
+    editor.value = man.getNote(man.curNoteId).content;
+    mdv.appendChild(editor);
+  });
   document.querySelector('#delete-button').addEventListener('click', () => {
-    man.delNote(man.curNoteId)
-    renderSideBar()
-  })
+    man.delNote(man.curNoteId);
+    renderSideBar();
+  });
 
-  //functionality to download the note as a json file
+  // Functionality to download the note as a JSON file
   document.querySelector('#export-button').addEventListener('click', () => {
-    const note = man.getNote(man.curNoteId)
+    const note = man.getNote(man.curNoteId);
     if (note) {
-      const noteJson = JSON.stringify(note, null, 2)
-      const blob = new Blob([noteJson], { type: 'application/json' })
-      const url = URL.createObjectURL(blob)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = `${note.title}.json`
-      a.click()
-      URL.revokeObjectURL(url)
+      const noteJson = JSON.stringify(note, null, 2);
+      const blob = new Blob([noteJson], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${note.title}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
     }
-  })
-  //functionality to download all notes as a json file 
+  });
+
+  // Functionality to download all notes as a JSON file
   document.querySelector('#export-all-button').addEventListener('click', () => {
     const notesData = JSON.parse(localStorage.getItem('notes-data'));
     if (notesData != null) {
@@ -91,11 +92,11 @@ async function init() {
       downloadLink.click();
       document.body.removeChild(downloadLink);
     } else {
-      alert("Nothing to export")
+      alert("Nothing to export");
     }
   });
 
-  //functionality to import all notes from a json file
+  // Functionality to import all notes from a JSON file
   const fileInput = document.querySelector('#file-input');
   document.querySelector('#import-all-button').addEventListener('click', () => {
     fileInput.click();
@@ -164,14 +165,13 @@ async function init() {
     }
   });
 
-  // basic editing functionality for testing
-  let editing = false
-  const editor = document.createElement('textarea')
-  editor.style.width = '99%'
-  editor.style.height = '99%'
+  // Basic editing functionality for testing
+  let editing = false;
+  const editor = document.createElement('textarea');
+  editor.style.width = '99%';
+  editor.style.height = '99%';
   editor.addEventListener('input', () => {
-    console.log(editor.value, man.curNoteId)
-    man.getNote(man.curNoteId).content = editor.value
-  })
-
+    console.log(editor.value, man.curNoteId);
+    man.getNote(man.curNoteId).content = editor.value;
+  });
 }
