@@ -48,7 +48,7 @@ async function init() {
   // Actually call it
 
   setupTagManagement();
-
+  renderSideBar();
 
   // Edit button
   document.querySelector('#edit-button').addEventListener('click', () => {
