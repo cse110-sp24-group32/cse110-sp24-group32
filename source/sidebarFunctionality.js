@@ -2,6 +2,7 @@ import { getManagerObject } from './index.js'
 import { Manager } from './manager.js'
 import { Note } from './notes.js'
 import { Template } from './template.js'
+import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js'
 
 document.addEventListener('DOMContentLoaded', init)
 
@@ -41,12 +42,11 @@ async function init() {
   Template content is in the second argument of Note constructor
   */
   addTemplate('Default Note', new Note(null, '', 'New Note', []));
-  addTemplate('Meeting Note', new Note(null, '# Meeting', 'New Meeting Note', ['meeting']));
-  addTemplate('Freeform Note', new Note(null, '# Freeform MD', 'New Freeform MD Note', ['freeform']));
-  addTemplate('Design Note', new Note(null, '# Design', 'New Design Note', ['design']));
-  addTemplate('Github Note', new Note(null, '# Github', 'New Github Note', ['github']));
-  addTemplate('Code Note', new Note(null, '# Code', 'New Code Note', ['code']));
-
+  addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']));
+  addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']));
+  addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']));
+  addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']));
+  addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']));
   /*
   Creates a note button for a given note (sidebar)
   */
