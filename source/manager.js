@@ -1,8 +1,8 @@
 /**
  * Manages the state of the app
  */
-import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs'
-import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js'
+import Fuse from './ext/fuse.mjs'
+import { marked } from './ext/marked.esm.js'
 import { Note } from './notes.js'
 import { Project } from './proj.js'
 import { renderSideBar } from './sidebarFunctionality.js'
@@ -18,6 +18,10 @@ import { renderSideBar } from './sidebarFunctionality.js'
  * Similarly for projects
  */
 class Manager {
+  /**
+   * 
+   * @param {HTMLElement} mdTarget - Target element to render markdown
+   */
   constructor (mdTarget) {
     this.mdTarget = mdTarget
     this.renderSideBar = renderSideBar;
@@ -40,7 +44,6 @@ class Manager {
       data.projs = {}
       data.curNoteId = null
       data.curProjId = null
-      console.log('asdf')
     }
     this.notes = data.notes
     this.projs = data.projs
