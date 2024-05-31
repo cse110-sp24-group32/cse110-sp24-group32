@@ -1,11 +1,11 @@
 import { getManagerObject } from './index.js'
 
-let man = null;
+let man = null
 
 document.addEventListener('DOMContentLoaded', init)
 
-async function init() {
-  man = await getManagerObject();  // Wait for the Manager instance to be initialized
+async function init () {
+  man = await getManagerObject() // Wait for the Manager instance to be initialized
 }
 
 /**
@@ -13,20 +13,20 @@ async function init() {
    * @param {string} query query string in search bar
    * @returns list of notes
    */
-function search(query) {
-  let match_notes = [];
-  query = query.toLowerCase();
+function search (query) {
+  const match_notes = []
+  query = query.toLowerCase()
 
   for (const [i, note] of Object.entries(man.notes)) {
     if (note.content.toLowerCase().includes(query)) {
-      match_notes.push(note);
-      continue;
+      match_notes.push(note)
+      continue
     }
 
     for (const tag of note.tags) {
       if (tag.includes(query)) {
-        match_notes.push(note);
-        break;
+        match_notes.push(note)
+        break
       }
     }
   }
@@ -34,7 +34,7 @@ function search(query) {
   return match_notes
 }
 
-const searchBar = document.getElementById('search-bar');
+const searchBar = document.getElementById('search-bar')
 
 // search bar functionality
 // listens for keyup, runs search if it's the Enter key
@@ -46,14 +46,14 @@ searchBar.addEventListener('keydown', (event) => {
     if (searchBar.value.length === 0) { return }
 
     const resultsContainer = document.getElementById('search-results-container')
-    //document.getElementById('note-view').classList.add('hidden')
+    // document.getElementById('note-view').classList.add('hidden')
 
     // clear results
-    resultsContainer.textContent = '';
-    resultsContainer.classList.remove('hidden');
+    resultsContainer.textContent = ''
+    resultsContainer.classList.remove('hidden')
 
     // get search bar element
-    const match_notes = search(searchBar.value);
+    const match_notes = search(searchBar.value)
 
     // populate search results with placeholders
     for (const note of match_notes) {
@@ -67,8 +67,8 @@ searchBar.addEventListener('keydown', (event) => {
       srPreview.innerText = note.content.slice(0, 100)
       sr.append(srTitle, document.createElement('br'), srPreview)
       sr.addEventListener('click', (event) => {
-        man.changeNote(note.id);
-        resultsContainer.classList.add('hidden');
+        man.changeNote(note.id)
+        resultsContainer.classList.add('hidden')
       })
 
       resultsContainer.append(sr)

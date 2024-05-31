@@ -7,43 +7,42 @@ import { renderSideBar } from './sidebarFunctionality.js'
 
 document.addEventListener('DOMContentLoaded', init)
 
-let man = null;
+let man = null
 
-async function init() {
+async function init () {
+  // Init html refs
+  const mdv = document.querySelector('.md-view')
 
-  //Init html refs
-  const mdv = document.querySelector('.md-view');
+  // Get singleton manager
+  man = await getManagerObject()
 
-  //Get singleton manager
-  man = await getManagerObject();
+  // Sets up tags for notes
+  function setupTagManagement () {
+    const MAX_TAGS = 10 // Set the maximum number of tags allowed
+    const addButton = document.getElementById('add-tag-button')
+    const tagInput = document.getElementById('tag-input')
 
-  //Sets up tags for notes
-  function setupTagManagement() {
-    const MAX_TAGS = 10; // Set the maximum number of tags allowed
-    const addButton = document.getElementById('add-tag-button');
-    const tagInput = document.getElementById('tag-input');
-  
     addButton.addEventListener('click', function () {
-      const tag = tagInput.value.trim();
+      const tag = tagInput.value.trim()
       if (tag && man.curNoteId) { // Ensure there is a current note selected
-        const currentNote = man.getNote(man.curNoteId);
+        const currentNote = man.getNote(man.curNoteId)
         if (currentNote.tags.length < MAX_TAGS) {
-          const currNote = man.notes[man.curNoteId];
-          currNote.tags.push(tagInput.value);
-          man.save();
-          man.renderNote();
-          renderSideBar(); // Call renderSideBar to update sidebar dynamically
-          tagInput.value = ''; // Clear the input field after adding the tag
+          const currNote = man.notes[man.curNoteId]
+          currNote.tags.push(tagInput.value)
+          man.save()
+          man.renderNote()
+          renderSideBar() // Call renderSideBar to update sidebar dynamically
+          tagInput.value = '' // Clear the input field after adding the tag
         } else {
-          alert(`Maximum of ${MAX_TAGS} tags allowed.`); // Alert if maximum tag has been exceeded
+          alert(`Maximum of ${MAX_TAGS} tags allowed.`) // Alert if maximum tag has been exceeded
         }
       } else {
-        alert('No note is selected. Please select a note before adding tags.');
+        alert('No note is selected. Please select a note before adding tags.')
       }
-    });
+    })
   }
 
-  //Actually call it
+  // Actually call it
   setupTagManagement()
 
   // edit button
@@ -65,7 +64,7 @@ async function init() {
     renderSideBar()
   })
 
-  //functionality to download the note as a json file
+  // functionality to download the note as a json file
   document.querySelector('#export-button').addEventListener('click', () => {
     const note = man.getNote(man.curNoteId)
     if (note) {
@@ -79,90 +78,90 @@ async function init() {
       URL.revokeObjectURL(url)
     }
   })
-  //functionality to download all notes as a json file 
+  // functionality to download all notes as a json file
   document.querySelector('#export-all-button').addEventListener('click', () => {
-    const notesData = JSON.parse(localStorage.getItem('notes-data'));
+    const notesData = JSON.parse(localStorage.getItem('notes-data'))
     if (notesData != null) {
-      const notesBlob = new Blob([JSON.stringify(notesData, null, 2)], { type: 'application/json' });
-      const downloadLink = document.createElement('a');
-      downloadLink.href = URL.createObjectURL(notesBlob);
-      downloadLink.download = 'notes-data.json';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+      const notesBlob = new Blob([JSON.stringify(notesData, null, 2)], { type: 'application/json' })
+      const downloadLink = document.createElement('a')
+      downloadLink.href = URL.createObjectURL(notesBlob)
+      downloadLink.download = 'notes-data.json'
+      document.body.appendChild(downloadLink)
+      downloadLink.click()
+      document.body.removeChild(downloadLink)
     } else {
-      alert("Nothing to export")
+      alert('Nothing to export')
     }
-  });
+  })
 
-  //functionality to import all notes from a json file
-  const fileInput = document.querySelector('#file-input');
+  // functionality to import all notes from a json file
+  const fileInput = document.querySelector('#file-input')
   document.querySelector('#import-all-button').addEventListener('click', () => {
-    fileInput.click();
-  });
+    fileInput.click()
+  })
 
   fileInput.addEventListener('change', (event) => {
-    const file = event.target.files[0];
+    const file = event.target.files[0]
     if (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (e) => {
-        let importedData = JSON.parse(e.target.result);
+        const importedData = JSON.parse(e.target.result)
 
         // Ensure importedData has the expected structure
         if (!importedData.notes || typeof importedData.notes !== 'object') {
-          console.error('Imported data does not contain a valid notes object.');
-          return;
+          console.error('Imported data does not contain a valid notes object.')
+          return
         }
         if (!importedData.projs || typeof importedData.projs !== 'object') {
-          console.error('Imported data does not contain a valid projs object.');
-          return;
+          console.error('Imported data does not contain a valid projs object.')
+          return
         }
 
         // Clear existing notes, projects, and local storage
-        man.notes = {};
-        man.projs = {};
-        man.curNoteId = null;
-        man.curProjId = null;
-        localStorage.removeItem('notes-data');
+        man.notes = {}
+        man.projs = {}
+        man.curNoteId = null
+        man.curProjId = null
+        localStorage.removeItem('notes-data')
 
         // Add new notes
-        for (let noteId in importedData.notes) {
+        for (const noteId in importedData.notes) {
           if (importedData.notes.hasOwnProperty(noteId)) {
-            let note = importedData.notes[noteId];
+            const note = importedData.notes[noteId]
             const validNote = {
               id: note.id,
               proj: note.proj,
               content: note.content || '',
               title: note.title || 'Untitled',
               tags: Array.isArray(note.tags) ? note.tags : ['Freeform MD Note']
-            };
+            }
 
-            man.notes[note.id] = new Proxy(validNote, man.saveHandler);
+            man.notes[note.id] = new Proxy(validNote, man.saveHandler)
           }
         }
 
         // Add new projects
-        for (let projId in importedData.projs) {
+        for (const projId in importedData.projs) {
           if (importedData.projs.hasOwnProperty(projId)) {
-            man.projs[projId] = importedData.projs[projId];
+            man.projs[projId] = importedData.projs[projId]
           }
         }
 
         // Update current note and project IDs
-        man.curNoteId = importedData.curNoteId || null;
-        man.curProjId = importedData.curProjId || null;
+        man.curNoteId = importedData.curNoteId || null
+        man.curProjId = importedData.curProjId || null
 
         // Save the new state to localStorage
-        man.save();
+        man.save()
 
         // Re-render the UI
-        man.renderNote();
-        man.renderProject();
-        renderSideBar();
-      };
-      reader.readAsText(file);
+        man.renderNote()
+        man.renderProject()
+        renderSideBar()
+      }
+      reader.readAsText(file)
     }
-  });
+  })
 
   // basic editing functionality for testing
   let editing = false
@@ -173,5 +172,4 @@ async function init() {
     console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
   })
-
 }
