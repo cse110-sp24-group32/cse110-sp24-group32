@@ -2,6 +2,7 @@ import { Manager } from './manager.js';
 import { Note } from './notes.js';
 import { Template } from './template.js';
 
+
 /**
  * Handles passing the singleton manager object to other classes.
  * If you need to retrieve the manager object, use " import { getManagerObject } from './index.js' "
@@ -15,7 +16,9 @@ let manPromise = new Promise((resolve) => {
   manResolve = resolve;
 });
 
-let man = null;
+
+let man = null
+
 
 /**
  * Retrieves the manager object.
@@ -39,9 +42,10 @@ function init() {
 
   const searchResultsContainer = document.getElementById('search-results-container');
   
+
   document.querySelector('body').addEventListener('click', (event) => {
     if (!searchResultsContainer.classList.contains('hidden') && !searchResultsContainer.contains(event.target)) {
-      searchResultsContainer.classList.add('hidden');
+      searchResultsContainer.classList.add('hidden')
     }
-  });
+  })
 }

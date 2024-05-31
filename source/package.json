@@ -1,17 +1,17 @@
 {
   "devDependencies": {
     "globals": "^15.2.0",
+    "http-server": "^14.1.1",
     "jest": "^29.7.0",
+    "jest-puppeteer": "^10.0.1",
     "puppeteer": "^22.10.0",
     "standard": "^17.1.0",
-    "stylelint": "^16.5.0",
-	"http-server": "^14.1.1",
-    "jest-puppeteer": "^10.0.1",
+    "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.0"
   },
   "scripts": {
-	"start": "http-server . -p 3000",
-	"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "start": "http-server . -p 3000",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "type": "module",
   "jest": {

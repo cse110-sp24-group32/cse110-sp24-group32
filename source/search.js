@@ -1,8 +1,9 @@
 import { getManagerObject } from './index.js';
 
-let man = null;
+let man = null
 
 document.addEventListener('DOMContentLoaded', init);
+
 
 async function init() {
   man = await getManagerObject(); // Wait for the Manager instance to be initialized
@@ -17,16 +18,17 @@ function search(query) {
   let match_notes = [];
   query = query.toLowerCase();
 
+
   for (const [i, note] of Object.entries(man.notes)) {
     if (note.content.toLowerCase().includes(query)) {
-      match_notes.push(note);
-      continue;
+      match_notes.push(note)
+      continue
     }
 
     for (const tag of note.tags) {
       if (tag.includes(query)) {
-        match_notes.push(note);
-        break;
+        match_notes.push(note)
+        break
       }
     }
   }
@@ -34,7 +36,7 @@ function search(query) {
   return match_notes;
 }
 
-const searchBar = document.getElementById('search-bar');
+const searchBar = document.getElementById('search-bar')
 
 // Search bar functionality: listens for keyup, runs search if it's the Enter key
 searchBar.addEventListener('keydown', (event) => {
@@ -43,6 +45,7 @@ searchBar.addEventListener('keydown', (event) => {
 
     // If search term is empty, don't display results
     if (searchBar.value.length === 0) { return }
+
 
     const resultsContainer = document.getElementById('search-results-container');
 
@@ -65,11 +68,15 @@ searchBar.addEventListener('keydown', (event) => {
       srPreview.innerText = note.content.slice(0, 100);
       sr.append(srTitle, document.createElement('br'), srPreview);
       sr.addEventListener('click', (event) => {
+
         man.changeNote(note.id);
         resultsContainer.classList.add('hidden');
       });
 
+
       resultsContainer.append(sr);
     }
   }
+
 });
+
