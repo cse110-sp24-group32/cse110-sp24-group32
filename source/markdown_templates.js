@@ -1,3 +1,7 @@
+/**
+ * Default markdown templates for various note types.
+ */
+
 const MEETING_NOTES = "# Meeting Notes\n\n**Date:** date\n**Time:** time\n\n## Attendees\n- attendee1\n- attendee2\n- attendee3\n\n## Agenda\n1. agenda_item1\n2. agenda_item2\n3. agenda_item3\n\n## Discussion\n- **Topic 1:** discussion_topic1\n  - Details: discussion_details1\n- **Topic 2:** discussion_topic2\n  - Details: discussion_details2\n\n## Action Items\n- **Action Item 1:** action_item1 - **Assigned to:** assigned_to1\n- **Action Item 2:** action_item2 - **Assigned to:** assigned_to2";
 const FREEFORM_MD = "# title\n\ncontent";
 const DESIGN_NOTES = "# Design Notes\n\n**Project:** project_name\n**Date:** date\n\n## Overview\noverview\n\n## Design Specifications\n- **Specification 1:** specification1\n- **Specification 2:** specification2\n\n## Diagrams\n![Diagram](url_to_diagram)\n\n## Additional Notes\nadditional_notes";

@@ -1,39 +1,42 @@
-import { getManagerObject } from './index.js'
-import { Manager } from './manager.js'
-import { Note } from './notes.js'
-import { Template } from './template.js'
-import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js'
+import { getManagerObject } from './index.js';
+import { Manager } from './manager.js';
+import { Note } from './notes.js';
+import { Template } from './template.js';
+import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js';
 
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', init);
 
-//Export so other files can use renderSideBar
+// Export so other files can use renderSideBar
 export let renderSideBar = null;
 
-//All templates
+// All templates
 const templates = {};
 
-//Template helper function
+/**
+ * Helper function to add a template.
+ * @param {string} name - The name of the template.
+ * @param {object} note - The note object.
+ */
 function addTemplate(name, note) {
   const cur = new Template(name, note);
   templates[cur.id] = cur;
 }
 
-//Populate later
+// Populate later
 let entries = null;
 let projs = null;
 let man = null;
 
-// basic notes selection for testing
+// Basic notes selection for testing
 export const buttonHandler = function () {
-  man.changeNote(this.id)
-}
+  man.changeNote(this.id);
+};
 
 async function init() {
+  // Retrieve singleton manager object
+  man = await getManagerObject(); // Wait for the Manager instance to be initialized
 
-  //Retrieve singleton manager object
-  man = await getManagerObject();  // Wait for the Manager instance to be initialized
-
-  //Constant HTML element refs
+  // Constant HTML element refs
   entries = document.querySelector('#entries-list');
   projs = document.querySelector('#project-nav');
   const buttonList = document.getElementsByClassName('note-type');
@@ -47,10 +50,12 @@ async function init() {
   addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']));
   addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']));
   addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']));
-  /*
-  Creates a note button for a given note (sidebar)
-  */
-  const createButton = function(note) {
+
+  /**
+   * Creates a note button for a given note (sidebar).
+   * @param {object} note - The note object.
+   */
+  const createButton = function (note) {
     console.log('ret', note);
     const but = document.createElement('button');
     but.type = 'button';
@@ -60,15 +65,16 @@ async function init() {
     entries.appendChild(but);
   };
 
-  /*
-  Creates a project UI element given a project object
-  */
-  const createProjTile = function(proj) {
+  /**
+   * Creates a project UI element given a project object.
+   * @param {object} proj - The project object.
+   */
+  const createProjTile = function (proj) {
     const div = document.createElement('div');
     div.className = 'project-icon';
     div.id = proj.id;
     div.textContent = getFirstLetters(proj.name);
-    div.addEventListener('click', function() {
+    div.addEventListener('click', function () {
       man.changeProj(div.id);
       renderSideBar();
     });
@@ -76,7 +82,7 @@ async function init() {
     const close = document.createElement('button');
     close.textContent = 'x';
     close.className = 'proj-delete-button';
-    close.addEventListener('click', function(event) { 
+    close.addEventListener('click', function (event) {
       event.stopPropagation();
       man.delProj(div.id);
       div.remove();
@@ -86,10 +92,10 @@ async function init() {
     projs.prepend(div);
   };
 
-  /*
-  Renders the elements of the side bar according to the current project id selected
-  */
-  renderSideBar = function() {
+  /**
+   * Renders the elements of the side bar according to the current project id selected.
+   */
+  renderSideBar = function () {
     while (entries.children.length > 2) {
       entries.removeChild(entries.lastChild);
     }
@@ -123,7 +129,6 @@ async function init() {
 
   renderSideBar();
 
-
   /*
   EVENT LISTENERS FOR CLICKS
   */
@@ -146,7 +151,7 @@ async function init() {
     const popup = document.querySelector('.note-popup-container');
 
     if (man.curProjId == null) {
-      alert("Must select project before adding note")
+      alert("Must select project before adding note");
     } else {
       popup.style.display = 'flex';
     }
@@ -214,11 +219,11 @@ async function init() {
   });
 }
 
-
-/*
-For creating project tiles, extracts first letter of each word in project name and returns
-them as a string
-*/
+/**
+ * For creating project tiles, extracts the first letter of each word in the project name and returns them as a string.
+ * @param {string} str - The project name.
+ * @returns {string} The first letters of each word in the project name.
+ */
 function getFirstLetters(str) {
   const words = str.split(' ');
 

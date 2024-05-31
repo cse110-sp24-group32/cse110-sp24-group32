@@ -1,17 +1,15 @@
-import { Manager } from './manager.js'
-import { Note } from './notes.js'
-import { Template } from './template.js'
+import { Manager } from './manager.js';
+import { Note } from './notes.js';
+import { Template } from './template.js';
 
+/**
+ * Handles passing the singleton manager object to other classes.
+ * If you need to retrieve the manager object, use " import { getManagerObject } from './index.js' "
+ * and call upon DOMContentLoad, ex: let man = await getManagerObject();
+ */
 
-// upon DOMContentLoaded, call init function
-document.addEventListener('DOMContentLoaded', init)
+document.addEventListener('DOMContentLoaded', init);
 
-/*
-The following functions handle passing the singleton manager object to other classes
-
-If you need to retrieve the manager object, use " import { getManagerObject } from './index.js' "
-and call upon DOMContentLoad, ex: let man = await getManagerObject();
-*/
 let manResolve;
 let manPromise = new Promise((resolve) => {
   manResolve = resolve;
@@ -19,19 +17,24 @@ let manPromise = new Promise((resolve) => {
 
 let man = null;
 
+/**
+ * Retrieves the manager object.
+ * @returns {Promise} The manager object.
+ */
 function getManagerObject() {
   return manPromise;
 }
 
 // Export getter func
-export { getManagerObject }
+export { getManagerObject };
 
-
-// Called upon page load
+/**
+ * Called upon page load to initialize the application.
+ */
 function init() {
   const mdv = document.querySelector('.md-view');
   man = new Manager(mdv);
-  manResolve(man);  // Resolve the promise with the Manager instance
+  manResolve(man); // Resolve the promise with the Manager instance
   man.renderNote();
 
   const searchResultsContainer = document.getElementById('search-results-container');
