@@ -228,10 +228,17 @@ class Manager {
       deleteButton.textContent = 'x';
       deleteButton.className = 'delete-tag-button';
       deleteButton.addEventListener('click', () => {
-        currNote.tags = currNote.tags.filter(q => q !== tag);
-        this.save();
-        this.renderNote();
-        renderSideBar(); // Call renderSideBar to update sidebar dynamically
+        if (currNote.tags.length === 1) {
+          if (confirm('Deleting this tag will delete the note. Are you sure?')) {
+            this.delNote(currNote.id);
+            renderSideBar();
+          }
+        } else {
+          currNote.tags = currNote.tags.filter(q => q !== tag);
+          this.save();
+          this.renderNote();
+          renderSideBar(); // Call renderSideBar to update sidebar dynamically
+        }
       });
 
       tagSpan.appendChild(deleteButton);
