@@ -24,6 +24,7 @@ class Manager {
     this.renderSideBar = renderSideBar;
     // Set up our handler to save when a note is modified
     const boundSave = this.save.bind(this);
+
     this.saveHandler = {
       set(obj, prop, value) {
         console.log('saving', obj, prop, value);
@@ -53,22 +54,24 @@ class Manager {
     this.save();
   }
 
+
   /**
    * Get notes grouped by their first tag.
    * @returns {Object} Notes grouped by the first tag.
    */
   getNotesGroupedByFirstTag() {
     const notesByFirstTag = {};
+
     for (const note of Object.values(this.notes)) {
       if (note.tags.length > 0) {
-        const firstTag = note.tags[0];
+        const firstTag = note.tags[0]
         if (!notesByFirstTag[firstTag]) {
-          notesByFirstTag[firstTag] = [];
+          notesByFirstTag[firstTag] = []
         }
-        notesByFirstTag[firstTag].push(note);
+        notesByFirstTag[firstTag].push(note)
       }
     }
-    return notesByFirstTag;
+    return notesByFirstTag
   }
 
   /**
@@ -136,12 +139,12 @@ class Manager {
       this.renderProject();
     }
 
-    const allNotes = this.getAllNotes();
+    const allNotes = this.getAllNotes()
 
     for (let i = 0; i < allNotes.length; i++) {
       if (allNotes[i].proj === id) {
-        console.log(allNotes[i]);
-        this.delNote(allNotes[i].id);
+        console.log(allNotes[i])
+        this.delNote(allNotes[i].id)
 
         if (this.curNoteId == allNotes[i].id) {
           this.curNoteId = null;
@@ -199,35 +202,36 @@ class Manager {
   /**
    * Write markdown HTML into target.
    */
-  renderNote() {
-    const tagsContainer = document.getElementById('tags-container');
-    tagsContainer.innerHTML = ''; // Clear previous tags
+  renderNote () {
+    const tagsContainer = document.getElementById('tags-container')
+    tagsContainer.innerHTML = '' // Clear previous tags
 
-    const currNote = this.notes[this.curNoteId];
+    const currNote = this.notes[this.curNoteId]
     if (this.curNoteId == null) {
-      this.mdTarget.innerHTML = marked.parse('# No note selected');
-      document.querySelector('#note-title').textContent = "Select a note";
-      return;
+      this.mdTarget.innerHTML = marked.parse('# No note selected')
+      document.querySelector('#note-title').textContent = 'Select a note'
+      return
     }
 
     // Render MD
-    this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content);
+    this.mdTarget.innerHTML = marked.parse(this.notes[this.curNoteId].content)
 
     // Set title
-    document.querySelector('#note-title').textContent = currNote.title;
+    document.querySelector('#note-title').textContent = currNote.title
 
-    const tags = currNote.tags;
+    const tags = currNote.tags
 
     // For each tag render tag
     tags.forEach(tag => {
-      const tagSpan = document.createElement('span');
-      tagSpan.className = 'tag';
-      tagSpan.textContent = tag;
+      const tagSpan = document.createElement('span')
+      tagSpan.className = 'tag'
+      tagSpan.textContent = tag
       // Create a delete button for each tag
-      const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'x';
-      deleteButton.className = 'delete-tag-button';
+      const deleteButton = document.createElement('button')
+      deleteButton.textContent = 'x'
+      deleteButton.className = 'delete-tag-button'
       deleteButton.addEventListener('click', () => {
+
         if (currNote.tags.length === 1) {
           alert('This tag cannot be deleted because it is the only tag for this note.');
         } else {
@@ -241,6 +245,7 @@ class Manager {
       tagSpan.appendChild(deleteButton);
       tagsContainer.appendChild(tagSpan);
     });
+
   }
 
   /**

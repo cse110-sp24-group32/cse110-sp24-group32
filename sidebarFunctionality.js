@@ -7,6 +7,7 @@ import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SN
 document.addEventListener('DOMContentLoaded', init);
 
 // Export so other files can use renderSideBar
+
 export let renderSideBar = null;
 
 // All templates
@@ -32,6 +33,7 @@ export const buttonHandler = function () {
   man.changeNote(this.id);
 };
 
+
 async function init() {
   // Retrieve singleton manager object
   man = await getManagerObject(); // Wait for the Manager instance to be initialized
@@ -44,6 +46,7 @@ async function init() {
   /*
   Template content is in the second argument of Note constructor
   */
+
   addTemplate('Default Note', new Note(null, '', 'New Note', []));
   addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']));
   addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']));
@@ -97,37 +100,36 @@ async function init() {
    */
   renderSideBar = function () {
     while (entries.children.length > 2) {
-      entries.removeChild(entries.lastChild);
+      entries.removeChild(entries.lastChild)
     }
 
     while (projs.children.length > 1) {
-      projs.removeChild(projs.firstChild);
+      projs.removeChild(projs.firstChild)
     }
 
-    console.log(man);
-    const notesByFirstTag = man.getNotesGroupedByFirstTag();
+    console.log(man)
+    const notesByFirstTag = man.getNotesGroupedByFirstTag()
 
     for (const [firstTag, notes] of Object.entries(notesByFirstTag)) {
-      const filteredNotes = notes.filter(note => man.curProjId === note.proj);
+      const filteredNotes = notes.filter(note => man.curProjId === note.proj)
 
       if (filteredNotes.length > 0) {
-        const tagHeader = document.createElement('h3');
-        tagHeader.style.textAlign = 'center';
-        tagHeader.textContent = firstTag;
-        entries.appendChild(tagHeader);
+        const tagHeader = document.createElement('h3')
+        tagHeader.style.textAlign = 'center'
+        tagHeader.textContent = firstTag
+        entries.appendChild(tagHeader)
 
         for (const note of filteredNotes) {
-          createButton(note);
+          createButton(note)
         }
       }
     }
 
     for (const proj of man.getAllProjs()) {
-      createProjTile(proj);
+      createProjTile(proj)
     }
-  };
+  }
 
-  renderSideBar();
 
   /*
   EVENT LISTENERS FOR CLICKS
@@ -135,88 +137,89 @@ async function init() {
 
   document.querySelector('.note-popup-container').addEventListener('click', (e) => {
     if (e.target === document.querySelector('.note-popup-container')) {
-      const popup = document.querySelector('.note-popup-container');
-      popup.style.display = 'none';
+      const popup = document.querySelector('.note-popup-container')
+      popup.style.display = 'none'
     }
-  });
+  })
 
   document.querySelector('.project-popup-container').addEventListener('click', (e) => {
     if (e.target === document.querySelector('.project-popup-container')) {
-      const popup = document.querySelector('.project-popup-container');
-      popup.style.display = 'none';
+      const popup = document.querySelector('.project-popup-container')
+      popup.style.display = 'none'
     }
-  });
+  })
 
   document.querySelector('#add-note').addEventListener('click', () => {
-    const popup = document.querySelector('.note-popup-container');
+    const popup = document.querySelector('.note-popup-container')
 
     if (man.curProjId == null) {
+
       alert("Must select project before adding note");
     } else {
-      popup.style.display = 'flex';
+      popup.style.display = 'flex'
     }
-  });
+  })
 
   document.querySelector('#new-project-button').addEventListener('click', () => {
-    const popup2 = document.querySelector('.project-popup-container');
-    popup2.style.display = 'flex';
-  });
+    const popup2 = document.querySelector('.project-popup-container')
+    popup2.style.display = 'flex'
+  })
 
   document.querySelector('#choose-note').addEventListener('click', () => {
-    let selectedButtonID = 'Default';
+    let selectedButtonID = 'Default'
     for (let i = 0; i < buttonList.length; i++) {
-      const button = buttonList[i];
-      const buttonID = '#' + button.id;
-      const noteSelectButton = document.querySelector(buttonID);
+      const button = buttonList[i]
+      const buttonID = '#' + button.id
+      const noteSelectButton = document.querySelector(buttonID)
       if (noteSelectButton.style.borderColor == 'aqua') {
-        selectedButtonID = button.id;
+        selectedButtonID = button.id
       }
     }
     for (const x in templates) {
       if (templates[x].name === selectedButtonID + ' Note') {
-        let noteToAdd = JSON.parse(JSON.stringify(templates[x].note));
-        noteToAdd.title = document.querySelector('#note-input').value;
-        man.addNote(noteToAdd);
-        renderSideBar();
+        const noteToAdd = JSON.parse(JSON.stringify(templates[x].note))
+        noteToAdd.title = document.querySelector('#note-input').value
+        man.addNote(noteToAdd)
+        renderSideBar()
       }
     }
-    const popup = document.querySelector('.note-popup-container');
-    popup.style.display = 'none';
-  });
+    const popup = document.querySelector('.note-popup-container')
+    popup.style.display = 'none'
+  })
 
   for (let i = 0; i < buttonList.length; i++) {
-    const button = buttonList[i];
-    const buttonID = '#' + button.id;
+    const button = buttonList[i]
+    const buttonID = '#' + button.id
     document.querySelector(buttonID).addEventListener('click', () => {
-      const noteSelectButton = document.querySelector(buttonID);
+      const noteSelectButton = document.querySelector(buttonID)
       if (noteSelectButton.style.borderColor == 'aqua') {
-        noteSelectButton.style.borderColor = 'black';
+        noteSelectButton.style.borderColor = 'black'
       } else {
-        noteSelectButton.style.borderColor = 'aqua';
+        noteSelectButton.style.borderColor = 'aqua'
         for (let i = 0; i < buttonList.length; i++) {
-          const otherButton = buttonList[i];
-          const otherButtonID = '#' + otherButton.id;
+          const otherButton = buttonList[i]
+          const otherButtonID = '#' + otherButton.id
           if (otherButtonID != buttonID) {
-            document.querySelector(otherButtonID).style.borderColor = 'black';
+            document.querySelector(otherButtonID).style.borderColor = 'black'
           }
         }
       }
-    });
+    })
   }
 
   document.querySelector('#confirm-new-project').addEventListener('click', () => {
-    const projName = document.querySelector('#project-input').value;
+    const projName = document.querySelector('#project-input').value
 
-    const popup = document.querySelector('.project-popup-container');
-    popup.style.display = 'none';
+    const popup = document.querySelector('.project-popup-container')
+    popup.style.display = 'none'
 
-    const createdProj = man.addProj(projName);
-    man.changeProj(createdProj.id);
-    createProjTile(createdProj);
+    const createdProj = man.addProj(projName)
+    man.changeProj(createdProj.id)
+    createProjTile(createdProj)
 
-    man.save();
-    renderSideBar();
-  });
+    man.save()
+    renderSideBar()
+  })
 }
 
 /**
@@ -227,9 +230,9 @@ async function init() {
 function getFirstLetters(str) {
   const words = str.split(' ');
 
-  const firstLetters = words.map(word => word.charAt(0));
+  const firstLetters = words.map(word => word.charAt(0))
 
-  const result = firstLetters.join('');
+  const result = firstLetters.join('')
 
-  return result;
+  return result
 }
