@@ -3,6 +3,60 @@ import puppeteer from 'puppeteer'
 // Jest unit test
 test('empty', () => {})
 
+/**
+ * Adds a new tag with the specified name.
+ * 
+ * @param {Page} page - The Puppeteer page object.
+ * @param {string} tagName - The name of the tag to be added.
+ * @returns {Promise<void>}
+ */
+async function addTag(page, tagName) {
+    // Wait for all elements rendered
+    await page.waitForSelector('body');
+
+    // Input the tag name
+    await page.type('#tag-input', tagName);
+
+    // Click the button to add a new tag
+    const addTagButton = await page.$('#add-tag-button');
+    await addTagButton.click();
+
+    // Wait for the tags container to be updated
+    await page.waitForSelector('#tags-container .tag');
+}
+
+/**
+ * Detele a tag with the specified name.
+ * 
+ * @param {Page} page - The Puppeteer page object.
+ * @param {string} tagName - The name of the tag to be delete.
+ * @returns {Promise<void>}
+ */
+async function deleteTag(page, tagName) {
+    // Wait for all elements rendered
+    await page.waitForSelector('.tag');
+
+    // Find the tag to delete
+    let tags = await page.$$('.tag');
+    let toDelete = null;
+    for (let tag of tags) {
+        const text = await page.evaluate(el=>el.textContent, tag);
+        console.log("The text is: ", text)
+        if (text.includes(tagName)){
+            toDelete = tag;
+            break;
+        };
+    }
+
+    // Check if the tag is valid/available
+    if (toDelete) {
+        const deleteBttn = await toDelete.$('.delete-tag-button');
+        await deleteBttn.click();
+    } else {
+        console.log(`Tag with name "${tagName}" not found.`);
+    }
+}
+
 // Puppeteer tests all go in here
 describe('Puppeteer Tests For App Functionality Testing', () => {
   let browser
@@ -14,7 +68,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
     page = await browser.newPage()
-    await page.goto('http://localhost:3000/index.html') // Use local server URL
+      await page.goto('http://localhost:3000/index.html') // Use local server URL
   })
 
   afterAll(async () => {
@@ -36,11 +90,13 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
     // Wait some time to ensure the alert is triggered
     await new Promise(resolve => setTimeout(resolve, 1000))
+
+    // Remove alert dialog event listener 
+    page.removeAllListeners('dialog');
   })
 
   // Add project
   it('should be possible to add a new project', async () => {
-    // Listen for the alert dialog
     const btn = await page.$('#new-project-button')
     await btn.click()
 
@@ -156,6 +212,22 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     expect(buttonText).toBe('New Meeting Note')
   })
 
+    // Adding note will also add a tag
+    it('Add note also include adding tag', async () => {
+        const tagFromNote = 'meeting';
+        // Wait for all the tags available rendered
+        await page.waitForSelector('.tag');
+
+        const allTags = await page.$$('.tag');
+        const initialLength = allTags.length;
+        const tag = allTags[0];
+        const tagText = await page.evaluate(tag => tag.innerText, tag);
+
+        // // Assert tag is automatically added
+        expect(initialLength).toBe(1);
+        expect(tagText.includes(tagFromNote), true);
+    });
+
   // Add another note
 
   // Update note
@@ -164,7 +236,101 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
   // Add tag to one of the notes we created above and make sure the tag got added to the ui
 
-  // Delete tag that we just made above
+    it('Add new tag is not possible without a note selected', async () => {
+        // Listen for the alert dialog
+        const tagAlert = 'No note is selected. Please select a note before adding tags.'
+        page.on('dialog', async dialog => {
+            expect(dialog.type()).toBe('alert')
+            expect(dialog.message()).toBe(tagAlert)
+            await dialog.dismiss() // Close the alert dialog
+        })
 
+        // Click the button with id 'add-note'
+        const btn = await page.$('#add-tag-button')
+        await btn.click()
+
+        // Wait some time to ensure the alert is triggered
+        await new Promise(resolve => setTimeout(resolve, 1000))
+
+        // Remove alert dialog event listener 
+        page.removeAllListeners('dialog');
+    });
+
+
+    it('Adding a new tag when note is selected', async () => {
+        const tagName = 'new-tag';
+        const initialTags = await page.$$('.tag');
+        const initialLength = initialTags.length;
+        // Add new tag
+        await addTag(page, tagName);
+
+        // Get the newly added tag
+        const allTags = await page.$$('.tag');
+        const lastTag = allTags[allTags.length - 1];
+        const tagText = await page.evaluate(tag => tag.innerText, lastTag);
+       
+        // Assert new tag is added
+        expect(allTags.length).toBe(initialLength + 1);
+        expect(tagText.includes(tagName)).toBe(true);
+    }, 8000);
+
+    it('Adding another tag when note is selected', async () => {
+        const tagName = 'another-tag';
+        const initialTags = await page.$$('.tag');
+        const initialLength = initialTags.length;
+
+        // Add new tag
+        await addTag(page, tagName);
+
+        // Get the newly added tag and the precious tag
+        const allTags = await page.$$('.tag');
+        const lastTag = allTags[allTags.length - 1];
+        const secondLastTag = allTags[allTags.length - 2]
+        const tagText = await page.evaluate(tag => tag.innerText, lastTag);
+        const secondLastTagText = await page.evaluate(tag => tag.innerText, secondLastTag);
+
+        // Assert new tag is added
+        expect(allTags.length).toBe(initialLength + 1);
+        expect(tagText.includes(tagName)).toBe(true);
+        expect(secondLastTagText.includes('new-tag')).toBe(true);
+    }, 8000);
+
+  // Delete the first tag would update the new first tag
+    it('Delete the first tag', async () => {
+        const firstTag = 'meeting';
+        const newFirstTag = 'new-tag';
+        const initialTags = await page.$$('.tag');
+        const initialLength = initialTags.length;
+
+        await deleteTag(page, firstTag);
+        // Verify the tag is deleted
+        const remainingTags = await page.$$('.tag');
+        const updatedLength = remainingTags.length;
+        // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
+        const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)));
+
+        expect(updatedLength).toBe(initialLength - 1);
+        expect(remainingTagNames).not.toContain(firstTag);
+        expect(remainingTagNames[0].includes(newFirstTag)).toBe(true);
+
+    }, 8000);
+
+    // Delete another tag
+    it('Delete a new-tag', async () => {
+        const toDelete = 'new-tag';
+        const initialTags = await page.$$('.tag');
+        const initialLength = initialTags.length;
+
+        await deleteTag(page, toDelete);
+        // Verify the tag is deleted
+        const remainingTags = await page.$$('.tag');
+        const updatedLength = remainingTags.length;
+        // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
+        const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)));
+
+        expect(updatedLength).toBe(initialLength - 1);
+        expect(remainingTagNames).not.toContain(toDelete);
+
+    }, 8000);
   // Delete project
 })
