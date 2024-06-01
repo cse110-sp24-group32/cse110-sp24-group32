@@ -143,17 +143,17 @@ body, html {
 }
 
 #add-note {
-    background-color: #00818A;
+    background-color: #1aaab5;
     color: #EEE;
-    height: 4vh;
-    width: 75%;
+    height: 8%;
+    width: 50%;
     margin: 0 auto;
-    border: none;
+    border: medium double #dfe6e7 ; /* Adding a border with a color */
     border-radius: 10px;
-    font-size: 2em;
     font-size: 1.2em;
-    display:block;
+    display: block;
 }
+ 
 
 #add-note:hover {
     background-color:#015c63;
@@ -170,7 +170,8 @@ body, html {
     font-size: 2em;
     font-size: 1.2em;
     display:block;
-    margin-top:1.4vw;
+     
+    margin-bottom: 1.4vw;
 }
 
 .entryButton:hover {
@@ -230,9 +231,10 @@ h3 {
 
 #curr-proj {
     text-align: center;
-    font-size:2em;
+    font-size:2.3em;
     margin:0.5vh auto;
-    text-decoration: underline;
+    color:#a3eefb;
+    font-weight: bold;
     
 }
 
@@ -287,6 +289,10 @@ h3 {
 
 #tags {
     margin-right: auto;
+}
+
+#add-tag-button {
+    margin-right: 1%
 }
 
 .top-buttons {
@@ -505,8 +511,9 @@ button.project-icon{
 .delete-tag-button {
     background: none;
     border: 3px;
-    color: #FF204E;
-    font-size: 0.8em;
+    color: #f64009;
+    
+    font-size: 1.5em;
     cursor: pointer;
 }
 
