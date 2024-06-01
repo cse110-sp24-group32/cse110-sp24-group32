@@ -4,7 +4,14 @@ body, html {
     height: 100%;
     width: 100%; /* Add this line if you want the body to have 100% width */
     overflow: hidden;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: "Changa", sans-serif !important;
+  }
+
+  .changa-normal {
+    font-family: "Changa", sans-serif;
+    font-optical-sizing:inherit;
+    font-weight: 300;
+    font-style: normal;
   }
 
 
@@ -15,7 +22,7 @@ body, html {
     width: 100%;
     height: 7%; /* Adjust the height of the top bar if needed */
     overflow: hidden;
-    background-color: #2B2A4C;
+    background-color: #404B69;
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
@@ -26,6 +33,14 @@ body, html {
     left: 6%; /* Adjust the left margin as needed */
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
 #chatbot-img {
     height: 60px; /* Adjust the height as needed */
     width: auto; /* Maintain aspect ratio */
@@ -33,22 +48,6 @@ body, html {
 }
 
 #export-all-button {
-    margin-left: 5%;
-    margin-right: 2%;
-    padding: 20px;
-    font-size: 15px;
-    border: none;
-    border-radius: 20px;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    align-self: left;
-    height:80%;
-    display: inline-flex;
-    align-items: center;
-}
-
-#import-all-button {
     margin-left: 2%;
     margin-right: 2%;
     padding: 20px;
@@ -62,7 +61,23 @@ body, html {
     height:80%;
     display: inline-flex;
     align-items: center;
+    font-family: 'Changa';
+}
 
+#import-all-button {
+    margin-right: 1%;
+    padding: 20px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    align-self: left;
+    height:80%;
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Changa';
 }
 
 .logo-container {
@@ -128,7 +143,7 @@ body, html {
 }
 
 #add-note {
-    background-color: #222831;
+    background-color: #00818A;
     color: #EEE;
     height: 4vh;
     width: 75%;
@@ -141,7 +156,7 @@ body, html {
 }
 
 .entryButton {
-    background-color: #222831;
+    background-color: #00818A;
     color: #EEE;
     height: 6vh;
     width: 75%;
@@ -197,6 +212,7 @@ button {
 
 h3 {
     margin-bottom: 0.2vw;
+    font-size:2em;
 }
 
 #right-content {
@@ -209,7 +225,7 @@ h3 {
 
 #curr-proj {
     text-align: center;
-    font-size:1.75em;
+    font-size:2em;
     margin:0.5vh auto;
     text-decoration: underline;
     
@@ -255,13 +271,13 @@ h3 {
 
 .top-item {
     display:inline-block;
-    width:10%;
-    height:80%;
+    height:50%;
     border: 1px solid;
     margin: auto 0;
     padding:0;
     margin-left:1vh;
     text-align:center;
+    font-size:1.35em;
 }
 
 #tags {
@@ -278,14 +294,15 @@ h3 {
 
 .top-buttons button {
     width:40%;
-    background-color:#31363F;
+    background-color:#00818A;
     border:0;
     border-radius:7.5px;
     color:white;
+    font-family: 'Changa';
 }
 
 .top-buttons button:hover {
-    background-color: #aaa;
+    background-color: #015c63;
 }
 
 
@@ -325,6 +342,10 @@ h3 {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
+}
+
+.md-view {
+    overflow-y:scroll;
 }
 
 .note-popup-container {
@@ -386,7 +407,7 @@ h3 {
     margin:auto;
     margin-top:0.5vh;
     background-color: #d9d9d9;
-    color: #3b0764;
+    color: #283149;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
@@ -442,12 +463,13 @@ button.project-icon{
 
 
 #tags-container .tag{
-    padding: 2px 5px; /* Reduced padding for smaller tag appearance */
-    margin: 2px; /* Space between tags */
-    background-color: #00224D; /* Background color for tags */
-    border-radius: 5px; /* Rounded corners for tags */
-    font-size: 0.8em; /* Swmaller font size */
-    display: inline-block; /* Ensure tags are in-line */
+    padding: 2px 5px;
+    margin: 2px;
+    background-color: #00818A;
+    border-radius: 5px;
+    font-size: 0.8em;
+    color: white;
+    display: inline-block;
 }
 
 .delete-tag-button {

@@ -11,15 +11,22 @@
     <script src="search.js" type="module"></script>
     <script src="notesFunctionality.js" type="module"></script>
     <script src="sidebarFunctionality.js" type="module"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     
     <!-- TOP BAR WITH SEARCH BAR -->
     <nav id="top-bar">
         <div class="chatbot-container">
-            <a href="chatbot.html">
-                <img src="chatbot-button.png" alt="Go to Chatbot Page" id="chatbot-img">
-            </a>
+            <span class="material-symbols-outlined">
+                smart_toy
+            </span>
+            
+                
         </div>
         <div class="logo-container">
             <img src="memory-munchers-logo.png" alt="Team Logo" class="team-logo">
@@ -29,7 +36,7 @@
             <span class="material-symbols-outlined">feature_search</span>
             <textarea id="search-bar" placeholder="Type and press enter..."></textarea>
         </div>
-
+        
         <button id="export-all-button" >Export All</button>
 
         <button id="import-all-button" >Import All</button>
