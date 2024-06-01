@@ -15,7 +15,7 @@ body, html {
     width: 100%;
     height: 7%; /* Adjust the height of the top bar if needed */
     overflow: hidden;
-    background-color: #3b0764;
+    background-color: #2B2A4C;
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
@@ -122,10 +122,45 @@ body, html {
     position: relative;
     flex-shrink: 0;
     width: 90px;
-    background-color:#181a26;
-    overflow-y:scroll;
-    scrollbar-width: none; 
-    -ms-overflow-style: none;
+    background-color: #222831;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+#add-note {
+    background-color: #222831;
+    color: #EEE;
+    height: 4vh;
+    width: 75%;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    font-size: 2em;
+    font-size: 1.2em;
+    display:block;
+}
+
+.entryButton {
+    background-color: #222831;
+    color: #EEE;
+    height: 6vh;
+    width: 75%;
+    margin: 0 auto;
+    border: none;
+    border-radius: 10px;
+    font-size: 2em;
+    font-size: 1.2em;
+    display:block;
+    margin-top:0.25vw;
+}
+
+.entryButton:hover {
+    background-color: #1a1f25;
+    cursor:pointer;
+}
+
+button {
+    cursor:pointer;
 }
 
 #project-nav::-webkit-scrollbar, #project-nav::-webkit-scrollbar-button { display: none; } /* Chrome */
@@ -149,13 +184,19 @@ body, html {
 }
 
 #entries-list {
-    display: flex;
+    ddisplay: flex;
     flex-direction: column;
     flex: 0 0 auto;
     overflow: hidden;
     min-height: 0;
     width: 280px;
-    border-right: 1px solid black;
+    border-right: 3px solid #222831;
+    background-color: #31363F;
+    color: #EEEE;
+}
+
+h3 {
+    margin-bottom: 0.2vw;
 }
 
 #right-content {
@@ -163,7 +204,7 @@ body, html {
     flex-direction: column;
     width: 100%;
     overflow: hidden;
-    background-color: #c3c3c3;
+    background-color: #31363F;
 }
 
 #curr-proj {
@@ -178,10 +219,14 @@ body, html {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width:80%;
-    height:90%;
-    border: 1px solid black;
-    z-index: 0;
+    width: 80%;
+    height: 90%;
+    z-index: 1;
+    background-color: #222831;
+    padding: 1.5vw;
+    border-radius: 15px;
+    color: #EEEE;
+    padding-top:0.1vw;
 }
 
 #note-view.hidden {
@@ -189,12 +234,24 @@ body, html {
 }
 
 .note-bar {
-    height: 8%;
+    height: fit-content;
     width: 100%;
     border-bottom: 1px solid black; 
-    display:flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Two columns with equal width */
+    gap: 10px; /* Optional: space between the columns */
 }
 
+
+.left-note-bar {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+   
+}
+
+#note-title {
+    margin-bottom:0;
+}
 
 .top-item {
     display:inline-block;
@@ -214,13 +271,17 @@ body, html {
 .top-buttons {
     display: flex;
     margin-left: auto;
-    width:40%;
+    width:100%;
     justify-content:end;
     margin-right:1vh;
 }
 
 .top-buttons button {
     width:40%;
+    background-color:#31363F;
+    border:0;
+    border-radius:7.5px;
+    color:white;
 }
 
 .top-buttons button:hover {
@@ -376,13 +437,14 @@ button.project-icon{
     height: 40%;
     align-items: center;
     padding: 2px 5px;
+    padding:0;
 }
 
 
 #tags-container .tag{
     padding: 2px 5px; /* Reduced padding for smaller tag appearance */
     margin: 2px; /* Space between tags */
-    background-color: #ccc; /* Background color for tags */
+    background-color: #00224D; /* Background color for tags */
     border-radius: 5px; /* Rounded corners for tags */
     font-size: 0.8em; /* Swmaller font size */
     display: inline-block; /* Ensure tags are in-line */
@@ -391,7 +453,7 @@ button.project-icon{
 .delete-tag-button {
     background: none;
     border: 3px;
-    color: red;
+    color: #FF204E;
     font-size: 0.8em;
     cursor: pointer;
 }
