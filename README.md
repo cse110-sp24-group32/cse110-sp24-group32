@@ -20,12 +20,14 @@ npx standard --fix
 npx stylelint "**/*.css" --fix
 ```
 
-2. Push code to your branch
+2. Fix any remaining errors that can't be auto fixed
 
-3. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing. Put this in the PR description.
+3. Push code to your branch
 
-4. Repo required review from one person before merge
+4. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing. Put this in the PR description.
 
-5. Merge if no conflicts
+5. Repo required review from one person before merge
+
+6. Merge if no conflicts
 
 
