@@ -1,5 +1,4 @@
 import { getManagerObject } from './index.js'
-import { Manager } from './manager.js'
 import { Note } from './notes.js'
 import { Template } from './template.js'
 import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js'
@@ -188,7 +187,7 @@ async function init () {
       const button = buttonList[i]
       const buttonID = '#' + button.id
       const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor == 'aqua') {
+      if (noteSelectButton.style.borderColor === 'aqua') {
         selectedButtonID = button.id
       }
     }
@@ -209,14 +208,14 @@ async function init () {
     const buttonID = '#' + button.id
     document.querySelector(buttonID).addEventListener('click', () => {
       const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor == 'aqua') {
+      if (noteSelectButton.style.borderColor === 'aqua') {
         noteSelectButton.style.borderColor = 'black'
       } else {
         noteSelectButton.style.borderColor = 'aqua'
         for (let i = 0; i < buttonList.length; i++) {
           const otherButton = buttonList[i]
           const otherButtonID = '#' + otherButton.id
-          if (otherButtonID != buttonID) {
+          if (otherButtonID !== buttonID) {
             document.querySelector(otherButtonID).style.borderColor = 'black'
           }
         }

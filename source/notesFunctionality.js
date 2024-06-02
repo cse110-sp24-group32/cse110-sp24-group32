@@ -128,7 +128,7 @@ async function init () {
 
         // Add new notes
         for (const noteId in importedData.notes) {
-          if (importedData.notes.hasOwnProperty(noteId)) {
+          if (importedData.notes.hasOwnProperty.call(noteId)) {
             const note = importedData.notes[noteId]
             const validNote = {
               id: note.id,
@@ -144,7 +144,7 @@ async function init () {
 
         // Add new projects
         for (const projId in importedData.projs) {
-          if (importedData.projs.hasOwnProperty(projId)) {
+          if (importedData.projs.hasOwnProperty.call(projId)) {
             man.projs[projId] = importedData.projs[projId]
           }
         }

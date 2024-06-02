@@ -1,4 +1,3 @@
-import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs'
 import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js'
 import { Note } from './notes.js'
 import { Project } from './proj.js'
@@ -145,7 +144,7 @@ class Manager {
         console.log(allNotes[i])
         this.delNote(allNotes[i].id)
 
-        if (this.curNoteId == allNotes[i].id) {
+        if (this.curNoteId === allNotes[i].id) {
           this.curNoteId = null
         }
       }

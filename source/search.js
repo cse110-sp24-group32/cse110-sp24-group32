@@ -14,24 +14,24 @@ async function init () {
  * @returns {Array} List of matching notes.
  */
 function search (query) {
-  const match_notes = []
+  const matchNotes = []
   query = query.toLowerCase()
 
-  for (const [i, note] of Object.entries(man.notes)) {
+  for (const [, note] of Object.entries(man.notes)) {
     if (note.content.toLowerCase().includes(query)) {
-      match_notes.push(note)
+      matchNotes.push(note)
       continue
     }
 
     for (const tag of note.tags) {
       if (tag.includes(query)) {
-        match_notes.push(note)
+        matchNotes.push(note)
         break
       }
     }
   }
 
-  return match_notes
+  return matchNotes
 }
 
 const searchBar = document.getElementById('search-bar')
@@ -51,9 +51,9 @@ searchBar.addEventListener('keydown', (event) => {
     resultsContainer.classList.remove('hidden')
 
     // Get search bar element
-    const match_notes = search(searchBar.value)
+    const matchNotes = search(searchBar.value)
 
-    if (match_notes.length === 0) {
+    if (matchNotes.length === 0) {
       const sr = document.createElement('div')
       sr.className = 'search-result'
       const srTitle = document.createElement('span')
@@ -64,7 +64,7 @@ searchBar.addEventListener('keydown', (event) => {
     }
 
     // Populate search results with placeholders
-    for (const note of match_notes) {
+    for (const note of matchNotes) {
       const sr = document.createElement('div')
       sr.className = 'search-result'
       const srTitle = document.createElement('span')
