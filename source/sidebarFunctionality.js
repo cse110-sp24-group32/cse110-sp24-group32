@@ -1,106 +1,104 @@
-import { getManagerObject } from './index.js';
-import { Manager } from './manager.js';
-import { Note } from './notes.js';
-import { Template } from './template.js';
-import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js';
+import { getManagerObject } from './index.js'
+import { Note } from './notes.js'
+import { Template } from './template.js'
+import { MEETING_NOTES, FREEFORM_MD, DESIGN_NOTES, GITHUB_NOTES, CODE_AND_BUG_SNIPPETS } from './markdown_templates.js'
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', init)
 
 // Export so other files can use renderSideBar
 
-export let renderSideBar = null;
+export let renderSideBar = null
 
 // All templates
-const templates = {};
+const templates = {}
 
 /**
  * Helper function to add a template.
  * @param {string} name - The name of the template.
  * @param {object} note - The note object.
  */
-function addTemplate(name, note) {
-  const cur = new Template(name, note);
-  templates[cur.id] = cur;
+function addTemplate (name, note) {
+  const cur = new Template(name, note)
+  templates[cur.id] = cur
 }
 
 // Populate later
-let entries = null;
-let projs = null;
-let man = null;
+let entries = null
+let projs = null
+let man = null
 
 // Basic notes selection for testing
 export const buttonHandler = function () {
-  man.changeNote(this.id);
-};
+  man.changeNote(this.id)
+}
 
-
-async function init() {
+async function init () {
   // Retrieve singleton manager object
-  man = await getManagerObject(); // Wait for the Manager instance to be initialized
+  man = await getManagerObject() // Wait for the Manager instance to be initialized
 
   // Constant HTML element refs
-  entries = document.querySelector('#entries-list');
-  projs = document.querySelector('#project-nav');
-  const buttonList = document.getElementsByClassName('note-type');
+  entries = document.querySelector('#entries-list')
+  projs = document.querySelector('#project-nav')
+  const buttonList = document.getElementsByClassName('note-type')
 
   /*
   Template content is in the second argument of Note constructor
   */
 
-  addTemplate('Default Note', new Note(null, '', 'New Note', []));
-  addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']));
-  addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']));
-  addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']));
-  addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']));
-  addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']));
+  addTemplate('Default Note', new Note(null, '', 'New Note', []))
+  addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']))
+  addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']))
+  addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']))
+  addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']))
+  addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']))
 
   /**
    * Creates a note button for a given note (sidebar).
    * @param {object} note - The note object.
    */
   const createButton = function (note) {
-    console.log('ret', note);
-    const but = document.createElement('button');
-    but.type = 'button';
-    but.innerHTML = note.title;
-    but.id = note.id;
-    but.className = 'entryButton'
-    but.addEventListener('click', buttonHandler);
-    entries.appendChild(but);
-  };
+    console.log('ret', note)
+    const but = document.createElement('button')
+    but.type = 'button'
+    but.innerHTML = note.title
+    but.id = note.id
+    but.className = 'entry-button'
+    but.addEventListener('click', buttonHandler)
+    entries.appendChild(but)
+  }
 
   /**
    * Creates a project UI element given a project object.
    * @param {object} proj - The project object.
    */
   const createProjTile = function (proj) {
-    const div = document.createElement('div');
-    div.className = 'project-icon';
-    div.id = proj.id;
-    div.textContent = getFirstLetters(proj.name);
+    const div = document.createElement('div')
+    div.className = 'project-icon'
+    div.id = proj.id
+    div.textContent = getFirstLetters(proj.name)
     div.addEventListener('click', function () {
-      man.changeProj(div.id);
-      renderSideBar();
-    });
+      man.changeProj(div.id)
+      renderSideBar()
+    })
 
-    const close = document.createElement('button');
-    close.textContent = 'x';
-    close.className = 'proj-delete-button';
+    const close = document.createElement('button')
+    close.textContent = 'x'
+    close.className = 'proj-delete-button'
     close.addEventListener('click', function (event) {
-      event.stopPropagation();
-      const popup = document.querySelector('.project-delete-popup-container');
-      const delBut = document.getElementById('confirm-delete-project');
+      event.stopPropagation()
+      const popup = document.querySelector('.project-delete-popup-container')
+      const delBut = document.getElementById('confirm-delete-project')
       delBut.addEventListener('click', e => {
-        man.delProj(div.id);
-        div.remove();
-        popup.style.display = 'none';
+        man.delProj(div.id)
+        div.remove()
+        popup.style.display = 'none'
       })
-      popup.style.display = 'flex';
-    });
-    div.appendChild(close);
+      popup.style.display = 'flex'
+    })
+    div.appendChild(close)
 
-    projs.prepend(div);
-  };
+    projs.prepend(div)
+  }
 
   /**
    * Renders the elements of the side bar according to the current project id selected.
@@ -137,7 +135,7 @@ async function init() {
     }
   }
 
-  renderSideBar();
+  renderSideBar()
   /*
   EVENT LISTENERS FOR CLICKS
   */
@@ -172,8 +170,7 @@ async function init() {
     const popup = document.querySelector('.note-popup-container')
 
     if (man.curProjId == null) {
-
-      alert("Must select project before adding note");
+      alert('Must select project before adding note')
     } else {
       popup.style.display = 'flex'
     }
@@ -190,7 +187,7 @@ async function init() {
       const button = buttonList[i]
       const buttonID = '#' + button.id
       const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor == 'aqua') {
+      if (noteSelectButton.style.borderColor === 'aqua') {
         selectedButtonID = button.id
       }
     }
@@ -211,14 +208,14 @@ async function init() {
     const buttonID = '#' + button.id
     document.querySelector(buttonID).addEventListener('click', () => {
       const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor == 'aqua') {
+      if (noteSelectButton.style.borderColor === 'aqua') {
         noteSelectButton.style.borderColor = 'black'
       } else {
         noteSelectButton.style.borderColor = 'aqua'
         for (let i = 0; i < buttonList.length; i++) {
           const otherButton = buttonList[i]
           const otherButtonID = '#' + otherButton.id
-          if (otherButtonID != buttonID) {
+          if (otherButtonID !== buttonID) {
             document.querySelector(otherButtonID).style.borderColor = 'black'
           }
         }
@@ -246,8 +243,8 @@ async function init() {
  * @param {string} str - The project name.
  * @returns {string} The first letters of each word in the project name.
  */
-function getFirstLetters(str) {
-  const words = str.split(' ');
+function getFirstLetters (str) {
+  const words = str.split(' ')
 
   const firstLetters = words.map(word => word.charAt(0))
 
