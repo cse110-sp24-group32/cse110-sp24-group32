@@ -284,10 +284,6 @@ h3 {
     margin-right: auto;
 }
 
-#add-tag-button {
-    margin-right: 1%
-}
-
 .top-buttons {
     display: flex;
     margin-left: auto;
@@ -502,7 +498,6 @@ button.project-icon {
     position:absolute;
     top:0;
     text-align:center;
-    vertical-align: middle;;
 }
 
 /* css for tags */
@@ -527,6 +522,33 @@ button.project-icon {
     display: inline-block;
 }
 
+#tag-input {
+    font-size: 1em;
+    padding: 10px 15px; /* Increase padding to create space inside the input */
+    border: 1px solid #1aaab5; /* Teal border color */
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+    margin-right: 2px; /* Reduce space between input and button */
+    background-color: #c3c3c3; /* Dark background to match theme */
+    color: black; /* White text color */
+}
+
+#add-tag-button {
+    margin-right: 1%;
+    display: flex;
+    padding: 10px 15px; /* Increase padding to enlarge the button */
+    background-color: #1aaab5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#add-tag-button:hover {
+    background-color: #00818A;
+}
 
 /* width */
 ::-webkit-scrollbar {
