@@ -148,7 +148,7 @@ body, html {
     height: 8%;
     width: 50%;
     margin: 0 auto;
-    border: medium double #dfe6e7 ; /* Adding a border with a color */
+    border: 1px solid white;
     border-radius: 10px;
     font-size: 1.2em;
     display: block;
@@ -320,6 +320,7 @@ h3 {
 .md-view {
     flex-grow: 1; 
     width: 100%;
+    font-family:Arial;
 }
 
 .project-popup-container {
@@ -402,6 +403,7 @@ h3 {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
+}
 
 .md-view {
     overflow-y:scroll;
@@ -459,7 +461,7 @@ h3 {
 .project-icon {
     width: 73px;
     height: 65px;
-    font-size: 2em;
+    font-size: 2.5em;
     text-align: center;
     padding: 0;
     border: 0;
@@ -480,9 +482,11 @@ h3 {
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
     position: relative; /* Ensure children are positioned relative to this */
+
+    font-weight:normal;
 }
 
-button.project-icon{
+button.project-icon {
     font-size: 4em;
     font-weight:normal;
 }
@@ -506,7 +510,11 @@ button.project-icon{
   }
 
 .project-icon:hover .proj-delete-button {
-    display: block;
+    display: block!important;
+    position:absolute;
+    top:0;
+    text-align:center;
+    vertical-align: middle;;
 }
 
 /* css for tags */
