@@ -9,13 +9,13 @@ class Note {
    * @param {string} t - The title of the note.
    * @param {Array} l - The list of tags.
    */
-  constructor(p, c, t, l) {
-    this.proj = p;
-    this.content = c;
-    this.title = t;
-    this.tags = l;
-    this.id = self.crypto.randomUUID();
-    console.log(this.id);
+  constructor (p, c, t, l) {
+    this.proj = p
+    this.content = c
+    this.title = t
+    this.tags = l
+    this.id = self.crypto.randomUUID()
+    console.log(this.id)
   }
 }
-export { Note };
+export { Note }

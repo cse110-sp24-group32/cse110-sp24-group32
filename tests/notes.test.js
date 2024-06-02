@@ -64,7 +64,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     expect(title.trim()).toBe('My Project')
   })
 
-  // Add second project 
+  // Add second project
   it('should be possible to add a new project', async () => {
     const btn = await page.$('#new-project-button')
     await btn.click()
@@ -95,7 +95,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     const allProjs = await page.$$('#project-nav div')
 
     const ourProject = allProjs[1]
-    await ourProject.click();
+    await ourProject.click()
 
     // Find the element with the ID 'curr-proj'
     const titleElement = await page.$('#curr-proj')
