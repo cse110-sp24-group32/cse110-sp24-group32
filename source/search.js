@@ -56,6 +56,16 @@ searchBar.addEventListener('keydown', (event) => {
     // Get search bar element
     const match_notes = search(searchBar.value);
 
+    if (match_notes.length === 0) {
+      const sr = document.createElement('div');
+      sr.className = 'search-result';
+      const srTitle = document.createElement('span');
+      srTitle.className = 'result-title';
+      srTitle.innerText = 'no matching result';
+      sr.append(srTitle);
+      resultsContainer.append(sr);
+    }
+
     // Populate search results with placeholders
     for (const note of match_notes) {
       const sr = document.createElement('div');
