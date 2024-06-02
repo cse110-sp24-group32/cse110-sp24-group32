@@ -7,10 +7,10 @@ class Template {
    * @param {string} name - The display name of the template.
    * @param {object} note - The actual note object.
    */
-  constructor(name, note) {
-    this.name = name;
-    this.note = note;
-    this.id = self.crypto.randomUUID();
+  constructor (name, note) {
+    this.name = name
+    this.note = note
+    this.id = self.crypto.randomUUID()
   }
 }
-export { Template };
+export { Template }

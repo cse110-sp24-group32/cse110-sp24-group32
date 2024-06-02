@@ -1,8 +1,8 @@
-import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs';
-import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js';
-import { Note } from './notes.js';
-import { Project } from './proj.js';
-import { renderSideBar } from './sidebarFunctionality.js';
+import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.mjs'
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js'
+import { Note } from './notes.js'
+import { Project } from './proj.js'
+import { renderSideBar } from './sidebarFunctionality.js'
 
 /**
  * This class manages our app data.
@@ -19,48 +19,47 @@ class Manager {
    * Create a manager.
    * @param {HTMLElement} mdTarget - The target element for rendering markdown.
    */
-  constructor(mdTarget) {
-    this.mdTarget = mdTarget;
-    this.renderSideBar = renderSideBar;
+  constructor (mdTarget) {
+    this.mdTarget = mdTarget
+    this.renderSideBar = renderSideBar
     // Set up our handler to save when a note is modified
-    const boundSave = this.save.bind(this);
+    const boundSave = this.save.bind(this)
 
     this.saveHandler = {
-      set(obj, prop, value) {
-        console.log('saving', obj, prop, value);
-        const val = Reflect.set(...arguments);
-        boundSave();
-        return val;
+      set (obj, prop, value) {
+        console.log('saving', obj, prop, value)
+        const val = Reflect.set(...arguments)
+        boundSave()
+        return val
       }
-    };
+    }
 
     // Load data from local storage
-    let data = JSON.parse(localStorage.getItem('notes-data'));
+    let data = JSON.parse(localStorage.getItem('notes-data'))
     if (data == null) {
-      data = {};
-      data.notes = {};
-      data.projs = {};
-      data.curNoteId = null;
-      data.curProjId = null;
-      console.log('asdf');
+      data = {}
+      data.notes = {}
+      data.projs = {}
+      data.curNoteId = null
+      data.curProjId = null
+      console.log('asdf')
     }
-    this.notes = data.notes;
-    this.projs = data.projs;
-    this.curNoteId = data.curNoteId;
-    this.curProjId = data.curProjId;
+    this.notes = data.notes
+    this.projs = data.projs
+    this.curNoteId = data.curNoteId
+    this.curProjId = data.curProjId
 
-    this.renderNote();
-    this.renderProject();
-    this.save();
+    this.renderNote()
+    this.renderProject()
+    this.save()
   }
-
 
   /**
    * Get notes grouped by their first tag.
    * @returns {Object} Notes grouped by the first tag.
    */
-  getNotesGroupedByFirstTag() {
-    const notesByFirstTag = {};
+  getNotesGroupedByFirstTag () {
+    const notesByFirstTag = {}
 
     for (const note of Object.values(this.notes)) {
       if (note.tags.length > 0) {
@@ -79,12 +78,12 @@ class Manager {
    * @param {string} name - The name of the project.
    * @returns {Proxy} The proxied project.
    */
-  addProj(name) {
-    const proj = new Project(name);
-    console.log(this);
-    this.projs[proj.id] = proj;
-    this.save();
-    return new Proxy(proj, this.saveHandler);
+  addProj (name) {
+    const proj = new Project(name)
+    console.log(this)
+    this.projs[proj.id] = proj
+    this.save()
+    return new Proxy(proj, this.saveHandler)
   }
 
   /**
@@ -92,15 +91,15 @@ class Manager {
    * @param {Object} note - The note object.
    * @returns {Proxy} The proxied note.
    */
-  addNote(note) {
+  addNote (note) {
     // Make a copy
-    note = new Note(note.proj, note.content, note.title, note.tags);
-    note.proj = this.curProjId;
-    this.notes[note.id] = note;
-    this.curNoteId = note.id;
-    this.renderNote();
-    this.save();
-    return new Proxy(note, this.saveHandler);
+    note = new Note(note.proj, note.content, note.title, note.tags)
+    note.proj = this.curProjId
+    this.notes[note.id] = note
+    this.curNoteId = note.id
+    this.renderNote()
+    this.save()
+    return new Proxy(note, this.saveHandler)
   }
 
   /**
@@ -108,35 +107,35 @@ class Manager {
    * @param {string} id - The note ID.
    * @returns {Proxy} The proxied note.
    */
-  getNote(id) {
-    return new Proxy(this.notes[id], this.saveHandler);
+  getNote (id) {
+    return new Proxy(this.notes[id], this.saveHandler)
   }
 
   /**
    * Delete a note by ID.
    * @param {string} id - The note ID.
    */
-  delNote(id) {
-    delete this.notes[id];
+  delNote (id) {
+    delete this.notes[id]
 
     if (this.curNoteId === id) {
-      this.curNoteId = null;
-      this.renderNote();
+      this.curNoteId = null
+      this.renderNote()
     }
-    this.save();
+    this.save()
   }
 
   /**
    * Delete a project by ID.
    * @param {string} id - The project ID.
    */
-  delProj(id) {
-    delete this.projs[id];
+  delProj (id) {
+    delete this.projs[id]
 
     if (this.curProjId === id) {
-      this.curProjId = null;
-      this.renderNote();
-      this.renderProject();
+      this.curProjId = null
+      this.renderNote()
+      this.renderProject()
     }
 
     const allNotes = this.getAllNotes()
@@ -147,56 +146,56 @@ class Manager {
         this.delNote(allNotes[i].id)
 
         if (this.curNoteId == allNotes[i].id) {
-          this.curNoteId = null;
+          this.curNoteId = null
         }
       }
     }
 
     // Delete all notes associated with this project
-    this.save();
-    this.renderNote();
-    this.renderProject();
-    renderSideBar();
+    this.save()
+    this.renderNote()
+    this.renderProject()
+    renderSideBar()
   }
 
   /**
    * Get all notes, proxied.
    * @returns {Array} List of proxied notes.
    */
-  getAllNotes() {
-    const sh = this.saveHandler;
-    return Object.values(this.notes).map((val) => new Proxy(val, sh));
+  getAllNotes () {
+    const sh = this.saveHandler
+    return Object.values(this.notes).map((val) => new Proxy(val, sh))
   }
 
   /**
    * Get all projects, proxied.
    * @returns {Array} List of proxied projects.
    */
-  getAllProjs() {
-    const sh = this.saveHandler;
-    return Object.values(this.projs).map((val) => new Proxy(val, sh));
+  getAllProjs () {
+    const sh = this.saveHandler
+    return Object.values(this.projs).map((val) => new Proxy(val, sh))
   }
 
   /**
    * Change the current note.
    * @param {string} id - The note ID.
    */
-  changeNote(id) {
-    this.curNoteId = id;
-    this.renderNote();
-    this.save();
+  changeNote (id) {
+    this.curNoteId = id
+    this.renderNote()
+    this.save()
   }
 
   /**
    * Change the current project.
    * @param {string} id - The project ID.
    */
-  changeProj(id) {
-    this.curProjId = id;
-    this.curNoteId = null;
-    this.renderNote();
-    this.renderProject();
-    this.save();
+  changeProj (id) {
+    this.curProjId = id
+    this.curNoteId = null
+    this.renderNote()
+    this.renderProject()
+    this.save()
   }
 
   /**
@@ -231,51 +230,49 @@ class Manager {
       deleteButton.textContent = 'x'
       deleteButton.className = 'delete-tag-button'
       deleteButton.addEventListener('click', () => {
-
         if (currNote.tags.length === 1) {
-          alert('This tag cannot be deleted because it is the only tag for this note.');
+          alert('This tag cannot be deleted because it is the only tag for this note.')
         } else {
-          currNote.tags = currNote.tags.filter(q => q !== tag);
-          this.save();
-          this.renderNote();
-          renderSideBar(); // Call renderSideBar to update sidebar dynamically
+          currNote.tags = currNote.tags.filter(q => q !== tag)
+          this.save()
+          this.renderNote()
+          renderSideBar() // Call renderSideBar to update sidebar dynamically
         }
-      });
+      })
 
-      tagSpan.appendChild(deleteButton);
-      tagsContainer.appendChild(tagSpan);
-    });
-
+      tagSpan.appendChild(deleteButton)
+      tagsContainer.appendChild(tagSpan)
+    })
   }
 
   /**
    * Write project sidebar rendering code here.
    */
-  renderProject() {
+  renderProject () {
     // Set the project title
-    const projTitleEle = document.querySelector('#curr-proj');
+    const projTitleEle = document.querySelector('#curr-proj')
     if (this.curProjId == null) {
-      projTitleEle.textContent = 'No project selected';
-      return;
+      projTitleEle.textContent = 'No project selected'
+      return
     }
 
     // selectedProj is the current selected project
-    const selectedProj = this.projs[this.curProjId];
-    projTitleEle.textContent = selectedProj.name;
+    const selectedProj = this.projs[this.curProjId]
+    projTitleEle.textContent = selectedProj.name
   }
 
   /**
    * Save all our data into local storage.
    */
-  save() {
-    const data = {};
-    data.notes = this.notes;
-    data.projs = this.projs;
-    data.curNoteId = this.curNoteId;
-    data.curProjId = this.curProjId;
-    console.log(data);
-    localStorage.setItem('notes-data', JSON.stringify(data));
+  save () {
+    const data = {}
+    data.notes = this.notes
+    data.projs = this.projs
+    data.curNoteId = this.curNoteId
+    data.curProjId = this.curProjId
+    console.log(data)
+    localStorage.setItem('notes-data', JSON.stringify(data))
   }
 }
 
-export { Manager };
+export { Manager }
