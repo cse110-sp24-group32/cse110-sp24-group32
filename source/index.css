@@ -524,9 +524,11 @@ button.project-icon{
 #search-results-container {
     display: grid;
     background-color: #fff;
+    overflow: auto;
     z-index: 1;
     position: absolute;
     width: 60%;
+    height: 100vh;
     border-top: black 1px solid;
 }
 
