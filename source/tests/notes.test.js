@@ -219,20 +219,212 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         await page.waitForSelector('.tag');
 
         const allTags = await page.$$('.tag');
-        const initialLength = allTags.length;
+        const initialLength = allTags.length
         const tag = allTags[0];
         const tagText = await page.evaluate(tag => tag.innerText, tag);
 
         // // Assert tag is automatically added
-        expect(initialLength).toBe(1);
-        expect(tagText.includes(tagFromNote), true);
+        expect(initialLength).toBe(1)
+        expect(tagText.includes(tagFromNote), true)
     });
 
+  
   // Add another note
+ it('should be possible to add another new note', async () => {
+  // Wait for the page to load completely
+  await page.waitForSelector('body')
 
-  // Update note
+  // Click the button to add a new note
+  const btn = await page.waitForSelector('#add-note', { visible: true })
+  await btn.click()
+
+  // Wait for the popup to appear
+  await page.waitForSelector('.note-popup-container', { visible: true })
+
+  // Wait for and click the 'Meeting' button within the popup
+  const meetingButton = await page.waitForSelector('#Meeting', { visible: true })
+  // no need to click again because its preselected from previous creation
+
+  // Type in the text to the note input using page.evaluate
+  await page.evaluate(() => {
+    const input = document.querySelector('#note-input')
+    if (input) {
+      input.value = 'New Meeting Note 2'
+    }
+  })
+
+  // Wait for and click the 'choose-note' button
+  const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
+  await page.click('#choose-note')
+
+  // Wait for the entries list to be updated
+  await page.waitForSelector('#entries-list button')
+
+  // Get all buttons inside the entries list
+  const allButtons = await page.$$('#entries-list button')
+
+  let ourButton = null
+  for (const button of allButtons) {
+    const innerText = await page.evaluate(el => el.innerText, button)
+    if (innerText === 'New Meeting Note 2') {
+      ourButton = button
+      break
+    }
+  }
+
+  // Assert that ourButton is not null and has the correct innerText
+  expect(ourButton).not.toBeNull()
+  const buttonText = await page.evaluate(el => el.innerText, ourButton)
+  expect(buttonText).toBe('New Meeting Note 2')
+})
+
+
+  // Add another note with a different template
+  it('should be possible to add another new note', async () => {
+    // Wait for the page to load completely
+    await page.waitForSelector('body')
+  
+    // Click the button to add a new note
+    const btn = await page.waitForSelector('#add-note', { visible: true })
+    await btn.click()
+  
+    // Wait for the popup to appear
+    await page.waitForSelector('.note-popup-container', { visible: true })
+  
+    // Wait for and click the 'Meeting' button within the popup
+    const meetingButton = await page.waitForSelector('#Design', { visible: true })
+    // no need to click again because its preselected from previous creation
+  
+    // Type in the text to the note input using page.evaluate
+    await page.evaluate(() => {
+      const input = document.querySelector('#note-input')
+      if (input) {
+        input.value = 'New Design Notes'
+      }
+    })
+  
+    // Wait for and click the 'choose-note' button
+    const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
+    await page.click('#choose-note')
+  
+    // Wait for the entries list to be updated
+    await page.waitForSelector('#entries-list button')
+  
+    // Get all buttons inside the entries list
+    const allButtons = await page.$$('#entries-list button')
+  
+    let ourButton = null
+    for (const button of allButtons) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText === 'New Design Notes') {
+        ourButton = button
+        break
+      }
+    }
+  
+    // Assert that ourButton is not null and has the correct innerText
+    expect(ourButton).not.toBeNull()
+    const buttonText = await page.evaluate(el => el.innerText, ourButton)
+    expect(buttonText).toBe('New Design Notes')
+  })
+
+
+  // Update note  (not properly editing ??)
+  it('should be possible to update a note', async () => {
+    // Find the note to update
+    const allButtons = await page.$$('#entries-list button')
+    let noteButton = null
+    for (const button of allButtons) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText.toLowerCase() === 'new meeting note') {
+        noteButton = button
+        break
+      }
+    }
+
+    // Click the note to open it
+    await noteButton.click()
+
+    // Wait for the edit button to be visible and click it to enable editing mode
+    await page.waitForSelector('#edit-button', { visible: true })
+    await page.click('#edit-button')
+
+    // Clear the existing content in the textarea and update it directly
+    await page.evaluate(() => {
+      const textarea = document.querySelector('textarea')
+      if (textarea) {
+        textarea.value = 'Updated Meeting Note' // Set the new content
+      }
+    })
+  
+    // Verify the textarea value after setting it directly
+    const textareaValue = await page.$eval('textarea', el => el.value)
+    console.log('Textarea value after setting:', textareaValue)
+
+    // Save the updated note
+    await page.click('#edit-button')
+
+    // Add a sufficient delay to ensure content is saved
+    await new Promise(resolve => setTimeout(resolve, 500))
+
+    // Trigger renderNote to ensure the updated content is displayed
+    await page.evaluate(() => {
+      const renderNote = window.renderNote
+      if (renderNote) {
+        renderNote()
+      }
+    })
+
+  
+    // Verify the updated note content in the md-view class
+    await page.waitForSelector('.md-view')
+    const noteContent = await page.$eval('.md-view', el => el.innerText)
+    console.log('Updated note content:', noteContent)
+
+    // Ensure that 'Updated Meeting Note' is part of the content
+    expect(noteContent.toLowerCase()).toContain('updated meeting note')
+  })
 
   // Delete note
+  it('should be possible to delete a note', async () => {
+    // Find the note to delete
+    const allButtons = await page.$$('#entries-list button')
+    let noteButton = null
+    for (const button of allButtons) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText.toLowerCase() === 'new meeting note') {
+        noteButton = button
+        break
+      }
+    }
+
+    if (!noteButton) {
+      console.error('No note button found')
+      return
+    }
+
+    // Click the note to open it
+    await noteButton.click()
+
+    // Wait for the delete button to be visible and click it to delete the note
+    await page.waitForSelector('#delete-button', { visible: true });
+    await page.click('#delete-button')
+
+    // Verify the note is deleted by checking the entries list again
+    const allButtonsAfterDelete = await page.$$('#entries-list button')
+    let noteButtonAfterDelete = null
+    for (const button of allButtonsAfterDelete) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText.toLowerCase() === 'new meeting note') {
+        noteButtonAfterDelete = button
+        break
+      }
+    }
+
+    // Expect that the note button is not found after deletion
+    expect(noteButtonAfterDelete).toBeNull()
+
+  })
 
   // Add tag to one of the notes we created above and make sure the tag got added to the ui
 
