@@ -21,6 +21,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     await browser.close()
   })
 
+  // Make sure we can't add note without a project selected/made
   it('shouldnt be possible to add a note without a project selected', async () => {
     // Listen for the alert dialog
     page.on('dialog', async dialog => {
@@ -52,6 +53,49 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
     const btn2 = await page.$('#confirm-new-project')
     await btn2.click()
+
+    // Find the element with the ID 'curr-proj'
+    const titleElement = await page.$('#curr-proj')
+
+    // Get the text content of the title element
+    const title = await page.evaluate(element => element.textContent, titleElement)
+
+    // Expect the value of the title to be 'My Project'
+    expect(title.trim()).toBe('My Project')
+  })
+
+  // Add second project 
+  it('should be possible to add a new project', async () => {
+    const btn = await page.$('#new-project-button')
+    await btn.click()
+
+    await page.evaluate(() => {
+      const input = document.querySelector('#project-input')
+      if (input) {
+        input.value = 'My Project 2'
+      }
+    })
+
+    const btn2 = await page.$('#confirm-new-project')
+    await btn2.click()
+
+    // Find the element with the ID 'curr-proj'
+    const titleElement = await page.$('#curr-proj')
+
+    // Get the text content of the title element
+    const title = await page.evaluate(element => element.textContent, titleElement)
+
+    // Expect the value of the title to be 'My Project'
+    expect(title.trim()).toBe('My Project 2')
+  })
+
+  // Test click the first project
+  it('should be possible to add a new project', async () => {
+    // Get all project divs inside the project entries list
+    const allProjs = await page.$$('#project-nav div')
+
+    const ourProject = allProjs[1]
+    await ourProject.click();
 
     // Find the element with the ID 'curr-proj'
     const titleElement = await page.$('#curr-proj')
@@ -111,4 +155,16 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     const buttonText = await page.evaluate(el => el.innerText, ourButton)
     expect(buttonText).toBe('New Meeting Note')
   })
+
+  // Add another note
+
+  // Update note
+
+  // Delete note
+
+  // Add tag to one of the notes we created above and make sure the tag got added to the ui
+
+  // Delete tag that we just made above
+
+  // Delete project
 })
