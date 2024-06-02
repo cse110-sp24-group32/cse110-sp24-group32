@@ -34,11 +34,12 @@ body, html {
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    margin-right: 10px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
 #chatbot-img {
@@ -61,7 +62,7 @@ body, html {
     height:80%;
     display: inline-flex;
     align-items: center;
-    font-family: Changa;
+    font-family: Changa, sans-serif;
 }
 
 #import-all-button {
@@ -77,7 +78,7 @@ body, html {
     height:80%;
     display: inline-flex;
     align-items: center;
-    font-family: Changa;
+    font-family: Changa, sans-serif;
 }
 
 .logo-container {
@@ -103,12 +104,6 @@ body, html {
     background: #f6f6f6;
 }
 
-    
-.material-symbols-outlined {
-    /* Add your icon styles here */
-    margin-right: 10px; /* Adjust margin for spacing between icon and search bar */
-}
-  
 #search-bar {
     width: auto; /* Allow the search bar to adjust its width based on content */
     font-size: 14px; /* Reduce font size */
@@ -159,7 +154,7 @@ body, html {
     background-color:#015c63;
 }
 
-.entryButton {
+.entry-button {
     background-color: #00818A;
     color: #EEE;
     height: 6vh;
@@ -172,7 +167,7 @@ body, html {
     margin-bottom: 1.4vw;
 }
 
-.entryButton:hover {
+.entry-button:hover {
     background-color: #015c63;
     cursor:pointer;
 }
@@ -307,7 +302,7 @@ h3 {
     border:0;
     border-radius:7.5px;
     color:white;
-    font-family: Changa;
+    font-family: Changa, sans-serif;
 }
 
 .top-buttons button:hover {
@@ -316,9 +311,10 @@ h3 {
 
 
 .md-view {
+    overflow-y:scroll;
     flex-grow: 1; 
     width: 100%;
-    font-family:Arial;
+    font-family:Changa, sans-serif;
 }
 
 .project-popup-container {
@@ -401,10 +397,6 @@ h3 {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
-}
-
-.md-view {
-    overflow-y:scroll;
 }
 
 .note-popup-container {

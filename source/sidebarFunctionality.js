@@ -62,7 +62,7 @@ async function init () {
     but.type = 'button'
     but.innerHTML = note.title
     but.id = note.id
-    but.className = 'entryButton'
+    but.className = 'entry-button'
     but.addEventListener('click', buttonHandler)
     entries.appendChild(but)
   }
