@@ -20,12 +20,15 @@ Initialize app and singleton object -- also passes singleton object instance to 
 `index.js`
 
 Sidebar front-end functionality:
+
 `sidebarFunctionality.js`
 
 Note/entry front-end functionality:
+
 `notesFunctionality.js`
 
 Search/top bar front-end functionality:
+
 `search.js`
 
 ### Singleton Interface Class Files:
