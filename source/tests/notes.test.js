@@ -64,7 +64,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false, // Set to false if you want to see the browser during the tests
+      headless: true, // Set to false if you want to see the browser during the tests
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
     page = await browser.newPage()
@@ -338,14 +338,14 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         break
       }
     }
-  
+
     // Click the note to open it
     await noteButton.click()
-  
+
     // Wait for the edit button to be visible and click it to enable editing mode
     await page.waitForSelector('#edit-button', { visible: true })
     await page.click('#edit-button')
-  
+
     // Clear the existing content in the textarea
     await page.evaluate(() => {
       const textarea = document.querySelector('.md-view textarea')
@@ -353,17 +353,16 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         textarea.value = '' // Set the new content
       }
     })
-  
-    // Simulate typing to update the content
-    await page.type('.md-view textarea', 'Updated Meeting Note', { delay: 100 }); // add a delay if needed
 
-  
+    // Simulate typing to update the content
+    await page.type('.md-view textarea', 'Updated Meeting Note', { delay: 100 }) // add a delay if needed
+
     // Save the updated note
     await page.click('#edit-button')
-  
+
     // Add a sufficient delay to ensure content is saved
     await new Promise(resolve => setTimeout(resolve, 500))
-  
+
     // Trigger renderNote to ensure the updated content is displayed
     await page.evaluate(() => {
       const renderNote = window.renderNote
@@ -371,16 +370,15 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         renderNote()
       }
     })
-  
+
     // Verify the updated note content in the md-view class
     await page.waitForSelector('.md-view')
     const noteContent = await page.$eval('.md-view', el => el.innerText)
     console.log('Updated note content:', noteContent)
-  
+
     // Ensure that 'Updated Meeting Note' is part of the content
     expect(noteContent.toLowerCase()).toContain('updated meeting note')
   })
-  
 
   // Delete note
   it('should be possible to delete a note', async () => {
