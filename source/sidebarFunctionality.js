@@ -20,6 +20,7 @@ const templates = {}
 function addTemplate (name, note) {
   const cur = new Template(name, note)
   templates[cur.id] = cur
+  return cur.id
 }
 
 // Populate later
@@ -39,25 +40,60 @@ async function init () {
   // Constant HTML element refs
   entries = document.querySelector('#entries-list')
   projs = document.querySelector('#project-nav')
-  const buttonList = document.getElementsByClassName('note-type')
 
   /*
   Template content is in the second argument of Note constructor
   */
 
-  addTemplate('Default Note', new Note(null, '', 'New Note', []))
+  const defaultNoteId = addTemplate('Default Note', new Note(null, '', 'New Note', []))
   addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']))
   addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']))
   addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']))
   addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']))
   addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']))
 
+  // populate select-note div
+  const selectNote = document.querySelector('.select-note')
+  const SELECTED_COL = '#58fcfc'
+  const OTHER_COL = '#00818A'
+
+  let selectedBut = null
+
+  // We'll skip adding the default note, to preserve the previous behaviour.
+  // May want to change this later.
+  for (const id in templates) {
+    if (id !== defaultNoteId) {
+    // <button type="button", class="note-type", id="Meeting">Meeting</button>
+      const but = document.createElement('button')
+      but.type = 'button'
+      but.className = 'note-type'
+
+      // query selector doesn't work well with UUIDs
+      but.tempId = id
+      but.innerHTML = templates[id].name
+
+      // we need to put the notes BEFORE the button
+      selectNote.before(but)
+
+      // use normal function to get correct this
+      but.addEventListener('click', function () {
+        if (this === selectedBut) {
+          this.style.backgroundColor = OTHER_COL
+          selectedBut = null
+        } else {
+          this.style.backgroundColor = SELECTED_COL
+          if (selectedBut) selectedBut.style.backgroundColor = OTHER_COL
+          selectedBut = this
+        }
+      })
+    }
+  }
+
   /**
    * Creates a note button for a given note (sidebar).
    * @param {object} note - The note object.
    */
   const createButton = function (note) {
-    console.log('ret', note)
     const but = document.createElement('button')
     but.type = 'button'
     but.innerHTML = note.title
@@ -112,21 +148,22 @@ async function init () {
       projs.removeChild(projs.firstChild)
     }
 
-    console.log(man)
     const notesByFirstTag = man.getNotesGroupedByFirstTag()
-
-    for (const [firstTag, notes] of Object.entries(notesByFirstTag)) {
-      const filteredNotes = notes.filter(note => man.curProjId === note.proj)
-
-      if (filteredNotes.length > 0) {
+    const arr = Object.keys(notesByFirstTag)
+    // let's put the no tag notes first :P
+    arr.sort()
+    for (const firstTag of arr) {
+      const filteredNotes = notesByFirstTag[firstTag].filter(note => man.curProjId === note.proj)
+      // don't make header for untagged notes
+      // TODO: add spacing
+      if (filteredNotes.length > 0 && firstTag.length) {
         const tagHeader = document.createElement('h3')
         tagHeader.style.textAlign = 'center'
         tagHeader.textContent = firstTag
         entries.appendChild(tagHeader)
-
-        for (const note of filteredNotes) {
-          createButton(note)
-        }
+      }
+      for (const note of filteredNotes) {
+        createButton(note)
       }
     }
 
@@ -173,6 +210,11 @@ async function init () {
       alert('Must select project before adding note')
     } else {
       popup.style.display = 'flex'
+      // clear previous selections
+      // I don't like this duplication...
+      if (selectedBut) selectedBut.style.backgroundColor = OTHER_COL
+      selectedBut = null
+      document.querySelector('#note-input').value = ''
     }
   })
 
@@ -182,46 +224,15 @@ async function init () {
   })
 
   document.querySelector('#choose-note').addEventListener('click', () => {
-    let selectedButtonID = 'Default'
-    for (let i = 0; i < buttonList.length; i++) {
-      const button = buttonList[i]
-      const buttonID = '#' + button.id
-      const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor === 'aqua') {
-        selectedButtonID = button.id
-      }
-    }
-    for (const x in templates) {
-      if (templates[x].name === selectedButtonID + ' Note') {
-        const noteToAdd = JSON.parse(JSON.stringify(templates[x].note))
-        noteToAdd.title = document.querySelector('#note-input').value
-        man.addNote(noteToAdd)
-        renderSideBar()
-      }
-    }
+    const id = selectedBut ? selectedBut.tempId : defaultNoteId
+    const noteToAdd = JSON.parse(JSON.stringify(templates[id].note))
+    noteToAdd.title = document.querySelector('#note-input').value
+    man.addNote(noteToAdd)
+    renderSideBar()
+
     const popup = document.querySelector('.note-popup-container')
     popup.style.display = 'none'
   })
-
-  for (let i = 0; i < buttonList.length; i++) {
-    const button = buttonList[i]
-    const buttonID = '#' + button.id
-    document.querySelector(buttonID).addEventListener('click', () => {
-      const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor === 'aqua') {
-        noteSelectButton.style.borderColor = 'black'
-      } else {
-        noteSelectButton.style.borderColor = 'aqua'
-        for (let i = 0; i < buttonList.length; i++) {
-          const otherButton = buttonList[i]
-          const otherButtonID = '#' + otherButton.id
-          if (otherButtonID !== buttonID) {
-            document.querySelector(otherButtonID).style.borderColor = 'black'
-          }
-        }
-      }
-    })
-  }
 
   document.querySelector('#confirm-new-project').addEventListener('click', () => {
     const projName = document.querySelector('#project-input').value
