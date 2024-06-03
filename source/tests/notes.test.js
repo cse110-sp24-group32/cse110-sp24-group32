@@ -5,56 +5,56 @@ test('empty', () => {})
 
 /**
  * Adds a new tag with the specified name.
- * 
+ *
  * @param {Page} page - The Puppeteer page object.
  * @param {string} tagName - The name of the tag to be added.
  * @returns {Promise<void>}
  */
-async function addTag(page, tagName) {
-    // Wait for all elements rendered
-    await page.waitForSelector('body');
+async function addTag (page, tagName) {
+  // Wait for all elements rendered
+  await page.waitForSelector('body')
 
-    // Input the tag name
-    await page.type('#tag-input', tagName);
+  // Input the tag name
+  await page.type('#tag-input', tagName)
 
-    // Click the button to add a new tag
-    const addTagButton = await page.$('#add-tag-button');
-    await addTagButton.click();
+  // Click the button to add a new tag
+  const addTagButton = await page.$('#add-tag-button')
+  await addTagButton.click()
 
-    // Wait for the tags container to be updated
-    await page.waitForSelector('#tags-container .tag');
+  // Wait for the tags container to be updated
+  await page.waitForSelector('#tags-container .tag')
 }
 
 /**
  * Detele a tag with the specified name.
- * 
+ *
  * @param {Page} page - The Puppeteer page object.
  * @param {string} tagName - The name of the tag to be delete.
  * @returns {Promise<void>}
  */
-async function deleteTag(page, tagName) {
-    // Wait for all elements rendered
-    await page.waitForSelector('.tag');
+async function deleteTag (page, tagName) {
+  // Wait for all elements rendered
+  await page.waitForSelector('.tag')
 
-    // Find the tag to delete
-    let tags = await page.$$('.tag');
-    let toDelete = null;
-    for (let tag of tags) {
-        const text = await page.evaluate(el=>el.textContent, tag);
-        console.log("The text is: ", text)
-        if (text.includes(tagName)){
-            toDelete = tag;
-            break;
-        };
-    }
+  // Find the tag to delete
+  const tags = await page.$$('.tag')
+  let toDelete = null
+  for (const tag of tags) {
+    const text = await page.evaluate(el => el.textContent, tag)
+    console.log('The text is: ', text)
+    if (text.includes(tagName)) {
+      toDelete = tag
+      break
+    };
+  }
 
-    // Check if the tag is valid/available
-    if (toDelete) {
-        const deleteBttn = await toDelete.$('.delete-tag-button');
-        await deleteBttn.click();
-    } else {
-        console.log(`Tag with name "${tagName}" not found.`);
-    }
+  // Check if the tag is valid/available
+  if (toDelete) {
+    const deleteBttn = await toDelete.$('.delete-tag-button')
+    await deleteBttn.click()
+  } else {
+    console.log(`Tag with name "${tagName}" not found.`)
+  }
 }
 
 // Puppeteer tests all go in here
@@ -64,11 +64,11 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: true, // Set to false if you want to see the browser during the tests
+      headless: false, // Set to false if you want to see the browser during the tests
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     })
     page = await browser.newPage()
-      await page.goto('http://localhost:3000/index.html') // Use local server URL
+    await page.goto('http://localhost:3000/index.html') // Use local server URL
   })
 
   afterAll(async () => {
@@ -91,8 +91,8 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     // Wait some time to ensure the alert is triggered
     await new Promise(resolve => setTimeout(resolve, 1000))
 
-    // Remove alert dialog event listener 
-    page.removeAllListeners('dialog');
+    // Remove alert dialog event listener
+    page.removeAllListeners('dialog')
   })
 
   // Add project
@@ -212,89 +212,87 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     expect(buttonText).toBe('New Meeting Note')
   })
 
-    // Adding note will also add a tag
-    it('Add note also include adding tag', async () => {
-        const tagFromNote = 'meeting';
-        // Wait for all the tags available rendered
-        await page.waitForSelector('.tag');
+  // Adding note will also add a tag
+  it('Add note also include adding tag', async () => {
+    const tagFromNote = 'meeting'
+    // Wait for all the tags available rendered
+    await page.waitForSelector('.tag')
 
-        const allTags = await page.$$('.tag');
-        const initialLength = allTags.length
-        const tag = allTags[0];
-        const tagText = await page.evaluate(tag => tag.innerText, tag);
+    const allTags = await page.$$('.tag')
+    const initialLength = allTags.length
+    const tag = allTags[0]
+    const tagText = await page.evaluate(tag => tag.innerText, tag)
 
-        // // Assert tag is automatically added
-        expect(initialLength).toBe(1)
-        expect(tagText.includes(tagFromNote), true)
-    });
-
-  
-  // Add another note
- it('should be possible to add another new note', async () => {
-  // Wait for the page to load completely
-  await page.waitForSelector('body')
-
-  // Click the button to add a new note
-  const btn = await page.waitForSelector('#add-note', { visible: true })
-  await btn.click()
-
-  // Wait for the popup to appear
-  await page.waitForSelector('.note-popup-container', { visible: true })
-
-  // Wait for and click the 'Meeting' button within the popup
-  const meetingButton = await page.waitForSelector('#Meeting', { visible: true })
-  // no need to click again because its preselected from previous creation
-
-  // Type in the text to the note input using page.evaluate
-  await page.evaluate(() => {
-    const input = document.querySelector('#note-input')
-    if (input) {
-      input.value = 'New Meeting Note 2'
-    }
+    // // Assert tag is automatically added
+    expect(initialLength).toBe(1)
+    expect(tagText.includes(tagFromNote), true)
   })
 
-  // Wait for and click the 'choose-note' button
-  const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
-  await page.click('#choose-note')
+  // Add another note
+  it('should be possible to add another new note', async () => {
+  // Wait for the page to load completely
+    await page.waitForSelector('body')
 
-  // Wait for the entries list to be updated
-  await page.waitForSelector('#entries-list button')
+    // Click the button to add a new note
+    const btn = await page.waitForSelector('#add-note', { visible: true })
+    await btn.click()
 
-  // Get all buttons inside the entries list
-  const allButtons = await page.$$('#entries-list button')
+    // Wait for the popup to appear
+    await page.waitForSelector('.note-popup-container', { visible: true })
 
-  let ourButton = null
-  for (const button of allButtons) {
-    const innerText = await page.evaluate(el => el.innerText, button)
-    if (innerText === 'New Meeting Note 2') {
-      ourButton = button
-      break
+    // Wait for and click the 'Meeting' button within the popup
+    // const meetingButton = await page.waitForSelector('#Meeting', { visible: true })
+    // no need to click again because its preselected from previous creation
+
+    // Type in the text to the note input using page.evaluate
+    await page.evaluate(() => {
+      const input = document.querySelector('#note-input')
+      if (input) {
+        input.value = 'New Meeting Note 2'
+      }
+    })
+
+    // Wait for and click the 'choose-note' button
+    // const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
+    await page.click('#choose-note')
+
+    // Wait for the entries list to be updated
+    await page.waitForSelector('#entries-list button')
+
+    // Get all buttons inside the entries list
+    const allButtons = await page.$$('#entries-list button')
+
+    let ourButton = null
+    for (const button of allButtons) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText === 'New Meeting Note 2') {
+        ourButton = button
+        break
+      }
     }
-  }
 
-  // Assert that ourButton is not null and has the correct innerText
-  expect(ourButton).not.toBeNull()
-  const buttonText = await page.evaluate(el => el.innerText, ourButton)
-  expect(buttonText).toBe('New Meeting Note 2')
-})
-
+    // Assert that ourButton is not null and has the correct innerText
+    expect(ourButton).not.toBeNull()
+    const buttonText = await page.evaluate(el => el.innerText, ourButton)
+    expect(buttonText).toBe('New Meeting Note 2')
+  })
 
   // Add another note with a different template
   it('should be possible to add another new note', async () => {
     // Wait for the page to load completely
     await page.waitForSelector('body')
-  
+
     // Click the button to add a new note
     const btn = await page.waitForSelector('#add-note', { visible: true })
     await btn.click()
-  
+
     // Wait for the popup to appear
     await page.waitForSelector('.note-popup-container', { visible: true })
-  
+
     // Wait for and click the 'Meeting' button within the popup
-    const meetingButton = await page.waitForSelector('#Design', { visible: true })
+    // const meetingButton = await page.waitForSelector('#Design', { visible: true })
     // no need to click again because its preselected from previous creation
-  
+
     // Type in the text to the note input using page.evaluate
     await page.evaluate(() => {
       const input = document.querySelector('#note-input')
@@ -302,17 +300,17 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         input.value = 'New Design Notes'
       }
     })
-  
+
     // Wait for and click the 'choose-note' button
-    const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
+    // const chooseNoteButton = await page.waitForSelector('#choose-note', { visible: true })
     await page.click('#choose-note')
-  
+
     // Wait for the entries list to be updated
     await page.waitForSelector('#entries-list button')
-  
+
     // Get all buttons inside the entries list
     const allButtons = await page.$$('#entries-list button')
-  
+
     let ourButton = null
     for (const button of allButtons) {
       const innerText = await page.evaluate(el => el.innerText, button)
@@ -321,13 +319,12 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         break
       }
     }
-  
+
     // Assert that ourButton is not null and has the correct innerText
     expect(ourButton).not.toBeNull()
     const buttonText = await page.evaluate(el => el.innerText, ourButton)
     expect(buttonText).toBe('New Design Notes')
   })
-
 
   // Update note  (not properly editing ??)
   it('should be possible to update a note', async () => {
@@ -341,32 +338,32 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         break
       }
     }
-
+  
     // Click the note to open it
     await noteButton.click()
-
+  
     // Wait for the edit button to be visible and click it to enable editing mode
     await page.waitForSelector('#edit-button', { visible: true })
     await page.click('#edit-button')
-
-    // Clear the existing content in the textarea and update it directly
+  
+    // Clear the existing content in the textarea
     await page.evaluate(() => {
-      const textarea = document.querySelector('textarea')
+      const textarea = document.querySelector('.md-view textarea')
       if (textarea) {
-        textarea.value = 'Updated Meeting Note' // Set the new content
+        textarea.value = '' // Set the new content
       }
     })
   
-    // Verify the textarea value after setting it directly
-    const textareaValue = await page.$eval('textarea', el => el.value)
-    console.log('Textarea value after setting:', textareaValue)
+    // Simulate typing to update the content
+    await page.type('.md-view textarea', 'Updated Meeting Note', { delay: 100 }); // add a delay if needed
 
+  
     // Save the updated note
     await page.click('#edit-button')
-
+  
     // Add a sufficient delay to ensure content is saved
     await new Promise(resolve => setTimeout(resolve, 500))
-
+  
     // Trigger renderNote to ensure the updated content is displayed
     await page.evaluate(() => {
       const renderNote = window.renderNote
@@ -374,16 +371,16 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
         renderNote()
       }
     })
-
   
     // Verify the updated note content in the md-view class
     await page.waitForSelector('.md-view')
     const noteContent = await page.$eval('.md-view', el => el.innerText)
     console.log('Updated note content:', noteContent)
-
+  
     // Ensure that 'Updated Meeting Note' is part of the content
     expect(noteContent.toLowerCase()).toContain('updated meeting note')
   })
+  
 
   // Delete note
   it('should be possible to delete a note', async () => {
@@ -407,7 +404,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     await noteButton.click()
 
     // Wait for the delete button to be visible and click it to delete the note
-    await page.waitForSelector('#delete-button', { visible: true });
+    await page.waitForSelector('#delete-button', { visible: true })
     await page.click('#delete-button')
 
     // Verify the note is deleted by checking the entries list again
@@ -423,106 +420,114 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
     // Expect that the note button is not found after deletion
     expect(noteButtonAfterDelete).toBeNull()
-
   })
 
   // Add tag to one of the notes we created above and make sure the tag got added to the ui
 
-    it('Add new tag is not possible without a note selected', async () => {
-        // Listen for the alert dialog
-        const tagAlert = 'No note is selected. Please select a note before adding tags.'
-        page.on('dialog', async dialog => {
-            expect(dialog.type()).toBe('alert')
-            expect(dialog.message()).toBe(tagAlert)
-            await dialog.dismiss() // Close the alert dialog
-        })
+  it('Add new tag is not possible without a note selected', async () => {
+    // Listen for the alert dialog
+    const tagAlert = 'No note is selected. Please select a note before adding tags.'
+    page.on('dialog', async dialog => {
+      expect(dialog.type()).toBe('alert')
+      expect(dialog.message()).toBe(tagAlert)
+      await dialog.dismiss() // Close the alert dialog
+    })
 
-        // Click the button with id 'add-note'
-        const btn = await page.$('#add-tag-button')
-        await btn.click()
+    // Click the button with id 'add-note'
+    const btn = await page.$('#add-tag-button')
+    await btn.click()
 
-        // Wait some time to ensure the alert is triggered
-        await new Promise(resolve => setTimeout(resolve, 1000))
+    // Wait some time to ensure the alert is triggered
+    await new Promise(resolve => setTimeout(resolve, 1000))
 
-        // Remove alert dialog event listener 
-        page.removeAllListeners('dialog');
-    });
+    // Remove alert dialog event listener
+    page.removeAllListeners('dialog')
+  })
 
+  it('Adding a new tag when note is selected', async () => {
+    const allButtons = await page.$$('#entries-list button')
+    let ourButton = null
+    for (const button of allButtons) {
+      const innerText = await page.evaluate(el => el.innerText, button)
+      if (innerText === 'New Design Notes') {
+        ourButton = button
+        break
+      }
+    }
 
-    it('Adding a new tag when note is selected', async () => {
-        const tagName = 'new-tag';
-        const initialTags = await page.$$('.tag');
-        const initialLength = initialTags.length;
-        // Add new tag
-        await addTag(page, tagName);
+    await ourButton.click()
 
-        // Get the newly added tag
-        const allTags = await page.$$('.tag');
-        const lastTag = allTags[allTags.length - 1];
-        const tagText = await page.evaluate(tag => tag.innerText, lastTag);
-       
-        // Assert new tag is added
-        expect(allTags.length).toBe(initialLength + 1);
-        expect(tagText.includes(tagName)).toBe(true);
-    }, 8000);
+    const tagName = 'new-tag'
+    const initialTags = await page.$$('.tag')
+    const initialLength = initialTags.length
+    // Add new tag
+    await addTag(page, tagName)
 
-    it('Adding another tag when note is selected', async () => {
-        const tagName = 'another-tag';
-        const initialTags = await page.$$('.tag');
-        const initialLength = initialTags.length;
+    // Get the newly added tag
+    const allTags = await page.$$('.tag')
+    const lastTag = allTags[allTags.length - 1]
+    const tagText = await page.evaluate(tag => tag.innerText, lastTag)
 
-        // Add new tag
-        await addTag(page, tagName);
+    // Assert new tag is added
+    expect(allTags.length).toBe(initialLength + 1)
+    expect(tagText.includes(tagName)).toBe(true)
+  }, 8000)
 
-        // Get the newly added tag and the precious tag
-        const allTags = await page.$$('.tag');
-        const lastTag = allTags[allTags.length - 1];
-        const secondLastTag = allTags[allTags.length - 2]
-        const tagText = await page.evaluate(tag => tag.innerText, lastTag);
-        const secondLastTagText = await page.evaluate(tag => tag.innerText, secondLastTag);
+  it('Adding another tag when note is selected', async () => {
+    const tagName = 'another-tag'
+    const initialTags = await page.$$('.tag')
+    const initialLength = initialTags.length
 
-        // Assert new tag is added
-        expect(allTags.length).toBe(initialLength + 1);
-        expect(tagText.includes(tagName)).toBe(true);
-        expect(secondLastTagText.includes('new-tag')).toBe(true);
-    }, 8000);
+    // Add new tag
+    await addTag(page, tagName)
+
+    // Get the newly added tag and the precious tag
+    const allTags = await page.$$('.tag')
+    const lastTag = allTags[allTags.length - 1]
+    const secondLastTag = allTags[allTags.length - 2]
+    const tagText = await page.evaluate(tag => tag.innerText, lastTag)
+    const secondLastTagText = await page.evaluate(tag => tag.innerText, secondLastTag)
+
+    // Assert new tag is added
+    expect(allTags.length).toBe(initialLength + 1)
+    expect(tagText.includes(tagName)).toBe(true)
+    expect(secondLastTagText.includes('new-tag')).toBe(true)
+  }, 8000)
 
   // Delete the first tag would update the new first tag
-    it('Delete the first tag', async () => {
-        const firstTag = 'meeting';
-        const newFirstTag = 'new-tag';
-        const initialTags = await page.$$('.tag');
-        const initialLength = initialTags.length;
+  it('Delete the first tag', async () => {
+    const firstTag = 'meeting'
+    const newFirstTag = 'new-tag'
+    const initialTags = await page.$$('.tag')
+    const initialLength = initialTags.length
 
-        await deleteTag(page, firstTag);
-        // Verify the tag is deleted
-        const remainingTags = await page.$$('.tag');
-        const updatedLength = remainingTags.length;
-        // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
-        const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)));
+    await deleteTag(page, firstTag)
+    // Verify the tag is deleted
+    const remainingTags = await page.$$('.tag')
+    const updatedLength = remainingTags.length
+    // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
+    const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)))
 
-        expect(updatedLength).toBe(initialLength - 1);
-        expect(remainingTagNames).not.toContain(firstTag);
-        expect(remainingTagNames[0].includes(newFirstTag)).toBe(true);
+    expect(updatedLength).toBe(initialLength - 1)
+    expect(remainingTagNames).not.toContain(firstTag)
+    expect(remainingTagNames[0].includes(newFirstTag)).toBe(true)
+  }, 8000)
 
-    }, 8000);
+  // Delete another tag
+  it('Delete a new-tag', async () => {
+    const toDelete = 'new-tag'
+    const initialTags = await page.$$('.tag')
+    const initialLength = initialTags.length
 
-    // Delete another tag
-    it('Delete a new-tag', async () => {
-        const toDelete = 'new-tag';
-        const initialTags = await page.$$('.tag');
-        const initialLength = initialTags.length;
+    await deleteTag(page, toDelete)
+    // Verify the tag is deleted
+    const remainingTags = await page.$$('.tag')
+    const updatedLength = remainingTags.length
+    // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
+    const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)))
 
-        await deleteTag(page, toDelete);
-        // Verify the tag is deleted
-        const remainingTags = await page.$$('.tag');
-        const updatedLength = remainingTags.length;
-        // Wait until every element in remainingTags is relsolved to be an array of tag-name (string)
-        const remainingTagNames = await Promise.all(remainingTags.map(tag => page.evaluate(el => el.textContent, tag)));
-
-        expect(updatedLength).toBe(initialLength - 1);
-        expect(remainingTagNames).not.toContain(toDelete);
-
-    }, 8000);
+    expect(updatedLength).toBe(initialLength - 1)
+    expect(remainingTagNames).not.toContain(toDelete)
+  }, 8000)
   // Delete project
 })
