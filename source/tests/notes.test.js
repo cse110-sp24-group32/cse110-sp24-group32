@@ -527,5 +527,39 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     expect(updatedLength).toBe(initialLength - 1)
     expect(remainingTagNames).not.toContain(toDelete)
   }, 8000)
+
   // Delete project
+  it('Test for deleting project', async () => {
+    await page.waitForSelector('body');
+    // Wait for project nav to be loaded
+    const allProjs = await page.$$('#project-nav div');
+    // Get the number of current projects
+    const initialLength = allProjs.length;
+    const target = allProjs[1];
+    await target.hover()
+
+    const deleteBtn = await target.$('.proj-delete-button', {visible : true});
+    if (deleteBtn) {
+        await deleteBtn.click();
+    } else {
+        console.log('Delete button not found');
+        return;
+    }
+
+    // Confirm project deletion
+    const confirmBtn = await page.$('#confirm-delete-project', { visible: true });
+    if (confirmBtn) {
+        await confirmBtn.click();
+    } else {
+        console.log('Confirmation button not found');
+        return;
+    }
+
+    // Check the remaining projects
+    await page.waitForSelector('#project-nav .project-icon', { visible: true });
+    const remainingProjs = await page.$$('#project-nav div');
+    const updatedLength = remainingProjs.length;
+    // Assert the number of projects modified
+    expect(updatedLength).toBe(initialLength - 1);
+});
 })

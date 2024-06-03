@@ -485,7 +485,7 @@ button.project-icon {
     color: white;
     border: none;
     border-radius: 10px 10px 0 0;
-    width: 73px;
+    width: 100%;
     height: 20px;
     text-align: center;
     line-height: 20px;
