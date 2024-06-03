@@ -34,7 +34,7 @@ body, html {
 }
 
 .material-symbols-outlined {
-    margin-right: 10px;
+    margin-right: 2%; /*change 1*/
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
@@ -51,8 +51,8 @@ body, html {
 #export-all-button {
     margin-left: 2%;
     margin-right: 2%;
-    padding: 20px;
-    font-size: 15px;
+    padding: 1%;
+    font-size: 1rem;
     border: none;
     border-radius: 20px;
     background-color: white;
@@ -67,8 +67,8 @@ body, html {
 
 #import-all-button {
     margin-right: 1%;
-    padding: 20px;
-    font-size: 15px;
+    padding: 1%;
+    font-size: 1rem;
     border: none;
     border-radius: 20px;
     background-color: white;
@@ -96,8 +96,8 @@ body, html {
 .search-bar-container {
     display: flex;
     align-items: center; /* Center items vertically */
-    margin-left: 16%;
-    width: 55%; /* Allow the container to adjust its width based on content */
+    margin-left: 21.5%;
+    width: 50%; /* Allow the container to adjust its width based on content */
     height: 65%;
     padding: 5px 10px; /* Add padding to the search container */
     border-radius: 20px; /* Reduce border radius */
@@ -106,7 +106,7 @@ body, html {
 
 #search-bar {
     width: auto; /* Allow the search bar to adjust its width based on content */
-    font-size: 14px; /* Reduce font size */
+    font-size: 0.8rem; /* Reduce font size */
     margin-left: 10px; /* Adjust margin */
     margin-top: 14px;
     outline: none;
@@ -131,7 +131,7 @@ body, html {
 #project-nav {
     position: relative;
     flex-shrink: 0;
-    width: 90px;
+    width: 5.0vmax;
     background-color: #222831;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -235,7 +235,7 @@ h3 {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 80%;
+    width: 83%;
     height: 90%;
     z-index: 1;
     background-color: #222831;
@@ -445,8 +445,8 @@ h3 {
 }
 
 .project-icon {
-    width: 73px;
-    height: 65px;
+    width: 4.5vmax;
+    height: 4.0vmax;;
     font-size: 2.5em;
     text-align: center;
     padding: 0;
@@ -613,4 +613,42 @@ button.project-icon {
 .result-title {
     font-size: 120%;
     font-weight: bold;
+}
+
+
+@media only screen and (max-width: 1000px) {
+    #export-all-button, #import-all-button {
+        padding: 10px;
+        font-size: 12px;
+        height: 60%;
+    }
+    
+    .search-bar-container {
+        width: 40%;
+        margin-left: 20px;
+    }
+
+    #project-nav{
+        width: 8.5vmax;
+    }
+
+    .project-icon {
+        width:8.0vmax;
+        height:7.5vmax;
+    }
+
+    #entries-list {
+        width:8.5vmax;
+        font-size:0.4em;
+    }
+
+    #add-note {
+        width:7.5vmax;
+        font-size:2.2em;
+    }
+
+    .entry-button {
+        width:7.5vmax;
+        font-size:2.2em;
+    }
 }
