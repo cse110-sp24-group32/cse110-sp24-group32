@@ -530,36 +530,36 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
 
   // Delete project
   it('Test for deleting project', async () => {
-    await page.waitForSelector('body');
+    await page.waitForSelector('body')
     // Wait for project nav to be loaded
-    const allProjs = await page.$$('#project-nav div');
+    const allProjs = await page.$$('#project-nav div')
     // Get the number of current projects
-    const initialLength = allProjs.length;
-    const target = allProjs[1];
+    const initialLength = allProjs.length
+    const target = allProjs[1]
     await target.hover()
 
-    const deleteBtn = await target.$('.proj-delete-button', {visible : true});
+    const deleteBtn = await target.$('.proj-delete-button', { visible: true })
     if (deleteBtn) {
-        await deleteBtn.click();
+      await deleteBtn.click()
     } else {
-        console.log('Delete button not found');
-        return;
+      console.log('Delete button not found')
+      return
     }
 
     // Confirm project deletion
-    const confirmBtn = await page.$('#confirm-delete-project', { visible: true });
+    const confirmBtn = await page.$('#confirm-delete-project', { visible: true })
     if (confirmBtn) {
-        await confirmBtn.click();
+      await confirmBtn.click()
     } else {
-        console.log('Confirmation button not found');
-        return;
+      console.log('Confirmation button not found')
+      return
     }
 
     // Check the remaining projects
-    await page.waitForSelector('#project-nav .project-icon', { visible: true });
-    const remainingProjs = await page.$$('#project-nav div');
-    const updatedLength = remainingProjs.length;
+    await page.waitForSelector('#project-nav .project-icon', { visible: true })
+    const remainingProjs = await page.$$('#project-nav div')
+    const updatedLength = remainingProjs.length
     // Assert the number of projects modified
-    expect(updatedLength).toBe(initialLength - 1);
-});
+    expect(updatedLength).toBe(initialLength - 1)
+  })
 })
