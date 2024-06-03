@@ -131,7 +131,7 @@ body, html {
 #project-nav {
     position: relative;
     flex-shrink: 0;
-    width: 5vmax;
+    width: 8%;
     background-color: #222831;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -445,8 +445,8 @@ h3 {
 }
 
 .project-icon {
-    width: 90%;
-    height: 7.5%;
+    width: 73px;
+    height: 65px;
     font-size: 2.5em;
     text-align: center;
     padding: 0;
@@ -629,23 +629,11 @@ button.project-icon {
     }
 
     #project-nav{
-        width: 8.5vmax;
+        width: 5%
     }
 
-    
-
-    #entries-list {
-        width:20%!important;
-        font-size:0.4em;
-    }
-
-    #add-note {
-        width:90%;
-        font-size:2.2em;
-    }
-
-    .entry-button {
-        width:90%;
-        font-size:2.2em;
+    #new-project-button{
+        width: 100%;
+        height: 5%;
     }
 }
