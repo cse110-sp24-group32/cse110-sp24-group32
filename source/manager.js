@@ -26,7 +26,6 @@ class Manager {
 
     this.saveHandler = {
       set (obj, prop, value) {
-        console.log('saving', obj, prop, value)
         const val = Reflect.set(...arguments)
         boundSave()
         return val
@@ -41,7 +40,6 @@ class Manager {
       data.projs = {}
       data.curNoteId = null
       data.curProjId = null
-      console.log('asdf')
     }
     this.notes = data.notes
     this.projs = data.projs
@@ -79,7 +77,6 @@ class Manager {
    */
   addProj (name) {
     const proj = new Project(name)
-    console.log(this)
     this.projs[proj.id] = proj
     this.save()
     return new Proxy(proj, this.saveHandler)
@@ -141,7 +138,6 @@ class Manager {
 
     for (let i = 0; i < allNotes.length; i++) {
       if (allNotes[i].proj === id) {
-        console.log(allNotes[i])
         this.delNote(allNotes[i].id)
 
         if (this.curNoteId === allNotes[i].id) {
@@ -198,7 +194,7 @@ class Manager {
   }
 
   /**
-   * Write markdown HTML into target.
+   * Write markdown HTML into target based on current note.
    */
   renderNote () {
     const tagsContainer = document.getElementById('tags-container')
@@ -245,6 +241,7 @@ class Manager {
   }
 
   /**
+   * Renders project information.
    * Write project sidebar rendering code here.
    */
   renderProject () {
@@ -261,7 +258,7 @@ class Manager {
   }
 
   /**
-   * Save all our data into local storage.
+   * Saves all persistent data into localStorage.
    */
   save () {
     const data = {}
@@ -269,7 +266,6 @@ class Manager {
     data.projs = this.projs
     data.curNoteId = this.curNoteId
     data.curProjId = this.curProjId
-    console.log(data)
     localStorage.setItem('notes-data', JSON.stringify(data))
   }
 }
