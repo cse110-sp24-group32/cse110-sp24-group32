@@ -2,7 +2,7 @@
 // const mytextInput = document.getElementById('Botinput');
 // const responseTextarea = document.getElementById('response');
 
-// const API_KEY = 'sk-proj-46G5Fe5s1AOxIDkkIdvYT3BlbkFJ3VZwH7rX9Pv5gLXbgW5N';
+// const API_KEY = '';
 
 
 // document.getElementById("bot-button").addEventListener("click", function() {
@@ -55,7 +55,7 @@ const submitbtn = document.getElementById('submitButton');
 const mytextInput = document.getElementById('Botinput');
 const responseTextarea = document.getElementById('outputField');
 
-const API_KEY = 'sk-proj-46G5Fe5s1AOxIDkkIdvYT3BlbkFJ3VZwH7rX9Pv5gLXbgW5N';
+const API_KEY ='';
 
 document.getElementById("bot-button").addEventListener("click", function() {
     document.getElementById("BotpopupContainer").style.display = "block";
