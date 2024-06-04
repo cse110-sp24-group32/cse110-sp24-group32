@@ -43,25 +43,21 @@ function init () {
     }
   })
 
-
   // REGISTER SERVICE WORKERS
 
-  if ("serviceWorker" in navigator) {
-    window.addEventListener('load', async function() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async function () {
       try {
-        const registration = await navigator.serviceWorker.register("sw.js", {
-          scope: "/source/",
-        });
-  
+        const registration = await navigator.serviceWorker.register('sw.js', {
+          scope: '/source/'
+        })
+
         if (registration.active) {
-          console.log("Successfully registered service worker")
-        } 
+          console.log('Successfully registered service worker')
+        }
       } catch (err) {
-        console.log("Service worker failed");
+        console.log('Service worker failed')
       }
-    });
+    })
   }
-
-
 }
-
