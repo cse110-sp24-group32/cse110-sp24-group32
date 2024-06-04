@@ -1,6 +1,6 @@
 // sw.js - This file needs to be in the root of the directory to work,
 //         so do not move it next to the other scripts
-const caches = self.caches;
+const caches = self.caches
 const CACHE_NAME = 'memory-munchers-dev-tools'
 const URLs = [
   // Base URL
