@@ -15,7 +15,6 @@ class Note {
     this.title = t
     this.tags = l
     this.id = self.crypto.randomUUID()
-    console.log(this.id)
   }
 }
 export { Note }

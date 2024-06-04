@@ -72,6 +72,8 @@ async function init () {
       but.tempId = id
       but.innerHTML = templates[id].name
 
+      // fix for legacy tests
+      but.id = templates[id].name.split(' ')[0]
       // we need to put the notes BEFORE the button
       selectNote.before(but)
 

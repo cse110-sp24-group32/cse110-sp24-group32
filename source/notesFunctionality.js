@@ -171,7 +171,6 @@ async function init () {
   editor.style.width = '99%'
   editor.style.height = '99%'
   editor.addEventListener('input', () => {
-    console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
   })
 }
