@@ -49,7 +49,7 @@ function init () {
     window.addEventListener('load', async function () {
       try {
         const registration = await navigator.serviceWorker.register('sw.js', {
-          scope: '/source/'
+          scope: '/cse110-sp24-group32/'
         })
 
         if (registration.active) {
