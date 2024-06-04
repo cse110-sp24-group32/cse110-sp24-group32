@@ -59,13 +59,11 @@ class Manager {
     const notesByFirstTag = {}
 
     for (const note of Object.values(this.notes)) {
-      if (note.tags.length > 0) {
-        const firstTag = note.tags[0]
-        if (!notesByFirstTag[firstTag]) {
-          notesByFirstTag[firstTag] = []
-        }
-        notesByFirstTag[firstTag].push(note)
+      const firstTag = note.tags.length ? note.tags[0] : ''
+      if (!notesByFirstTag[firstTag]) {
+        notesByFirstTag[firstTag] = []
       }
+      notesByFirstTag[firstTag].push(note)
     }
     return notesByFirstTag
   }
@@ -225,14 +223,10 @@ class Manager {
       deleteButton.textContent = 'x'
       deleteButton.className = 'delete-tag-button'
       deleteButton.addEventListener('click', () => {
-        if (currNote.tags.length === 1) {
-          alert('This tag cannot be deleted because it is the only tag for this note.')
-        } else {
-          currNote.tags = currNote.tags.filter(q => q !== tag)
-          this.save()
-          this.renderNote()
-          renderSideBar() // Call renderSideBar to update sidebar dynamically
-        }
+        currNote.tags = currNote.tags.filter(q => q !== tag)
+        this.save()
+        this.renderNote()
+        renderSideBar() // Call renderSideBar to update sidebar dynamically
       })
 
       tagSpan.appendChild(deleteButton)
