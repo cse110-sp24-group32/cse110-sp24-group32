@@ -69,10 +69,9 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
       defaultViewport: 0
     })
     page = await browser.newPage()
-    
+
     await page.goto('http://localhost:3000/index.html') // Use local server URL
-    await page.setViewport({ width: 1000, height: 800 });
-    
+    await page.setViewport({ width: 1000, height: 800 })
   })
 
   afterAll(async () => {

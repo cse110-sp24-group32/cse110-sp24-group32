@@ -32,74 +32,74 @@ export const buttonHandler = function () {
   man.changeNote(this.id)
 }
 
-function adjustWidth(element) {
-  const sidebarEntry = document.querySelector('#entries-list');
-  const contentPage = document.querySelector('#content');
-  const projNav = document.querySelector('#project-nav');
-  const rightContent = document.querySelector('#right-content');
-  
-  const displayVal = window.getComputedStyle(rightContent).display;
-  const totalWidth = contentPage.offsetWidth;
-  const availableWidth = totalWidth;
+function adjustWidth (element) {
+  const sidebarEntry = document.querySelector('#entries-list')
+  const contentPage = document.querySelector('#content')
+  const projNav = document.querySelector('#project-nav')
+  const rightContent = document.querySelector('#right-content')
 
-  if(element == 'note' && displayVal != 'none') {
-    sidebarEntry.style.display = 'none';
-    projNav.style.display = 'none';
-    rightContent.style.display = 'flex';
+  const displayVal = window.getComputedStyle(rightContent).display
+  const totalWidth = contentPage.offsetWidth
+  const availableWidth = totalWidth
+
+  if (element === 'note' && displayVal !== 'none') {
+    sidebarEntry.style.display = 'none'
+    projNav.style.display = 'none'
+    rightContent.style.display = 'flex'
   } else {
-    sidebarEntry.style.width = `${availableWidth}px`;
+    sidebarEntry.style.width = `${availableWidth}px`
   }
 }
 
-function toggleSidebar() {
-  const sidebarEntry = document.querySelector('#entries-list');
-  const projNav = document.querySelector('#project-nav');
-  const rightContent = document.querySelector('#right-content');
+function toggleSidebar () {
+  const sidebarEntry = document.querySelector('#entries-list')
+  const projNav = document.querySelector('#project-nav')
+  const rightContent = document.querySelector('#right-content')
 
-  const sidebarDisplayVal = window.getComputedStyle(sidebarEntry).display;
-  const rightContentDisplayVal = window.getComputedStyle(rightContent).display;
+  const sidebarDisplayVal = window.getComputedStyle(sidebarEntry).display
+  const rightContentDisplayVal = window.getComputedStyle(rightContent).display
 
-  if (sidebarDisplayVal == 'none') {
-    sidebarEntry.style.display = 'block';
-    projNav.style.display = 'block';
-    rightContent.style.display = 'none';
-    adjustWidth('project');
+  if (sidebarDisplayVal === 'none') {
+    sidebarEntry.style.display = 'block'
+    projNav.style.display = 'block'
+    rightContent.style.display = 'none'
+    adjustWidth('project')
   } else {
-    sidebarEntry.style.display = 'none';
-    projNav.style.display = 'none';
-    rightContent.style.display = 'flex';
+    sidebarEntry.style.display = 'none'
+    projNav.style.display = 'none'
+    rightContent.style.display = 'flex'
   }
 
-  if (this.id == 'choose-note' && rightContentDisplayVal != 'none') {
-    resetView();
+  if (this.id === 'choose-note' && rightContentDisplayVal !== 'none') {
+    resetView()
   }
 
-  console.log('obj: ', this.id);
+  console.log('obj: ', this.id)
 }
 
-function resetView() {
-  const sidebarEntry = document.querySelector('#entries-list');
-  const projNav = document.querySelector('#project-nav');
-  const rightContent = document.querySelector('#right-content');
-  const entryButtons = document.querySelectorAll('.entryButton');
+function resetView () {
+  const sidebarEntry = document.querySelector('#entries-list')
+  const projNav = document.querySelector('#project-nav')
+  const rightContent = document.querySelector('#right-content')
+  const entryButtons = document.querySelectorAll('.entryButton')
 
-  const displayVal = window.getComputedStyle(sidebarEntry).display;
+  const displayVal = window.getComputedStyle(sidebarEntry).display
 
-  if (displayVal == 'none') {
-    sidebarEntry.style.display = 'block';
-    projNav.style.display = 'block';
-    adjustWidth();
+  if (displayVal === 'none') {
+    sidebarEntry.style.display = 'block'
+    projNav.style.display = 'block'
+    adjustWidth()
   } else {
-    rightContent.style.display = 'flex';
+    rightContent.style.display = 'flex'
   }
 
-  entryButtons.forEach(function(entryButton) {
-    entryButton.removeEventListener('click', toggleSidebar);
-  });
+  entryButtons.forEach(function (entryButton) {
+    entryButton.removeEventListener('click', toggleSidebar)
+  })
 
-  document.querySelector('.team-logo').removeEventListener('click', toggleSidebar);
-  document.querySelector('#entries-list').style.width = '280px';
-  document.querySelector('#right-content').style.display = 'flex';
+  document.querySelector('.team-logo').removeEventListener('click', toggleSidebar)
+  document.querySelector('#entries-list').style.width = '280px'
+  document.querySelector('#right-content').style.display = 'flex'
 }
 
 async function init () {
@@ -127,18 +127,16 @@ async function init () {
    * @param {object} note - The note object.
    */
   const createButton = function (note) {
-
-    console.log('ret', note);
-    const but = document.createElement('button');
-    but.type = 'button';
-    but.innerHTML = note.title;
-    but.id = note.id;
+    console.log('ret', note)
+    const but = document.createElement('button')
+    but.type = 'button'
+    but.innerHTML = note.title
+    but.id = note.id
     but.className = 'entryButton'
-    but.addEventListener('click', buttonHandler);
-    but.addEventListener('click', toggleSidebar);
-    entries.appendChild(but);
-  };
-
+    but.addEventListener('click', buttonHandler)
+    but.addEventListener('click', toggleSidebar)
+    entries.appendChild(but)
+  }
 
   /**
    * Creates a project UI element given a project object.
@@ -207,7 +205,6 @@ async function init () {
       createProjTile(proj)
     }
   }
-
 
   renderSideBar()
 
@@ -278,7 +275,7 @@ async function init () {
     popup.style.display = 'none'
   })
 
-  document.querySelector('#choose-note').addEventListener('click', toggleSidebar);
+  document.querySelector('#choose-note').addEventListener('click', toggleSidebar)
 
   for (let i = 0; i < buttonList.length; i++) {
     const button = buttonList[i]
@@ -315,24 +312,24 @@ async function init () {
   })
 
   if (window.innerWidth <= 900) {
-    document.querySelector('.team-logo').addEventListener('click', toggleSidebar);
+    document.querySelector('.team-logo').addEventListener('click', toggleSidebar)
   }
 }
 
 window.addEventListener('resize', () => {
   if (window.innerWidth <= 900) {
-    document.querySelector('.team-logo').addEventListener('click', toggleSidebar);
+    document.querySelector('.team-logo').addEventListener('click', toggleSidebar)
 
-    const entryButtons = document.querySelectorAll('.entryButton');
+    const entryButtons = document.querySelectorAll('.entryButton')
 
-    entryButtons.forEach(function(entryButton) {
-      entryButton.addEventListener('click', toggleSidebar);
-    });
-    adjustWidth('note');
+    entryButtons.forEach(function (entryButton) {
+      entryButton.addEventListener('click', toggleSidebar)
+    })
+    adjustWidth('note')
   } else {
-    resetView();
+    resetView()
   }
-});
+})
 
 /**
  * For creating project tiles, extracts the first letter of each word in the project name and returns them as a string.
