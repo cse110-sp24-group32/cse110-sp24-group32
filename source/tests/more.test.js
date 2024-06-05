@@ -9,10 +9,13 @@ describe('Additional E2E tests', () => {
     browser = await puppeteer.launch({
       headless: true, // Set to false if you want to see the browser during the tests
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      slowMo: 25
+      slowMo: 25,
+      defaultViewport: 0
     })
     page = await browser.newPage()
+
     await page.goto('http://localhost:3000/index.html') // Use local server URL
+    await page.setViewport({ width: 1000, height: 800 })
   })
 
   afterAll(async () => {
