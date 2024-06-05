@@ -1,7 +1,7 @@
 {
     "name": "Dev Tools - Memory Munchers",
     "short_name": "Memory",
-    "start_url": "/",
+    "start_url": "/cse110-sp24-group32/",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#000000",
