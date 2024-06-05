@@ -536,9 +536,11 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
   it('Test for deleting project', async () => {
     await page.waitForSelector('body')
     // Wait for project nav to be loaded
-    const allProjs = await page.$$('#project-nav div')
+    const allProjs = await page.$$('.project-nav div')
     // Get the number of current projects
     const initialLength = allProjs.length
+    console.log(allProjs)
+    console.log(allProjs[0])
     const target = allProjs[0]
     await target.hover()
 
