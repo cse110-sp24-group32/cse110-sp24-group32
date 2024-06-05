@@ -626,6 +626,7 @@ button.project-icon{
     gap:1.5vw;
 }
 
+
 @media screen and (max-width: 900px) {
     .note-bar {
         display: flex;

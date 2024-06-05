@@ -15,7 +15,7 @@ describe('Additional E2E tests', () => {
     page = await browser.newPage()
     
     await page.goto('http://localhost:3000/index.html') // Use local server URL
-
+    await page.setViewport({ width: 1000, height: 800 });
    
   })
 
