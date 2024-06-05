@@ -103,12 +103,13 @@ async function init () {
   })
 
   fileInput.addEventListener('change', (event) => {
+    console.log(2)
     const file = event.target.files[0]
     if (file) {
       const reader = new FileReader()
       reader.onload = (e) => {
         const importedData = JSON.parse(e.target.result)
-
+        console.log(importedData)
         // Ensure importedData has the expected structure
         if (!importedData.notes || typeof importedData.notes !== 'object') {
           console.error('Imported data does not contain a valid notes object.')
@@ -128,7 +129,7 @@ async function init () {
 
         // Add new notes
         for (const noteId in importedData.notes) {
-          if (importedData.notes.hasOwnProperty.call(noteId)) {
+          if (Object.prototype.hasOwnProperty.call(importedData.notes, noteId)) {
             const note = importedData.notes[noteId]
             const validNote = {
               id: note.id,
@@ -144,7 +145,7 @@ async function init () {
 
         // Add new projects
         for (const projId in importedData.projs) {
-          if (importedData.projs.hasOwnProperty.call(projId)) {
+          if (Object.prototype.hasOwnProperty.call(importedData.projs, projId)) {
             man.projs[projId] = importedData.projs[projId]
           }
         }
