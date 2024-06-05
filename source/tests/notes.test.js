@@ -65,10 +65,14 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
   beforeAll(async () => {
     browser = await puppeteer.launch({
       headless: true, // Set to false if you want to see the browser during the tests
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      defaultViewport: 0
     })
     page = await browser.newPage()
+    
     await page.goto('http://localhost:3000/index.html') // Use local server URL
+
+    
   })
 
   afterAll(async () => {
@@ -535,7 +539,7 @@ describe('Puppeteer Tests For App Functionality Testing', () => {
     const allProjs = await page.$$('#project-nav div')
     // Get the number of current projects
     const initialLength = allProjs.length
-    const target = allProjs[1]
+    const target = allProjs[0]
     await target.hover()
 
     const deleteBtn = await target.$('.proj-delete-button', { visible: true })
