@@ -26,13 +26,6 @@ body, html {
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
-/* .chatbot-container {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 6%; /* Adjust the left margin as needed */
-} */
-
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -555,6 +548,10 @@ button.project-icon{
     .note-bar {
         display: flex;
         flex-wrap: wrap;
+    }
+    #top-bar {
+        overflow: auto;
+        height: 9%;
     }
     .top-item {
         height:auto;
