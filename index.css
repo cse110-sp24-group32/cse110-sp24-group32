@@ -669,6 +669,11 @@ button.project-icon{
         width: 100vw;
     }
 
+    #tags-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
     #top-button-container {
         display:flex;
         flex-direction:column;
