@@ -290,6 +290,7 @@ h3 {
 .top-buttons {
     display: flex;
     margin-left: auto;
+    margin-bottom: 3%;
     width:100%;
     justify-content:end;
     margin-right:1vh;
@@ -547,7 +548,9 @@ button.project-icon{
 @media screen and (width <= 900px) {
     .note-bar {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: inherit;
+        overflow-x: auto;
+        justify-content: space-evenly;
     }
     #top-bar {
         overflow: auto;
