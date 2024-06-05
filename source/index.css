@@ -4,11 +4,11 @@ body, html {
     height: 100%;
     width: 100%; /* Add this line if you want the body to have 100% width */
     overflow: hidden;
-    font-family: "Changa", sans-serif !important;
+    font-family: Changa, sans-serif !important;
   }
 
   .changa-normal {
-    font-family: "Changa", sans-serif;
+    font-family: Changa, sans-serif;
     font-optical-sizing:inherit;
     font-weight: 300;
     font-style: normal;
@@ -27,11 +27,12 @@ body, html {
 }
 
 .material-symbols-outlined {
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48
+    margin-right: 2%; /*change 1*/
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
 }
 
 #chatbot-img {
@@ -43,8 +44,8 @@ body, html {
 #export-all-button {
     margin-left: 2%;
     margin-right: 2%;
-    padding: 20px;
-    font-size: 15px;
+    padding: 1%;
+    font-size: 1rem;
     border: none;
     border-radius: 20px;
     background-color: white;
@@ -54,13 +55,13 @@ body, html {
     height:80%;
     display: inline-flex;
     align-items: center;
-    font-family: 'Changa';
+    font-family: Changa, sans-serif;
 }
 
 #import-all-button {
     margin-right: 1%;
-    padding: 20px;
-    font-size: 15px;
+    padding: 1%;
+    font-size: 1rem;
     border: none;
     border-radius: 20px;
     background-color: white;
@@ -70,7 +71,7 @@ body, html {
     height:80%;
     display: inline-flex;
     align-items: center;
-    font-family: 'Changa';
+    font-family: Changa, sans-serif;
 }
 
 .logo-container {
@@ -88,23 +89,17 @@ body, html {
 .search-bar-container {
     display: flex;
     align-items: center; /* Center items vertically */
-    margin-left: 16%;
-    width: 55%; /* Allow the container to adjust its width based on content */
+    margin-left: 21.5%;
+    width: 50%; /* Allow the container to adjust its width based on content */
     height: 65%;
     padding: 5px 10px; /* Add padding to the search container */
     border-radius: 20px; /* Reduce border radius */
     background: #f6f6f6;
 }
 
-    
-.material-symbols-outlined {
-    /* Add your icon styles here */
-    margin-right: 10px; /* Adjust margin for spacing between icon and search bar */
-}
-  
 #search-bar {
     width: auto; /* Allow the search bar to adjust its width based on content */
-    font-size: 14px; /* Reduce font size */
+    font-size: 0.8rem; /* Reduce font size */
     margin-left: 10px; /* Adjust margin */
     margin-top: 14px;
     outline: none;
@@ -129,7 +124,7 @@ body, html {
 #project-nav {
     position: relative;
     flex-shrink: 0;
-    width: 90px;
+    width: 5.0vmax;
     background-color: #222831;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -152,7 +147,7 @@ body, html {
     background-color:#015c63;
 }
 
-.entryButton {
+.entry-button {
     background-color: #00818A;
     color: #EEE;
     height: 6vh;
@@ -160,14 +155,12 @@ body, html {
     margin: 0 auto;
     border: none;
     border-radius: 10px;
-    font-size: 2em;
     font-size: 1.2em;
     display:block;
-     
     margin-bottom: 1.4vw;
 }
 
-.entryButton:hover {
+.entry-button:hover {
     background-color: #015c63;
     cursor:pointer;
 }
@@ -235,7 +228,7 @@ h3 {
     display: flex;
     flex-direction: column;
     margin: auto;
-    width: 80%;
+    width: 83%;
     height: 90%;
     z-index: 1;
     background-color: #222831;
@@ -283,10 +276,6 @@ h3 {
     margin-right: auto;
 }
 
-#add-tag-button {
-    margin-right: 1%
-}
-
 .top-buttons {
     display: flex;
     margin-left: auto;
@@ -302,7 +291,7 @@ h3 {
     border:0;
     border-radius:7.5px;
     color:white;
-    font-family: 'Changa';
+    font-family: Changa, sans-serif;
 }
 
 .top-buttons button:hover {
@@ -311,8 +300,10 @@ h3 {
 
 
 .md-view {
+    overflow-y:scroll;
     flex-grow: 1; 
     width: 100%;
+    font-family:Changa, sans-serif;
 }
 
 .project-popup-container {
@@ -350,8 +341,56 @@ h3 {
     font-size: medium;
 }
 
+
 .md-view {
     overflow-y:scroll;
+}
+
+.project-delete-popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0 0 0 / 50%);
+    z-index: 1000;
+}
+
+.project-delete-popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-confirm {
+    display: flex;
+    gap: 10px;
+}
+
+#confirm-delete-project {
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
+}
+
+#cancel-delete-project {
+    background-color: #1aaab5;
+    color: white;
+    border-radius: 20px;
+    margin-top: 10px;
+    padding: 9px;
+    font-size: medium;
 }
 
 .note-popup-container {
@@ -404,9 +443,9 @@ h3 {
 }
 
 .project-icon {
-    width: 73px;
-    height: 65px;
-    font-size: 2em;
+    width: 4.5vmax;
+    height: 4.0vmax;;
+    font-size: 2.5em;
     text-align: center;
     padding: 0;
     border: 0;
@@ -422,11 +461,11 @@ h3 {
     cursor: pointer;
     transition: background-color 0.1s ease;
     user-select: none;
-    font-weight:bolder;
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflow text */
     text-overflow: ellipsis; /* Truncate text with an ellipsis if it overflows */
     position: relative; /* Ensure children are positioned relative to this */
+    font-weight:normal;
 }
 
 button.project-icon{
@@ -444,7 +483,7 @@ button.project-icon{
     color: white;
     border: none;
     border-radius: 10px 10px 0 0;
-    width: 73px;
+    width: 100%;
     height: 20px;
     text-align: center;
     line-height: 20px;
@@ -453,7 +492,10 @@ button.project-icon{
   }
 
 .project-icon:hover .proj-delete-button {
-    display: block;
+    display: block!important;
+    position:absolute;
+    top:0;
+    text-align:center;
 }
 
 /* css for tags */
@@ -478,6 +520,33 @@ button.project-icon{
     display: inline-block;
 }
 
+#tag-input {
+    font-size: 1em;
+    padding: 10px 15px; /* Increase padding to create space inside the input */
+    border: 1px solid #1aaab5; /* Teal border color */
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+    margin-right: 2px; /* Reduce space between input and button */
+    background-color: #c3c3c3; /* Dark background to match theme */
+    color: black; /* White text color */
+}
+
+#add-tag-button {
+    margin-right: 1%;
+    display: flex;
+    padding: 10px 15px; /* Increase padding to enlarge the button */
+    background-color: #1aaab5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+    cursor: pointer;
+    font-size: 1em;
+}
+
+#add-tag-button:hover {
+    background-color: #00818A;
+}
 
 /* width */
 ::-webkit-scrollbar {
@@ -505,7 +574,6 @@ button.project-icon{
     background: none;
     border: 3px;
     color: #f64009;
-    
     font-size: 1.5em;
     cursor: pointer;
 }
@@ -545,6 +613,7 @@ button.project-icon{
     font-weight: bold;
 }
 
+
 @media screen and (width <= 900px) {
     .note-bar {
         display: flex;
@@ -579,4 +648,17 @@ button.project-icon{
     #search-results-container {
         width: 100vw;
     }
+
+    #export-all-button, #import-all-button {
+        padding: 10px;
+        font-size: 12px;
+        height: 60%;
+    }
+    
+    .search-bar-container {
+        width: 40%;
+        margin-left: 20px;
+    }
+
+
 }
