@@ -158,8 +158,14 @@ async function init() {
     close.className = 'proj-delete-button';
     close.addEventListener('click', function (event) {
       event.stopPropagation();
-      man.delProj(div.id);
-      div.remove();
+      const popup = document.querySelector('.project-delete-popup-container');
+      const delBut = document.getElementById('confirm-delete-project');
+      delBut.addEventListener('click', e => {
+        man.delProj(div.id);
+        div.remove();
+        popup.style.display = 'none';
+      })
+      popup.style.display = 'flex';
     });
     div.appendChild(close);
 
@@ -219,6 +225,18 @@ async function init() {
       const popup = document.querySelector('.project-popup-container')
       popup.style.display = 'none'
     }
+  })
+
+  document.querySelector('.project-delete-popup-container').addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.project-delete-popup-container')) {
+      const popup = document.querySelector('.project-delete-popup-container')
+      popup.style.display = 'none'
+    }
+  })
+
+  document.getElementById('cancel-delete-project').addEventListener('click', e => {
+    const popup = document.querySelector('.project-delete-popup-container')
+    popup.style.display = 'none'
   })
 
   document.querySelector('#add-note').addEventListener('click', () => {
