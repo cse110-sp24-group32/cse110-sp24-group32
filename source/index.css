@@ -214,7 +214,7 @@ h3 {
 
 #right-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     overflow: hidden;
     background-color: #31363F;
@@ -272,7 +272,6 @@ h3 {
     border: 1px solid;
     margin: auto 0;
     padding:0;
-    margin-left:1vh;
     text-align:center;
     font-size:1.35em;
 }
@@ -288,6 +287,7 @@ h3 {
     width:100%;
     justify-content:end;
     margin-right:1vh;
+    gap:1vw;
 }
 
 .top-buttons button {
@@ -626,12 +626,24 @@ button.project-icon{
     gap:1.5vw;
 }
 
+#toggle-sidebar-button {
+    display:none;
+    width: 3vh;
+    height: 100%;
+    background-color: #222831;
+    justify-content: center;
+    align-items: center;
+    border:none;
+    color:#1aaab5;
+    font-size:2.8vh;
+}
+
+
 
 @media screen and (max-width: 900px) {
     .note-bar {
         display: flex;
         flex-wrap: inherit;
-        overflow-x: auto;
         justify-content: space-evenly;
         flex-direction:column;
     }
@@ -644,7 +656,6 @@ button.project-icon{
     }
     .left-note-bar {
         height: auto;
-        margin-left:1.25vh;
     }
     #tags-container .tag {
         display:flex;
@@ -682,6 +693,10 @@ button.project-icon{
         margin-right:auto;
     }
 
+    #tag-input {
+        font-size:2vw;
+    }
+
     .project-icon {
         width:8vmax;
         height:7vmax;
@@ -705,5 +720,10 @@ button.project-icon{
         height:30%;
     }
 
+    #note-title {
+        font-size:3.5vh!important;
+    }
+
+   
 
 }
