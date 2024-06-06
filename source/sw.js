@@ -1,5 +1,3 @@
-// sw.js - This file needs to be in the root of the directory to work,
-//         so do not move it next to the other scripts
 const caches = self.caches
 const CACHE_NAME = 'memory-munchers-dev-tools'
 const URLs = [
@@ -48,26 +46,18 @@ self.addEventListener('activate', function (event) {
 
 // Intercept fetch requests and cache them
 self.addEventListener('fetch', function (event) {
-  event.respondWith(caches.open(CACHE_NAME).then((cache) => {
-    // Go to the cache first
-    return cache.match(event.request).then((cachedResponse) => {
-      // Return a cached response if we have one
-      if (cachedResponse) {
-        return cachedResponse
-      }
-
-      // Otherwise, hit the network
-      try {
-        return fetch(event.request).then((fetchedResponse) => {
-          // Add the network response to the cache for later visits
-          cache.put(event.request, fetchedResponse.clone())
-
-          // Return the network response
-          return fetchedResponse
-        })
-      } catch (err) {
-        console.log(err)
-      }
+  event.respondWith(
+    caches.open(CACHE_NAME).then(function (cache) {
+      return fetch(event.request).then(function (networkResponse) {
+        // If the network request is successful, update the cache and return the response
+        if (networkResponse.status === 200) {
+          cache.put(event.request, networkResponse.clone())
+        }
+        return networkResponse
+      }).catch(function () {
+        // If the network request fails, return the cached response if available
+        return cache.match(event.request)
+      })
     })
-  }))
+  )
 })
