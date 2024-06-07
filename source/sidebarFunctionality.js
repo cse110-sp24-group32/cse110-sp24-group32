@@ -98,6 +98,8 @@ function resetView () {
   })
 
   document.querySelector('.team-logo').removeEventListener('click', toggleSidebar)
+  document.querySelector('#toggle-sidebar-button').removeEventListener('click', toggleSidebar)
+  document.querySelector('#toggle-sidebar-button').style.display = 'none'
   document.querySelector('#entries-list').style.width = '280px'
   document.querySelector('#right-content').style.display = 'flex'
 }
@@ -134,7 +136,10 @@ async function init () {
     but.id = note.id
     but.className = 'entryButton'
     but.addEventListener('click', buttonHandler)
-    but.addEventListener('click', toggleSidebar)
+    document.querySelector('#toggle-sidebar-button').display = 'flex'
+    if (window.innerWidth <= 900) {
+      but.addEventListener('click', toggleSidebar)
+    }
     entries.appendChild(but)
   }
 
@@ -313,12 +318,16 @@ async function init () {
 
   if (window.innerWidth <= 900) {
     document.querySelector('.team-logo').addEventListener('click', toggleSidebar)
+    document.querySelector('#toggle-sidebar-button').style.display = 'flex'
+    document.querySelector('#toggle-sidebar-button').addEventListener('click', toggleSidebar)
   }
 }
 
 window.addEventListener('resize', () => {
   if (window.innerWidth <= 900) {
     document.querySelector('.team-logo').addEventListener('click', toggleSidebar)
+    document.querySelector('#toggle-sidebar-button').addEventListener('click', toggleSidebar)
+    document.querySelector('#toggle-sidebar-button').style.display = 'flex'
 
     const entryButtons = document.querySelectorAll('.entryButton')
 
