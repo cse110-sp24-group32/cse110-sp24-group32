@@ -635,7 +635,8 @@ button.project-icon{
     align-items: center;
     border: none;
     color: #1aaab5;
-    font-size: 5.0vh;
+    font-weight:bolder;
+    font-size:2rem;
     
 }
 
