@@ -635,8 +635,8 @@ button.project-icon{
     align-items: center;
     border: none;
     color: #1aaab5;
-    font-size: 6.8vh;
-    padding-right: 0;
+    font-size: 5.0vh;
+    
 }
 
 #toggle-sidebar-button:hover {
@@ -714,6 +714,7 @@ button.project-icon{
         width:11vw;
         text-align:center;
         justify-content: center;
+        line-height:1em;
     }
     
     .search-bar-container {
