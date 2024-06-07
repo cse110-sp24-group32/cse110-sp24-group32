@@ -121,7 +121,6 @@ class Manager {
     this.save()
   }
 
-
   /**
    * Delete a project by ID.
    * @param {string} id - The project ID.
@@ -215,35 +214,35 @@ class Manager {
 
     // Set title
     document.querySelector('#note-title').textContent = currNote.title
-    const noteTitleElement = document.querySelector('#note-title');
+    const noteTitleElement = document.querySelector('#note-title')
 
     // Add event listener to make title editable
     noteTitleElement.addEventListener('click', () => {
-      const input = document.createElement('input');
-      input.type = 'text';
-      input.value = currNote.title;
-      input.className = 'note-title-input';
+      const input = document.createElement('input')
+      input.type = 'text'
+      input.value = currNote.title
+      input.className = 'note-title-input'
 
       input.addEventListener('blur', () => {
-        currNote.title = input.value;
-        this.save();
-        noteTitleElement.textContent = input.value;;
-        renderSideBar();
-      });
+        currNote.title = input.value
+        this.save()
+        noteTitleElement.textContent = input.value
+        renderSideBar()
+      })
 
       input.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
-          currNote.title = input.value;
-          this.save();
-          noteTitleElement.textContent = input.value;
-          renderSideBar();
+          currNote.title = input.value
+          this.save()
+          noteTitleElement.textContent = input.value
+          renderSideBar()
         }
       })
 
-      noteTitleElement.textContent = '';
-      noteTitleElement.appendChild(input);
-      input.focus();
-    });
+      noteTitleElement.textContent = ''
+      noteTitleElement.appendChild(input)
+      input.focus()
+    })
 
     const tags = currNote.tags
 
