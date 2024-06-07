@@ -143,7 +143,7 @@ body, html {
     margin: 0 auto;
     border: medium double #dfe6e7 ; /* Adding a border with a color */
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 2vh;
     display: block;
 }
  
@@ -628,15 +628,15 @@ button.project-icon{
 
 #toggle-sidebar-button {
     display: none;
-    width: 3vh;
+    width: 1.5rem; 
     height: 100%;
     background-color: #222831;
     justify-content: center;
     align-items: center;
     border: none;
     color: #1aaab5;
-    font-weight:bolder;
-    font-size:2rem;
+    font-weight: bolder;
+    font-size: 2rem;
     
 }
 
