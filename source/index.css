@@ -628,7 +628,7 @@ button.project-icon{
 
 #toggle-sidebar-button {
     display: none;
-    width: 1.5rem; 
+    width: 5%; 
     height: 100%;
     background-color: #222831;
     justify-content: center;
