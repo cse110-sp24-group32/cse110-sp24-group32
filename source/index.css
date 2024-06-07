@@ -660,7 +660,7 @@ button.project-icon{
     #project-nav {
         display: none;
         z-index: 900;
-        width:9vmax;!important;
+        width:9vmax; /*important;*/
     }
     .team-logo:hover {
         cursor: pointer;
@@ -699,6 +699,10 @@ button.project-icon{
     .team-logo {
         height:30%;
     }
+}
 
-
+.note-title-input{
+    background-color: lightgrey;
+    font-family: "Changa", sans-serif;
+    font-size: 1.5rem;
 }
