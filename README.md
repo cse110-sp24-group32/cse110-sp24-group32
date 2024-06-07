@@ -7,9 +7,10 @@ https://cse110-sp24-group32.github.io/cse110-sp24-group32/
 # Deployed JSDocs doc page:
 https://cse110-sp24-group32.github.io/cse110-sp24-group32/documentation/
 
-Team page: https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/team.md
+# Team page: 
+https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/team.md
 
-Tutorial for CI/CD pipeline:
+# Tutorial for CI/CD pipeline:
 
 1. Run linter and style fixes locally via Visual Studio Code extensions
 - Install `StandardJS` on VSC 
