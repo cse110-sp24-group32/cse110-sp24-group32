@@ -143,7 +143,7 @@ body, html {
     margin: 0 auto;
     border: medium double #dfe6e7 ; /* Adding a border with a color */
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 2vh;
     display: block;
 }
  
@@ -165,7 +165,7 @@ body, html {
     margin-bottom: 1.4vw;
 }
 
-.entry-button:hover {
+.entryButton:hover {
     background-color: #015c63;
     cursor:pointer;
 }
@@ -214,7 +214,7 @@ h3 {
 
 #right-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     overflow: hidden;
     background-color: #31363F;
@@ -272,7 +272,6 @@ h3 {
     border: 1px solid;
     margin: auto 0;
     padding:0;
-    margin-left:1vh;
     text-align:center;
     font-size:1.35em;
 }
@@ -284,15 +283,16 @@ h3 {
 .top-buttons {
     display: flex;
     margin-left: auto;
-    margin-bottom: 3%;
+    margin-bottom: 1vh;
     width:100%;
     justify-content:end;
     margin-right:1vh;
+    gap:1vw;
 }
 
 .top-buttons button {
     width:40%;
-    background-color:#00818A;
+    background-color:#1aaab5;
     border:0;
     border-radius:7.5px;
     color:white;
@@ -626,12 +626,30 @@ button.project-icon{
     gap:1.5vw;
 }
 
+#toggle-sidebar-button {
+    display: none;
+    width: 5%; 
+    height: 100%;
+    background-color: #222831;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #1aaab5;
+    font-weight: bolder;
+    font-size: 2rem;
+    
+}
+
+#toggle-sidebar-button:hover {
+    filter:brightness(90%);
+}
+
+
 
 @media screen and (max-width: 900px) {
     .note-bar {
         display: flex;
         flex-wrap: inherit;
-        overflow-x: auto;
         justify-content: space-evenly;
         flex-direction:column;
     }
@@ -644,7 +662,6 @@ button.project-icon{
     }
     .left-note-bar {
         height: auto;
-        margin-left:1.25vh;
     }
     #tags-container .tag {
         display:flex;
@@ -669,12 +686,21 @@ button.project-icon{
         width: 100vw;
     }
 
+    #tags-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
     #top-button-container {
         display:flex;
         flex-direction:column;
         gap:5px;
         margin-left:auto;
         margin-right:auto;
+    }
+
+    #tag-input {
+        font-size:2vw;
     }
 
     .project-icon {
@@ -689,6 +715,7 @@ button.project-icon{
         width:11vw;
         text-align:center;
         justify-content: center;
+        line-height:1em;
     }
     
     .search-bar-container {
@@ -701,8 +728,14 @@ button.project-icon{
     }
 }
 
+
+#note-title {
+    font-size:3.5vh!important;
+}
+
 .note-title-input{
-    background-color: lightgrey;
-    font-family: "Changa", sans-serif;
-    font-size: 1.5rem;
+  background-color: lightgrey;
+  font-family: "Changa", sans-serif;
+  font-size: 1.5rem;
+
 }
