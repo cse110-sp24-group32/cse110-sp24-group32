@@ -35,6 +35,6 @@ npx stylelint "**/*.css" --fix
 
 5. Repo required review from one person before merge
 
-6. Merge if no conflicts
+6. Merge if no conflicts and linter + tests pass
 
 
