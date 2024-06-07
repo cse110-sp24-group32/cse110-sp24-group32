@@ -1,6 +1,12 @@
 # CSE 110 Spring 2024 Group 32
 This is the official production repository for group 32's quarter-long CSE 110 project.
 
+# Deployed group project:
+https://cse110-sp24-group32.github.io/cse110-sp24-group32/
+
+# Deployed JSDocs doc page:
+https://cse110-sp24-group32.github.io/cse110-sp24-group32/documentation/
+
 Team page: https://github.com/cse110-sp24-group32/cse110-sp24-group32/blob/main/admin/team.md
 
 Tutorial for CI/CD pipeline:
