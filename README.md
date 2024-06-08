@@ -29,7 +29,7 @@ npx stylelint "**/*.css" --fix
 
 2. Fix any remaining `standard` errors that can't be auto fixed
 
-3. Run `Jest` tests locally before pushing to ensure unit test and e2e test passes:
+3. Run `Jest-puppeteer` tests locally before pushing to ensure unit test and e2e tests pass:
 - Open terminal to `/source/` directory and enter the following to start a local server and run tests:
 ```
 npm install --save-dev
