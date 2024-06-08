@@ -41,7 +41,7 @@
 - edit and add markdown code section
 - export all
 - either delete all notes and project or clear local storage
-- import exported final
+- import exported journal from previous step
 - search for note 
 - install app as PWA and open it
 - show service workers installed successfully on console and turn “offline” on Network tab in inspect element to show it works offline
