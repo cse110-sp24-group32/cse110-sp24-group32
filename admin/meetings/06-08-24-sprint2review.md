@@ -19,27 +19,30 @@ Hailani
 - Philip
 - Thanh
 - Justin
+- Richard
 
 # What we did this sprint
 
 ## Item 1 : overhauled UI
 ![UI updates](https://github.com/cse110-sp24-group32/cse110-sp24-group32/assets/100443772/540c7b0e-4c62-4777-995a-469ba4d3c476)
-
 - changed colors, added css to buttons
 - updated fonts and changed the defaults to be more original
 - originally purple and grey; changes are now visually appealing
 - device responsive 
 
 ## Item 2 : test cases
-
 - wrote multiple test cases, being able to add notes/tags/projects
 - tested basic functionalities like editing and deleting
-
 
 ## Item 3 : make note title editable, updated github notes template
 - originally, unable to change title after adding a note
   - added the functionality to edit note title
 - github notes templates now have links, can have links to issues/pull request
+
+## Item 4: chatbox feature
+- utilize the OpenAI API to make chatbot
+- integrate it in index.html
+- load the current note/project to the chat bot
 
 # Plan for video(s)
 
