@@ -646,7 +646,6 @@ button.project-icon{
 }
 
 
-
 @media screen and (max-width: 900px) {
     .note-bar {
         display: flex;
@@ -691,8 +690,8 @@ button.project-icon{
         display: flex;
         flex-wrap: wrap;
     }
-    
-    #top-button-container {
+  
+  #top-button-container {
         display:flex;
         flex-direction:column;
         gap:5px;
@@ -727,6 +726,59 @@ button.project-icon{
     .team-logo {
         height:30%;
     }
+  
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.botpopup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: grey;
+
+    /* background: white;
+    display: none;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+  }
+  
+  /* stylelint-disable-next-line selector-class-pattern */
+  .botpopup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+  }
+
+  /* CSS for the output field */
+.bot-output {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    color: black;
+}
+
+.close {
+    color: red; 
+    position: relative;
+    top: 10;
+    left: 0;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 
