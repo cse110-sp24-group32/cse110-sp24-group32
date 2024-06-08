@@ -117,7 +117,7 @@ async function init () {
   Template content is in the second argument of Note constructor
   */
 
-  addTemplate('Default Note', new Note(null, '', 'New Note', []))
+  addTemplate('Default Note', new Note(null, '', 'New Note', ['default']))
   addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']))
   addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']))
   addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']))
@@ -245,17 +245,21 @@ async function init () {
 
   document.querySelector('#add-note').addEventListener('click', () => {
     const popup = document.querySelector('.note-popup-container')
+    const textbox = document.getElementById('note-input')
 
     if (man.curProjId == null) {
       alert('Must select project before adding note')
     } else {
       popup.style.display = 'flex'
+      textbox.select()
     }
   })
 
   document.querySelector('#new-project-button').addEventListener('click', () => {
     const popup2 = document.querySelector('.project-popup-container')
+    const textbox = document.getElementById('project-input')
     popup2.style.display = 'flex'
+    textbox.select()
   })
 
   document.querySelector('#choose-note').addEventListener('click', () => {
@@ -289,13 +293,17 @@ async function init () {
       const noteSelectButton = document.querySelector(buttonID)
       if (noteSelectButton.style.borderColor === 'aqua') {
         noteSelectButton.style.borderColor = 'black'
+        noteSelectButton.style.backgroundColor = 'darkcyan'
       } else {
         noteSelectButton.style.borderColor = 'aqua'
+        noteSelectButton.style.backgroundColor = 'darkblue'
         for (let i = 0; i < buttonList.length; i++) {
           const otherButton = buttonList[i]
           const otherButtonID = '#' + otherButton.id
           if (otherButtonID !== buttonID) {
-            document.querySelector(otherButtonID).style.borderColor = 'black'
+            const other = document.querySelector(otherButtonID)
+            other.style.borderColor = 'black'
+            other.style.backgroundColor = 'darkcyan'
           }
         }
       }
