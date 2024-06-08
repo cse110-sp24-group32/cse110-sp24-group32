@@ -48,9 +48,11 @@ Hailani
 
 ## Public video demo
 
+- 30-45s of funny intro if possible lol
 - show app is responsive for smaller width and toggle between sidebar
 - create project
 - create note
+- show different templates (meeting note, github note)
 - add tags
 - search
 - edit and add markdown code section
@@ -60,6 +62,7 @@ Hailani
 - search for note 
 - install app as PWA and open it
 - show service workers installed successfully on console and turn “offline” on Network tab in inspect element to show it works offline
+- chatbot show off
 
 ## Private video for processes and technical aspects
 
