@@ -628,7 +628,7 @@ button.project-icon{
 
 #toggle-sidebar-button {
     display: none;
-    width: 5%; 
+    width: 2.5%; 
     height: 100%;
     background-color: #222831;
     justify-content: center;
@@ -637,7 +637,8 @@ button.project-icon{
     color: #1aaab5;
     font-weight: bolder;
     font-size: 2rem;
-    
+    padding:0;
+    margin:0;
 }
 
 #toggle-sidebar-button:hover {
