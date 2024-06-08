@@ -21,20 +21,31 @@ npm install --save-dev stylelint stylelint-config-standard
 npm install -g standard
 ```
 
-Run StandardJS and stylelint in project src directory:
+Run `StandardJS` and `stylelint` in project src directory:
 ```
 npx standard --fix
 npx stylelint "**/*.css" --fix
 ```
 
-2. Fix any remaining errors that can't be auto fixed
+2. Fix any remaining `standard` errors that can't be auto fixed
 
-3. Push code to your branch
+3. Run `Jest` tests locally before pushing to ensure unit test and e2e test passes:
+- Open terminal to `/source/` directory and enter the following to start a local server and run tests:
+```
+npm install --save-dev
+npm start &
+```
+- Open another terminal to `/source/` directory and enter the following to run all tests:
+```
+npm test
+```
 
-4. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing. Put this in the PR description.
+4. Push code to your branch if tests pass
 
-5. Repo required review from one person before merge
+5. Create a pull request and link to issue by typing in ` #<num> ` where `<num>` is the issue number you are resolving/implementing. Put this in the PR description.
 
-6. Merge if no conflicts and linter + tests pass
+6. Repo required review from one person before merge
+
+7. Merge if no conflicts and linter + tests pass
 
 
