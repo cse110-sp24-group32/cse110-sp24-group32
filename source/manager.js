@@ -83,12 +83,15 @@ class Manager {
   }
 
   /**
-   * Add a new note.
+   * Add a new note and alerts the user if unnamed.
    * @param {Object} note - The note object.
    * @returns {Proxy} The proxied note.
    */
   addNote (note) {
-    // Make a copy
+    if (!note.title || note.title.trim() === '') {
+      alert('You must name your note')
+      return null
+    }
     note = new Note(note.proj, note.content, note.title, note.tags)
     note.proj = this.curProjId
     this.notes[note.id] = note
