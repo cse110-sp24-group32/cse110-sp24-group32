@@ -10,4 +10,4 @@ Intended users – who are developers by the assumption made at the beginning of
 If users are not willing to learn these tools – the Chatbot functionality is simply an addition to the main note-taking functionality and does not prevent a user from using our app and manually searching queries/notes using the search bar we implemented earlier. 
 
 ##Potential issues later: 
-3.5 Version of OpenAI Api might become unsupported due to the recent update of OpenAI API.  However, this is a very easy fix – just change 3.5 to 4o in the chatbot.js
+3.5 Version of OpenAI Api might become unsupported due to the recent update of OpenAI API.  However, this is a very easy fix – just change 3.5 to 4o in the chatbot.js 
