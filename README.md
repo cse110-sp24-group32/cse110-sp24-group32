@@ -36,6 +36,7 @@ npm install --save-dev
 npm start &
 ```
 - Open another terminal to `/source/` directory and enter the following to run all tests:
+- Set `headless: true` to `headless: false` in `notes.test.js` and `more.test.js`, and change it back before pushing
 ```
 npm test
 ```
