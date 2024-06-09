@@ -49,4 +49,9 @@ npm test
 
 ## 7. Merge if no conflicts and linter + tests pass
 
+# Run app locally:
+
+- Clone repo
+- Either run `npm start &` to host locally or start a `live server` on `index.html` in `VSC` to run with live server extension
+
 
