@@ -26,14 +26,14 @@ body, html {
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
-.material-symbols-outlined {
-    margin-right: 2%; /*change 1*/
+/* .material-symbols-outlined {
+    margin-right: 2%; 
     font-variation-settings:
     'FILL' 0,
     'wght' 400,
     'GRAD' 0,
     'opsz' 48
-}
+} */
 
 #chatbot-img {
     height: 60px; /* Adjust the height as needed */
