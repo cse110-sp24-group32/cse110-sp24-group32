@@ -42,3 +42,6 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 
 - ## **Arjun Varshney**:
   Hi, my name is Arjun Varshney and I'm a junior pursuing a Math-CS major with a data science minor. I'm one of the dev in team 32. In my free time, I usually cook, watch netflix or play football. Here is my Github page: [Arjun's profile](https://github.com/avarshney15)
+
+- ## **Arjun Kohli**:
+  Hi, my name is Arjun Kohli and I'm a second year majoring in computer science. I am one of the team developers. I like to sing, do theatre, cook and watch films. Here is my github page: [Arjun Kohli's profile](https://github.com/a2kohli)
