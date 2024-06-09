@@ -34,8 +34,10 @@ async function init () {
         } else {
           alert(`Maximum of ${MAX_TAGS} tags allowed.`) // Alert if maximum tag has been exceeded
         }
-      } else {
+      } else if (!man.curNoteId) {
         alert('No note is selected. Please select a note before adding tags.')
+      } else {
+        // don't add an empty tag
       }
     })
   }
@@ -47,6 +49,8 @@ async function init () {
 
   // Edit button
   document.querySelector('#edit-button').addEventListener('click', () => {
+    // can't edit with no note selected....
+    if (!man.curNoteId) return
     editing = !editing
     if (!editing) {
       document.getElementById('edit-button').innerText = 'Edit'
@@ -103,13 +107,11 @@ async function init () {
   })
 
   fileInput.addEventListener('change', (event) => {
-    console.log(2)
     const file = event.target.files[0]
     if (file) {
       const reader = new FileReader()
       reader.onload = (e) => {
         const importedData = JSON.parse(e.target.result)
-        console.log(importedData)
         // Ensure importedData has the expected structure
         if (!importedData.notes || typeof importedData.notes !== 'object') {
           console.error('Imported data does not contain a valid notes object.')
@@ -172,7 +174,6 @@ async function init () {
   editor.style.width = '99%'
   editor.style.height = '99%'
   editor.addEventListener('input', () => {
-    console.log(editor.value, man.curNoteId)
     man.getNote(man.curNoteId).content = editor.value
   })
 }

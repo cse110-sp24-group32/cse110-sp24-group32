@@ -14,6 +14,7 @@ async function init () {
   man = await getManagerObject() // Wait for the Manager instance to be initialized
 
   document.getElementById('bot-button').addEventListener('click', function () {
+    if (!man.curNoteId) return
     document.getElementById('BotpopupContainer').style.display = 'block'
   })
 

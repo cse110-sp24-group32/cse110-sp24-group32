@@ -9,7 +9,6 @@ describe('Additional E2E tests', () => {
     browser = await puppeteer.launch({
       headless: true, // Set to false if you want to see the browser during the tests
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      slowMo: 25,
       defaultViewport: 0
     })
     page = await browser.newPage()
@@ -24,7 +23,7 @@ describe('Additional E2E tests', () => {
 
   // Test search functionality
   // We need to do some setup to search something
-  it('shouldnt be possible to add a note without a project selected', async () => {
+  it('test search functionality', async () => {
     let btn = await page.$('#new-project-button')
     await btn.click()
     const pName = await page.$('#project-input')
