@@ -42,4 +42,22 @@ function init () {
       searchResultsContainer.classList.add('hidden')
     }
   })
+
+  // REGISTER SERVICE WORKERS
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', async function () {
+      try {
+        const registration = await navigator.serviceWorker.register('sw.js', {
+          scope: '/cse110-sp24-group32/'
+        })
+
+        if (registration.active) {
+          console.log('Successfully registered service worker')
+        }
+      } catch (err) {
+        console.log('Service worker failed')
+      }
+    })
+  }
 }

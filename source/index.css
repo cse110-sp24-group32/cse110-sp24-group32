@@ -26,13 +26,6 @@ body, html {
     padding: 0 2%; /* Use percentage padding to ensure responsiveness */
 }
 
-.chatbot-container {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 6%; /* Adjust the left margin as needed */
-}
-
 .material-symbols-outlined {
     margin-right: 2%; /*change 1*/
     font-variation-settings:
@@ -52,40 +45,45 @@ body, html {
     margin-left: 2%;
     margin-right: 2%;
     padding: 1%;
-    font-size: 1rem;
+    font-size: 1.2vw;
     border: none;
     border-radius: 20px;
     background-color: white;
     color: black;
     cursor: pointer;
     align-self: left;
-    height:80%;
     display: inline-flex;
+    width:5vw;
+    height:3vw;
     align-items: center;
     font-family: Changa, sans-serif;
+    width:7vw;
+    justify-content: center;
 }
 
 #import-all-button {
     margin-right: 1%;
     padding: 1%;
-    font-size: 1rem;
+    font-size: 1.2vw;
     border: none;
     border-radius: 20px;
     background-color: white;
     color: black;
     cursor: pointer;
     align-self: left;
-    height:80%;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width:7vw;
+    height:3vw;
     font-family: Changa, sans-serif;
 }
 
 .logo-container {
     display: flex;
     align-items: center; /* Center items vertically within the container */
-    margin-left: -10px;
     height: 100%; /* Ensure the container takes the full height of the top bar */
+    padding-right: 3%;
 }
 
 .team-logo {
@@ -96,7 +94,7 @@ body, html {
 .search-bar-container {
     display: flex;
     align-items: center; /* Center items vertically */
-    margin-left: 21.5%;
+    margin-left: 15%;
     width: 50%; /* Allow the container to adjust its width based on content */
     height: 65%;
     padding: 5px 10px; /* Add padding to the search container */
@@ -131,7 +129,7 @@ body, html {
 #project-nav {
     position: relative;
     flex-shrink: 0;
-    width: 5.0vmax;
+    width: 9vh;
     background-color: #222831;
     overflow-y: scroll;
     scrollbar-width: none;
@@ -143,9 +141,9 @@ body, html {
     height: 8%;
     width: 50%;
     margin: 0 auto;
-    border: 1px solid white;
+    border: medium double #dfe6e7 ; /* Adding a border with a color */
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 2vh;
     display: block;
 }
  
@@ -154,7 +152,7 @@ body, html {
     background-color:#015c63;
 }
 
-.entry-button {
+.entryButton {
     background-color: #00818A;
     color: #EEE;
     height: 6vh;
@@ -167,7 +165,7 @@ body, html {
     margin-bottom: 1.4vw;
 }
 
-.entry-button:hover {
+.entryButton:hover {
     background-color: #015c63;
     cursor:pointer;
 }
@@ -216,7 +214,7 @@ h3 {
 
 #right-content {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     width: 100%;
     overflow: hidden;
     background-color: #31363F;
@@ -258,7 +256,6 @@ h3 {
     gap: 10px; /* Optional: space between the columns */
 }
 
-
 .left-note-bar {
     display: grid;
     grid-template-rows: 1fr 1fr;
@@ -275,7 +272,6 @@ h3 {
     border: 1px solid;
     margin: auto 0;
     padding:0;
-    margin-left:1vh;
     text-align:center;
     font-size:1.35em;
 }
@@ -287,14 +283,16 @@ h3 {
 .top-buttons {
     display: flex;
     margin-left: auto;
+    margin-bottom: 1vh;
     width:100%;
     justify-content:end;
     margin-right:1vh;
+    gap:1vw;
 }
 
 .top-buttons button {
     width:40%;
-    background-color:#00818A;
+    background-color:#1aaab5;
     border:0;
     border-radius:7.5px;
     color:white;
@@ -346,6 +344,11 @@ h3 {
     margin-top: 10px;
     padding: 9px;
     font-size: medium;
+}
+
+
+.md-view {
+    overflow-y:scroll;
 }
 
 .project-delete-popup-container {
@@ -445,8 +448,8 @@ h3 {
 }
 
 .project-icon {
-    width: 4.5vmax;
-    height: 4.0vmax;;
+    width: 8vh;
+    height: 7vh;
     font-size: 2.5em;
     text-align: center;
     padding: 0;
@@ -470,7 +473,7 @@ h3 {
     font-weight:normal;
 }
 
-button.project-icon {
+button.project-icon{
     font-size: 4em;
     font-weight:normal;
 }
@@ -486,7 +489,8 @@ button.project-icon {
     border: none;
     border-radius: 10px 10px 0 0;
     width: 100%;
-    height: 20px;
+    height: 2.5vh;
+    font-size:2vh;
     text-align: center;
     line-height: 20px;
     cursor: pointer;
@@ -505,7 +509,6 @@ button.project-icon {
 
 .tag-input-container {
     display: flex;
-    height: 40%;
     align-items: center;
     padding: 2px 5px;
     padding:0;
@@ -517,13 +520,13 @@ button.project-icon {
     margin: 2px;
     background-color: #00818A;
     border-radius: 5px;
-    font-size: 0.8em;
+    font-size: 1.6vmin;
     color: white;
     display: inline-block;
 }
 
 #tag-input {
-    font-size: 1em;
+    font-size: 1.5vmin;
     padding: 10px 15px; /* Increase padding to create space inside the input */
     border: 1px solid #1aaab5; /* Teal border color */
     border-radius: 5px;
@@ -543,7 +546,7 @@ button.project-icon {
     border-radius: 5px;
     box-sizing: border-box; /* Ensures padding doesn't affect the width */
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.5vmin;
 }
 
 #add-tag-button:hover {
@@ -615,7 +618,151 @@ button.project-icon {
     font-weight: bold;
 }
 
+#top-button-container {
+    display:flex;
+    flex-direction:row;
+    margin-left:auto;
+    margin-right:auto;
+    gap:1.5vw;
+}
 
+#toggle-sidebar-button {
+    display: none;
+    width: 5%; 
+    height: 100%;
+    background-color: #222831;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #1aaab5;
+    font-weight: bolder;
+    font-size: 2rem;
+    padding:0;
+    margin:0;
+}
+
+#toggle-sidebar-button:hover {
+    filter:brightness(90%);
+}
+
+
+#tags-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.note-bar {
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-evenly;
+    flex-direction:column;
+}
+
+.top-item {
+    height:auto;
+}
+
+@media screen and (max-width: 900px) {
+    .note-bar {
+        display: flex;
+        flex-wrap: inherit;
+        justify-content: space-evenly;
+        flex-direction:column;
+    }
+    #top-bar {
+        overflow: auto;
+        height: 12%;
+    }
+    .top-item {
+        height:auto;
+    }
+    .left-note-bar {
+        height: auto;
+    }
+    #tags-container .tag {
+        display:flex;
+    }
+    #entries-list {
+        display: none;
+        z-index: 900;
+    }
+
+    .outer-container {
+        height:88%;
+    }
+    #project-nav {
+        display: none;
+        z-index: 900;
+        width:9vmax; /*important;*/
+    }
+    .team-logo:hover {
+        cursor: pointer;
+    }
+    #search-results-container {
+        width: 100vw;
+    }
+
+    #tags-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+  
+  #top-button-container {
+        display:flex;
+        flex-direction:column;
+        gap:5px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    #tag-input {
+        font-size:2vw;
+    }
+
+    .project-icon {
+        width:8vmax;
+        height:7vmax;
+    }
+
+    #export-all-button, #import-all-button {
+        font-size: 0.75em;
+        height: 4.5vh;
+        border-radius:10px;
+        width:11vw;
+        text-align:center;
+        justify-content: center;
+        line-height:1em;
+    }
+    
+    .search-bar-container {
+        width: 50%;
+        margin-left: auto;
+    }
+
+    .team-logo {
+        height:30%;
+    }
+  
+}
+
+#apiKeyForm {
+    color:white;
+}
+
+#apiKeyForm #submitApi {
+    background-color: white;
+    color:black;
+    border:none;
+    width:fit-content;
+    font-size:2vh;
+    border-radius:4px;
+}
+
+#submitApi:hover {
+    cursor:pointer;
+    background-color:#00818A;
+}
 
 /* stylelint-disable-next-line selector-class-pattern */
 .botpopup {
@@ -626,8 +773,7 @@ button.project-icon {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: grey;
+    overflow: hidden;
 
     /* background: white;
     display: none;
@@ -642,11 +788,14 @@ button.project-icon {
   
   /* stylelint-disable-next-line selector-class-pattern */
   .botpopup-content {
-    background-color: #fefefe;
+    background-color: #404B69;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
+    position:relative;
+    border-radius:10px;
+    border:none;
   }
 
   /* CSS for the output field */
@@ -657,57 +806,53 @@ button.project-icon {
     background-color: #f9f9f9;
     border-radius: 5px;
     color: black;
+    height:40%;
 }
 
 .close {
-    color: red; 
-    position: relative;
-    top: 10;
-    left: 0;
+    color: black!important;
+    background-color:white!important; 
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    display:block;
+    bottom:0;
+    width:fit-content!important;
+    font-weight:normal!important;
 }
 
 
+#note-title {
+    font-size:3.5vh!important;
+}
 
+.note-title-input{
+  background-color: lightgrey;
+  font-family: "Changa", sans-serif;
+  font-size: 1.5rem;
 
+}
 
+#bottomChatContainer {
+    display:flex;
+    flex-direction:column;
+    margin-top:4vh;
+}
 
+#submitButton {
+    width:fit-content;
+    font-size:3vh;
+    background-color:white!important;
+    color:black!important;
+}
 
-@media only screen and (max-width: 1000px) {
-    #export-all-button, #import-all-button {
-        padding: 10px;
-        font-size: 12px;
-        height: 60%;
-    }
-    
-    .search-bar-container {
-        width: 40%;
-        margin-left: 20px;
-    }
+#chat-controls {
+    display:flex;
+    gap:1vh;
+    justify-content:center;
+    margin-top:1vh;
+}
 
-    #project-nav{
-        width: 8.5vmax;
-    }
-
-    .project-icon {
-        width:8.0vmax;
-        height:7.5vmax;
-    }
-
-    #entries-list {
-        width:8.5vmax;
-        font-size:0.4em;
-    }
-
-    #add-note {
-        width:7.5vmax;
-        font-size:2.2em;
-    }
-
-    .entry-button {
-        width:7.5vmax;
-        font-size:2.2em;
-    }
+#Botinput {
+    height:5vh;
 }

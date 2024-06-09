@@ -83,12 +83,15 @@ class Manager {
   }
 
   /**
-   * Add a new note.
+   * Add a new note and alerts the user if unnamed.
    * @param {Object} note - The note object.
    * @returns {Proxy} The proxied note.
    */
   addNote (note) {
-    // Make a copy
+    if (!note.title || note.title.trim() === '') {
+      alert('You must name your note')
+      return null
+    }
     note = new Note(note.proj, note.content, note.title, note.tags)
     note.proj = this.curProjId
     this.notes[note.id] = note
@@ -193,6 +196,8 @@ class Manager {
     this.save()
   }
 
+  changeTitle
+
   /**
    * Write markdown HTML into target based on current note.
    */
@@ -212,6 +217,35 @@ class Manager {
 
     // Set title
     document.querySelector('#note-title').textContent = currNote.title
+    const noteTitleElement = document.querySelector('#note-title')
+
+    // Add event listener to make title editable
+    noteTitleElement.addEventListener('click', () => {
+      const input = document.createElement('input')
+      input.type = 'text'
+      input.value = currNote.title
+      input.className = 'note-title-input'
+
+      input.addEventListener('blur', () => {
+        currNote.title = input.value
+        this.save()
+        noteTitleElement.textContent = input.value
+        renderSideBar()
+      })
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          currNote.title = input.value
+          this.save()
+          noteTitleElement.textContent = input.value
+          renderSideBar()
+        }
+      })
+
+      noteTitleElement.textContent = ''
+      noteTitleElement.appendChild(input)
+      input.focus()
+    })
 
     const tags = currNote.tags
 
