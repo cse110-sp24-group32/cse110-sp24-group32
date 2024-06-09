@@ -48,6 +48,7 @@ const templates = {}
 function addTemplate (name, note) {
   const cur = new Template(name, note)
   templates[cur.id] = cur
+  return cur.id
 }
 
 // Populate later
@@ -101,8 +102,6 @@ function toggleSidebar () {
   if (this.id === 'choose-note' &amp;&amp; rightContentDisplayVal !== 'none') {
     resetView()
   }
-
-  console.log('obj: ', this.id)
 }
 
 function resetView () {
@@ -139,25 +138,60 @@ async function init () {
   // Constant HTML element refs
   entries = document.querySelector('#entries-list')
   projs = document.querySelector('#project-nav')
-  const buttonList = document.getElementsByClassName('note-type')
 
   /*
   Template content is in the second argument of Note constructor
   */
 
-  addTemplate('Default Note', new Note(null, '', 'New Note', ['default']))
-  addTemplate('Meeting Note', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']))
-  addTemplate('Freeform Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']))
-  addTemplate('Design Note', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']))
-  addTemplate('Github Note', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']))
-  addTemplate('Code Note', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']))
+  const defaultNoteId = addTemplate('Default Note', new Note(null, '', 'New Note', ['default']))
+  addTemplate('Meeting', new Note(null, MEETING_NOTES, 'New Meeting Note', ['meeting']))
+  addTemplate('Freeform MD Note', new Note(null, FREEFORM_MD, 'New Freeform MD Note', ['freeform']))
+  addTemplate('Design', new Note(null, DESIGN_NOTES, 'New Design Note', ['design']))
+  addTemplate('Github', new Note(null, GITHUB_NOTES, 'New Github Note', ['github']))
+  addTemplate('Code', new Note(null, CODE_AND_BUG_SNIPPETS, 'New Code Note', ['code']))
+  // populate select-note div
+  const selectNote = document.querySelector('.select-note')
+  const SELECTED_COL = 'darkblue'
+  const OTHER_COL = 'darkcyan'
 
+  let selectedBut = null
+
+  // We'll skip adding the default note, to preserve the previous behaviour.
+  // May want to change this later.
+  for (const id in templates) {
+    if (id !== defaultNoteId) {
+    // &lt;button type="button", class="note-type", id="Meeting">Meeting&lt;/button>
+      const but = document.createElement('button')
+      but.type = 'button'
+      but.className = 'note-type'
+
+      // query selector doesn't work well with UUIDs
+      but.tempId = id
+      but.innerHTML = templates[id].name
+
+      // fix for legacy tests
+      but.id = templates[id].name.split(' ')[0]
+      // we need to put the notes BEFORE the button
+      selectNote.before(but)
+
+      // use normal function to get correct this
+      but.addEventListener('click', function () {
+        if (this === selectedBut) {
+          this.style.backgroundColor = OTHER_COL
+          selectedBut = null
+        } else {
+          this.style.backgroundColor = SELECTED_COL
+          if (selectedBut) selectedBut.style.backgroundColor = OTHER_COL
+          selectedBut = this
+        }
+      })
+    }
+  }
   /**
    * Creates a note button for a given note (sidebar).
    * @param {object} note - The note object.
    */
   const createButton = function (note) {
-    console.log('ret', note)
     const but = document.createElement('button')
     but.type = 'button'
     but.innerHTML = note.title
@@ -216,11 +250,11 @@ async function init () {
       projs.removeChild(projs.firstChild)
     }
 
-    console.log(man)
     const notesByFirstTag = man.getNotesGroupedByFirstTag()
-
-    for (const [firstTag, notes] of Object.entries(notesByFirstTag)) {
-      const filteredNotes = notes.filter(note => man.curProjId === note.proj)
+    const arr = Object.keys(notesByFirstTag)
+    arr.sort()
+    for (const firstTag of arr) {
+      const filteredNotes = notesByFirstTag[firstTag].filter(note => man.curProjId === note.proj)
 
       if (filteredNotes.length > 0) {
         const tagHeader = document.createElement('h3')
@@ -291,52 +325,18 @@ async function init () {
   })
 
   document.querySelector('#choose-note').addEventListener('click', () => {
-    let selectedButtonID = 'Default'
-    for (let i = 0; i &lt; buttonList.length; i++) {
-      const button = buttonList[i]
-      const buttonID = '#' + button.id
-      const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor === 'aqua') {
-        selectedButtonID = button.id
-      }
-    }
-    for (const x in templates) {
-      if (templates[x].name === selectedButtonID + ' Note') {
-        const noteToAdd = JSON.parse(JSON.stringify(templates[x].note))
-        noteToAdd.title = document.querySelector('#note-input').value
-        man.addNote(noteToAdd)
-        renderSideBar()
-      }
-    }
+    const id = selectedBut ? selectedBut.tempId : defaultNoteId
+    const noteToAdd = JSON.parse(JSON.stringify(templates[id].note))
+    noteToAdd.title = document.querySelector('#note-input').value
+    // don't exit the popup if we failed
+    if (man.addNote(noteToAdd) === null) return
+
+    renderSideBar()
     const popup = document.querySelector('.note-popup-container')
     popup.style.display = 'none'
   })
 
   document.querySelector('#choose-note').addEventListener('click', toggleSidebar)
-
-  for (let i = 0; i &lt; buttonList.length; i++) {
-    const button = buttonList[i]
-    const buttonID = '#' + button.id
-    document.querySelector(buttonID).addEventListener('click', () => {
-      const noteSelectButton = document.querySelector(buttonID)
-      if (noteSelectButton.style.borderColor === 'aqua') {
-        noteSelectButton.style.borderColor = 'black'
-        noteSelectButton.style.backgroundColor = 'darkcyan'
-      } else {
-        noteSelectButton.style.borderColor = 'aqua'
-        noteSelectButton.style.backgroundColor = 'darkblue'
-        for (let i = 0; i &lt; buttonList.length; i++) {
-          const otherButton = buttonList[i]
-          const otherButtonID = '#' + otherButton.id
-          if (otherButtonID !== buttonID) {
-            const other = document.querySelector(otherButtonID)
-            other.style.borderColor = 'black'
-            other.style.backgroundColor = 'darkcyan'
-          }
-        }
-      }
-    })
-  }
 
   document.querySelector('#confirm-new-project').addEventListener('click', () => {
     const projName = document.querySelector('#project-input').value
@@ -406,7 +406,7 @@ function getFirstLetters (str) {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Jun 09 2024 00:08:08 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Sun Jun 09 2024 01:35:02 GMT+0000 (Coordinated Universal Time)
 </footer>
 
 <script> prettyPrint(); </script>
