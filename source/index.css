@@ -646,6 +646,23 @@ button.project-icon{
 }
 
 
+#tags-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.note-bar {
+    display: flex;
+    flex-wrap: inherit;
+    justify-content: space-evenly;
+    flex-direction:column;
+}
+
+.top-item {
+    height:auto;
+}
+
 @media screen and (max-width: 900px) {
     .note-bar {
         display: flex;
@@ -729,6 +746,24 @@ button.project-icon{
   
 }
 
+#apiKeyForm {
+    color:white;
+}
+
+#apiKeyForm #submitApi {
+    background-color: white;
+    color:black;
+    border:none;
+    width:fit-content;
+    font-size:2vh;
+    border-radius:4px;
+}
+
+#submitApi:hover {
+    cursor:pointer;
+    background-color:#00818A;
+}
+
 /* stylelint-disable-next-line selector-class-pattern */
 .botpopup {
     display: none;
@@ -738,8 +773,7 @@ button.project-icon{
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: grey;
+    overflow: hidden;
 
     /* background: white;
     display: none;
@@ -754,11 +788,14 @@ button.project-icon{
   
   /* stylelint-disable-next-line selector-class-pattern */
   .botpopup-content {
-    background-color: #fefefe;
+    background-color: #404B69;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 40%;
+    position:relative;
+    border-radius:10px;
+    border:none;
   }
 
   /* CSS for the output field */
@@ -769,16 +806,19 @@ button.project-icon{
     background-color: #f9f9f9;
     border-radius: 5px;
     color: black;
+    height:40%;
 }
 
 .close {
-    color: red; 
-    position: relative;
-    top: 10;
-    left: 0;
+    color: black!important;
+    background-color:white!important; 
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    display:block;
+    bottom:0;
+    width:fit-content!important;
+    font-weight:normal!important;
 }
 
 
@@ -791,4 +831,28 @@ button.project-icon{
   font-family: "Changa", sans-serif;
   font-size: 1.5rem;
 
+}
+
+#bottomChatContainer {
+    display:flex;
+    flex-direction:column;
+    margin-top:4vh;
+}
+
+#submitButton {
+    width:fit-content;
+    font-size:3vh;
+    background-color:white!important;
+    color:black!important;
+}
+
+#chat-controls {
+    display:flex;
+    gap:1vh;
+    justify-content:center;
+    margin-top:1vh;
+}
+
+#Botinput {
+    height:5vh;
 }

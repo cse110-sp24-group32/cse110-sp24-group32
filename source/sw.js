@@ -21,6 +21,7 @@ const URLs = [
   'https://cse110-sp24-group32.github.io/cse110-sp24-group32/markdown_templates.js',
   'https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js',
   'https://cse110-sp24-group32.github.io/cse110-sp24-group32/proj.js',
+  'https://cse110-sp24-group32.github.io/cse110-sp24-group32/chatbot.js'
 
   // Font files
   'https://fonts.gstatic.com/s/materialsymbolsoutlined/v190/kJF1BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzByHX9rA6RzaxHMPdY43zj-jCxv3fzvRNU22ZXGJpEpjC_1v-p_4MrImHCIJIZrDCvHOejbd5zrDAt.woff2',

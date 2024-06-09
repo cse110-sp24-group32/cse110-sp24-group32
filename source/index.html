@@ -130,26 +130,38 @@
                             
 
                             <div class="top-buttons">
-                                <button class="top-item" id="export-button">
-                                    Export
-                                </button>
                                 <button class="top-item" id="delete-button">
                                     Delete
                                 </button>
-        
+
                                 <button class="top-item" id="edit-button">
                                     Edit
                                 </button>
 
                                 <button class="top-item" id="bot-button">
-                                    Bot
+                                    Chat
+                                </button>
+
+                                <button class="top-item" id="export-button">
+                                    Export
                                 </button>
                                 <div id="BotpopupContainer" class="botpopup">
+                                    
                                     <div class="botpopup-content">
-                                        <span class="close">&times;</span>
-                                        <input type="text" id="Botinput" placeholder="Enter your query...">
-                                        <button type="button" id="submitButton">Submit</button>
+                                        <form id="apiKeyForm">
+                                            <label for="apiKey">Enter OpenAI API Key (once):</label>
+                                            <input type="password" id="apiKey" name="apiKey" placeholder="Enter API key for bot to work" required>
+                                            <input type="submit" value="Submit" id="submitApi">
+                                        </form>
                                         <div id="outputField" class="bot-output"></div>
+                                        <div id="bottomChatContainer">
+                                        <input type="text" id="Botinput" placeholder="Enter your query...">
+                                            <div id="chat-controls">
+                                            <button type="button" id="submitButton">Submit</button>
+                                            <button class="close">Close</button>
+                                            </div>
+                                        </div>
+       
                                     </div>
                                 </div>
                                   
