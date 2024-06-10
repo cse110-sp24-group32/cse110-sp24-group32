@@ -45,3 +45,6 @@ As memory munchers, we value the efficient use of memory as well as the user's a
 
 - ## **Arjun Kohli**:
   Hi, my name is Arjun Kohli and I'm a second year majoring in computer science. I am one of the team developers. I like to sing, do theatre, cook and watch films. Here is my github page: [Arjun Kohli's profile](https://github.com/a2kohli)
+
+- ## **David Wang**:
+  Hi, my name is David, and I'm a second year computer engineering major. I'm a team developer. I like surfing, swimming, and neural prosthetics. Check out my github page: [David's profile](https://github.com/davidwcode)
