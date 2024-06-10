@@ -52,6 +52,7 @@ npm test
 # Run app locally:
 
 - Clone repo
+- in `source` run `npm install --save-dev`
 - Either run `npm start &` to host locally or start a `live server` on `index.html` in `VSC` to run with live server extension
 
 
