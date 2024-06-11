@@ -27,8 +27,12 @@
     "marked": "^12.0.2"
   },
   "standard": {
-    "globals":["localStorage",
-      "alert", "self", "FileReader"],
+    "globals": [
+      "localStorage",
+      "alert",
+      "self",
+      "FileReader"
+    ],
     "env": [
       "jest"
     ],
