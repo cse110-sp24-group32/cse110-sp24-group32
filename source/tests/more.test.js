@@ -7,7 +7,7 @@ describe('Additional E2E tests', () => {
 
   beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: true, // Set to false if you want to see the browser during the tests
+      headless: false, // Set to false if you want to see the browser during the tests
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
       defaultViewport: 0
     })
